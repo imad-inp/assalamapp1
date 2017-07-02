@@ -30,7 +30,7 @@
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="kafala in vm.kafalas | filter: { kafil:{id: vm.filter_kafilId}} track by kafala.id" ng-class="{PAIEMENT_LATE: kafala.isLate === true}">
-                    <td><a ui-sref="kafala-detail({id:kafala.id})">{{kafala.id}} {{vm.isPaimentLate(kafala)}}</a></td>
+                    <td><a ui-sref="kafala-detail({id:kafala.id})">{{kafala.id}}</a></td>
                     <td>{{kafala.montant}}</td>
                     <td>{{kafala.datedebut| date:'mediumDate'}}</td>
                     <td>
