@@ -34,6 +34,11 @@ public class Demandeadhesion implements Serializable {
     
     @Column(name = "demande_content_type")
     private String demandeContentType;
+    
+     @OneToOne
+    @JoinColumn(name = "enfant_id")
+    private Enfant enfant;
+
 
     public Long getId() {
         return id;
@@ -42,6 +47,15 @@ public class Demandeadhesion implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+     public Enfant getEnfant() {
+        return enfant;
+    }
+
+    public void setEnfant(Enfant enfant) {
+        this.enfant = enfant;
+    }
+    
 
     public LocalDate getDatedemande() {
         return datedemande;

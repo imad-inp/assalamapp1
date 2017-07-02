@@ -17,5 +17,7 @@
     <include file="classpath:config/liquibase/changelog/20170620163742_added_entity_constraints_Resultatsscolaires.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170620163743_added_entity_constraints_Kafala.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170620163745_added_entity_constraints_Paiement.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+        <include file="classpath:config/liquibase/changelog/20170702202004_changelog.xml" relativeToChangelogFile="false"/>
+
+	<!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

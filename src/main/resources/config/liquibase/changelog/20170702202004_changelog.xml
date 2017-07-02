@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="ibouklata (generated)" id="1499023224433-1">
+        <addColumn tableName="demandeadhesion">
+            <column name="enfant_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1499023224433-2">
+        <addForeignKeyConstraint baseColumnNames="kafala_id" baseTableName="paiement" constraintName="FKa1ro0yi8ir1halklfoibal71c" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="kafala"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1499023224433-3">
+        <addForeignKeyConstraint baseColumnNames="enfant_id" baseTableName="demandeadhesion" constraintName="FKoisl73k53snfhfuav7btstfx7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="enfant"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1499023224433-4">
+        <addNotNullConstraint columnDataType="bigint" columnName="mois_payes" tableName="kafala"/>
+        <dropDefaultValue columnDataType="bigint" columnName="mois_payes" tableName="kafala"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1499023224433-5">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="type" tableName="paiement"/>
+    </changeSet>
+</databaseChangeLog>
