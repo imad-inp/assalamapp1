@@ -1,0 +1,69 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPaiementLabel" data-translate="assalamApp.paiement.home.createOrEditLabel">Create or edit a Paiement</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.paiement.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.paiement.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.paiement.date" for="field_date">Date</label>
+                <div class="input-group">
+                    <input id="field_date" type="text" class="form-control" name="date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.paiement.date" is-open="vm.datePickerOpenStatus.date"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('date')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.paiement.montant" for="field_montant">Montant</label>
+            <input type="number" class="form-control" name="montant" id="field_montant"
+                    ng-model="vm.paiement.montant"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.paiement.type" for="field_type">Type</label>
+            <select class="form-control" name="type" ng-model="vm.paiement.type" id="field_type">
+                <option value="CASH" data-translate="assalamApp.PaiementType.CASH">CASH</option>
+                <option value="VIREMENT" data-translate="assalamApp.PaiementType.VIREMENT">VIREMENT</option>
+                <option value="CHEQUE" data-translate="assalamApp.PaiementType.CHEQUE">CHEQUE</option>
+                <option value="CB" data-translate="assalamApp.PaiementType.CB">CB</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.paiement.commentaires" for="field_commentaires">Commentaires</label>
+            <input type="text" class="form-control" name="commentaires" id="field_commentaires"
+                    ng-model="vm.paiement.commentaires"
+                    />
+        </div>
+         <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.paiement.moispayes" for="field_moispayes">Mois payes</label>
+            <input type="number" class="form-control" name="moispayes" id="field_moispayes"
+                    ng-model="vm.paiement.moispayes"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="assalamApp.paiement.kafala" for="field_kafala">Kafala</label>
+            <select class="form-control" id="field_kafala" name="kafala" ng-model="vm.paiement.kafala" ng-options="kafala as kafala.id for kafala in vm.kafalas track by kafala.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

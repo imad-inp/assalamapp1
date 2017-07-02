@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "kafala",
+            "otherEntityName": "kafala",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "montant",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "PaiementType",
+            "fieldValues": "CASH,VIREMENT,CHEQUE,CB"
+        },
+        {
+            "fieldName": "commentaires",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170620163745",
+    "entityTableName": "paiement",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

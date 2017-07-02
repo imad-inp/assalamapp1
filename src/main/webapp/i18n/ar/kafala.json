@@ -1,0 +1,28 @@
+{
+    "assalamApp": {
+        "kafala" : {
+            "home": {
+                "title": "لائحة الكفالات",
+                "createLabel": "اضافة كفالة جديدة",
+                "createOrEditLabel": "اضافة ان تحيين كفالة"
+            },
+            "created": "Un nouveau Kafala a été créé avec l'identifiantتمت اضافة الكفالة {{ param }}",
+            "updated": "تم تحيين الكفالة{{ param }}",
+            "deleted": "تم حذف الكفالة{{ param }}",
+            "delete": {
+                "question": "هل انت متاكد من حذف هذه الكفالة؟ {{ id }} ?"
+            },
+            "detail": {
+                "title": "كفالة"
+            },
+            "montant": "المبلغ",
+            "datedebut": "تاريخ البدأ",
+            "paiements": "الدفعات",
+            "enfant": "الطفل",
+            "famille": "العائلة",
+            "kafil": "الكفيل",
+            "moispayes": "الشهور المؤدات",
+            "paiments": "الدفعات"
+        }
+    }
+}

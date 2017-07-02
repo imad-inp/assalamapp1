@@ -1,0 +1,73 @@
+<div>
+    <h2 data-translate="assalamApp.kafala.home.title">Kafalas</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" no-padding-left">
+                <button class="btn btn-primary" ui-sref="kafala.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="assalamApp.kafala.home.createLabel">
+                        Create new Kafala
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped table-bordered">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="montant"><span data-translate="assalamApp.kafala.montant">Montant</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="datedebut"><span data-translate="assalamApp.kafala.datedebut">Datedebut</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="enfant.id"><span data-translate="assalamApp.kafala.enfant">Enfant</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.kafil">Kafil</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.moispayes">Mois Payes</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th><span data-translate="assalamApp.kafala.paiments">Paiements</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="kafala in vm.kafalas | filter: { kafil:{id: vm.filter_kafilId}} track by kafala.id" ng-class="{PAIEMENT_LATE: kafala.isLate === true}">
+                    <td><a ui-sref="kafala-detail({id:kafala.id})">{{kafala.id}} {{vm.isPaimentLate(kafala)}}</a></td>
+                    <td>{{kafala.montant}}</td>
+                    <td>{{kafala.datedebut| date:'mediumDate'}}</td>
+                    <td>
+                        <a ui-sref="enfant-detail({id:kafala.enfant.id})">{{kafala.enfant.nom}} {{kafala.enfant.prenom}}</a>
+                    </td>
+                    
+                    <td>
+                        <a ui-sref="kafil-detail({id:kafala.kafil.id})">{{kafala.kafil.nom}} {{kafala.kafil.prenom}}</a>
+                    </td>
+                     <td>{{kafala.moispayes}}</td>
+                    <td>
+                        <a ui-sref="paiement({kafalaId: kafala.id })" class="glyphicon glyphicon-file"></a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="kafala-detail({id:kafala.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="kafala.edit({id:kafala.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="kafala.delete({id:kafala.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

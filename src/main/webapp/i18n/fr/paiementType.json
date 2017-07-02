@@ -1,0 +1,11 @@
+{
+    "assalamApp": {
+        "PaiementType" : {
+            "null": "",
+            "CASH": "CASH",
+            "VIREMENT": "VIREMENT",
+            "CHEQUE": "CHEQUE",
+            "CB": "CB"
+        }
+    }
+}

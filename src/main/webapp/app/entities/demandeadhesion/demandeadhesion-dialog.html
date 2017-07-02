@@ -1,0 +1,52 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myDemandeadhesionLabel" data-translate="assalamApp.demandeadhesion.home.createOrEditLabel">Create or edit a Demandeadhesion</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.demandeadhesion.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.demandeadhesion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.demandeadhesion.datedemande" for="field_datedemande">Datedemande</label>
+                <div class="input-group">
+                    <input id="field_datedemande" type="text" class="form-control" name="datedemande" uib-datepicker-popup="{{dateformat}}" ng-model="vm.demandeadhesion.datedemande" is-open="vm.datePickerOpenStatus.datedemande"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datedemande')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.demandeadhesion.statut" for="field_statut">Statut</label>
+            <select class="form-control" name="statut" ng-model="vm.demandeadhesion.statut" id="field_statut">
+                <option value="OUVERTE" data-translate="assalamApp.Statut.OUVERTE">OUVERTE</option>
+                <option value="EN_COURS" data-translate="assalamApp.Statut.EN_COURS">EN_COURS</option>
+                <option value="REFUSEE" data-translate="assalamApp.Statut.REFUSEE">REFUSEE</option>
+                <option value="ACCEPTEE" data-translate="assalamApp.Statut.ACCEPTEE">ACCEPTEE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.demandeadhesion.statut" for="field_statut">Demande</label>
+           <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setDemande($file, vm.demandeadhesion)" accept="*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

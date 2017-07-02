@@ -1,0 +1,68 @@
+
+<div>
+    
+    <img data-ng-src="{{'data:' + vm.enfant.photoContentType + ';base64,' + vm.enfant.photo}}" style="max-height: 100px;" ng-if="vm.enfant.photo" alt="enfant image"/>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+   <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.enfant.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.enfant.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                    ng-model="vm.enfant.nom" readonly
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.prenom" for="field_prenom">Prenom</label>
+            <input type="text" class="form-control" name="prenom" id="field_prenom"
+                    ng-model="vm.enfant.prenom" readonly
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.age" for="field_age">Age</label>
+            <input type="number" class="form-control" name="age" id="field_age"
+                    ng-model="vm.enfant.age" readonly
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.adresse" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                    ng-model="vm.enfant.adresse" readonly
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.tel" for="field_tel">Tel</label>
+            <input type="text" class="form-control" name="tel" id="field_tel"
+                    ng-model="vm.enfant.tel" readonly
+                    />
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.commentaires" for="field_commentaires">Commentaires</label>
+            <input type="text" class="form-control" name="commentaires" id="field_commentaires"
+                    ng-model="vm.enfant.commentaires" readonly
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="assalamApp.enfant.famille" for="field_famille">Famille</label>
+            <input type="text" class="form-control" name="commentaires" id="field_commentaires"
+                    ng-model="vm.enfant.famille.id" readonly
+                    />
+        </div>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="enfant-detail.edit({id:vm.enfant.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

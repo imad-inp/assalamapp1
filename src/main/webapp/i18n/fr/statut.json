@@ -1,0 +1,11 @@
+{
+    "assalamApp": {
+        "Statut" : {
+            "null": "",
+            "OUVERTE": "OUVERTE",
+            "EN_COURS": "EN_COURS",
+            "REFUSEE": "REFUSEE",
+            "ACCEPTEE": "ACCEPTEE"
+        }
+    }
+}

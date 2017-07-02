@@ -1,0 +1,98 @@
+entity Enfant {
+	nom String,
+    prenom String,
+    age Integer,
+    adresse String,
+    tel String,
+    photo ImageBlob,
+    commentaires String
+}
+
+entity Famille {
+	nom String,
+    adresse String,
+    tel String,
+    commentaires String
+}
+
+entity Kafil {
+	nom String,
+    prenom String,
+    adresse String,
+    tel String,
+    membre Boolean,
+    commentaires String,
+    photo ImageBlob
+}
+
+
+entity Resultatsscolaires {
+	annee Integer,
+    description String
+}
+
+entity Kafala {
+	montant Long,
+    date_debut LocalDate
+}
+
+entity Demandeadhesion {
+	date_demande LocalDate,
+	statut  Statut
+    
+}
+entity Paiement{
+	date LocalDate,
+	montant Long,
+	type PaiementType,
+	commentaires String
+}
+
+enum Statut {
+OUVERTE,
+EN_COURS,
+REFUSEE,
+ACCEPTEE
+}
+enum PaiementType {
+CASH,
+VIREMENT,
+CHEQUE,
+CB
+}
+
+
+
+relationship OneToMany {
+	Enfant{kafalat}  to  Kafala{enfant}
+}
+relationship OneToMany {
+	Famille{kafalat}  to  Kafala{famille}
+}
+relationship OneToMany {
+	Kafil{kafalat}  to  Kafala{kafil}
+}
+relationship OneToMany {
+	Enfant{resultats}  to  Resultatsscolaires{enfant}
+}
+
+relationship OneToMany {
+	Famille{enfants}  to  Enfant{famille}
+}
+
+relationship OneToMany {
+	Kafala{paiements}  to  Paiement{kafala}
+}
+
+
+
+
+
+
+// Set pagination options
+paginate Kafil, Enfant, Famille, Kafala, Paiement, Resultatsscolaires with infinite-scroll
+
+
+// Set service options to all except few
+service all with serviceImpl
+

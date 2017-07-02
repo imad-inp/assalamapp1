@@ -1,0 +1,50 @@
+
+<div>
+    <h2><span data-translate="assalamApp.kafala.detail.title">Kafala</span> {{vm.kafala.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" ng-show="vm.kafala.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input readonly type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.kafala.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafala.montant" for="field_montant">Montant</label>
+            <input readonly type="number" class="form-control" name="montant" id="field_montant"
+                    ng-model="vm.kafala.montant" required
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafala.datedebut" for="field_datedebut">Datedebut</label>
+                <div class="input-group">
+                    <input readonly id="field_datedebut" type="text" class="form-control" name="datedebut" uib-datepicker-popup="{{dateformat}}" ng-model="vm.kafala.datedebut" is-open="vm.datePickerOpenStatus.datedebut" required
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datedebut')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="assalamApp.kafala.enfant" for="field_enfant">Enfant</label>
+            <input readonly class="form-control" id="field_enfant" name="enfant" ng-model="vm.kafala.enfant.fullName" />
+                
+        </div>
+      
+        <div class="form-group">
+            <label data-translate="assalamApp.kafala.kafil" for="field_kafil">Kafil</label>
+            <input readonly class="form-control" id="field_kafil" name="kafil" ng-model="vm.kafala.kafil.fullName" />
+              
+        </div>
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="kafala-detail.edit({id:vm.kafala.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

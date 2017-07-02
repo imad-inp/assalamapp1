@@ -1,0 +1,26 @@
+{
+    "assalamApp": {
+        "paiement" : {
+            "home": {
+                "title": "الأداءات",
+                "createLabel": "انشاء اداء جديد",
+                "createOrEditLabel": "انشاء او تحيين اداء"
+            },
+            "created": "تمت اضافة اداء جديد {{ param }}",
+            "updated": "تم تحيين الاداء {{ param }} ",
+            "deleted": " تم حذف الاداء{{ param }}",
+            "delete": {
+                "question": "هل انت متاكد من حذف الاداء؟ {{ id }} ?"
+            },
+            "detail": {
+                "title": "اداء"
+            },
+            "date": "تاريخ الاداء",
+            "montant": "المبلغ",
+            "type": "نوع الاداء",
+            "commentaires": "معلومات اضافية",
+            "kafala": "الكفالة",
+            "moispayes":"عدد الاشهر"
+        }
+    }
+}

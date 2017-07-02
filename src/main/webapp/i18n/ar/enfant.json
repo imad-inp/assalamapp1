@@ -1,0 +1,30 @@
+{
+    "assalamApp": {
+        "enfant" : {
+            "home": {
+                "title": "لائحة الاطفال",
+                "createLabel": "اضافة طفل جديد",
+                "createOrEditLabel": "اضافة او تغيير طفل"
+            },
+            "created": "تمت اضافة طفل جديد  {{ param }}",
+            "updated": " {{ param }} تم تحيين الطفل",
+            "deleted": "{{ param }} تم مسح الطفل",
+            "delete": {
+                "question": "{{ id }}هل انت متاكد من مسح الطفل؟"
+            },
+            "detail": {
+                "title": "الطفل"
+            },
+            "nom": "الاسم العائلي",
+            "prenom": "الاسم الشخصي",
+            "age": "السن",
+            "adresse": "العنوان",
+            "tel": "الهاتف",
+            "photo": "الصورة",
+            "commentaires": "معلومات اضافية",
+            "kafalat": "الكفالات المستفاد منها",
+            "resultats": "النتائج الدراسية",
+            "famille": "العائلة"
+        }
+    }
+}

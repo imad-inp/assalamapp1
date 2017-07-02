@@ -1,0 +1,52 @@
+
+<div>
+    <h2><span data-translate="assalamApp.kafil.detail.title">Kafil</span> {{vm.kafil.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="assalamApp.kafil.nom">Nom</span></dt>
+        <dd>
+            <span>{{vm.kafil.nom}}</span>
+        </dd>
+        <dt><span data-translate="assalamApp.kafil.prenom">Prenom</span></dt>
+        <dd>
+            <span>{{vm.kafil.prenom}}</span>
+        </dd>
+        <dt><span data-translate="assalamApp.kafil.adresse">Adresse</span></dt>
+        <dd>
+            <span>{{vm.kafil.adresse}}</span>
+        </dd>
+        <dt><span data-translate="assalamApp.kafil.tel">Tel</span></dt>
+        <dd>
+            <span>{{vm.kafil.tel}}</span>
+        </dd>
+        <dt><span data-translate="assalamApp.kafil.membre">Membre</span></dt>
+        <dd>
+            <span>{{vm.kafil.membre}}</span>
+        </dd>
+        <dt><span data-translate="assalamApp.kafil.commentaires">Commentaires</span></dt>
+        <dd>
+            <span>{{vm.kafil.commentaires}}</span>
+        </dd>
+        <dt><span data-translate="assalamApp.kafil.photo">Photo</span></dt>
+        <dd>
+            <div ng-if="vm.kafil.photo">
+                <a ng-click="vm.openFile(vm.kafil.photoContentType, vm.kafil.photo)">
+                    <img data-ng-src="{{'data:' + vm.kafil.photoContentType + ';base64,' + vm.kafil.photo}}" style="max-width: 100%;" alt="kafil image"/>
+                </a>
+                {{vm.kafil.photoContentType}}, {{vm.byteSize(vm.kafil.photo)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="kafil-detail.edit({id:vm.kafil.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,28 @@
+{
+    "assalamApp": {
+        "kafil" : {
+            "home": {
+                "title": "لائحة الكفلاء",
+                "createLabel": "اضافة كفيل",
+                "createOrEditLabel": "اضافة او تحيين كفيل"
+            },
+            "created": "تمت اضافة كفيل جديد {{ param }}",
+            "updated": "{{ param }}تم تحيين الكفيل",
+            "deleted": " {{ param }} تم حذف الكفيل",
+            "delete": {
+                "question": "هل ان متاكد من حذف الكفيل {{ id }} ?"
+            },
+            "detail": {
+                "title": "الكفيل"
+            },
+            "nom": "الاسم العائلي",
+            "prenom": "الاسم الشخصي",
+            "adresse": "العنوان",
+            "tel": "الهاتف",
+            "membre": "عضو",
+            "commentaires": "معلومات  اضافية",
+            "photo": "الصورة",
+            "kafalat": "الكفالات المسؤول عنها"
+        }
+    }
+}

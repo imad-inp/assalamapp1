@@ -1,0 +1,23 @@
+{
+    "assalamApp": {
+        "demandeadhesion" : {
+            "home": {
+                "title": "Demandeadhesions",
+                "createLabel": "Créer un nouveau Demandeadhesion",
+                "createOrEditLabel": "Créer ou éditer un Demandeadhesion"
+            },
+            "created": "Un nouveau Demandeadhesion a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Demandeadhesion avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Demandeadhesion avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Demandeadhesion {{ id }} ?"
+            },
+            "detail": {
+                "title": "Demandeadhesion"
+            },
+            "datedemande": "Datedemande",
+            "statut": "Statut",
+            "demande":"Demande"
+        }
+    }
+}

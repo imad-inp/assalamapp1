@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "datedemande",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "statut",
+            "fieldType": "Statut",
+            "fieldValues": "OUVERTE,EN_COURS,REFUSEE,ACCEPTEE"
+        }
+    ],
+    "changelogDate": "20170620163744",
+    "entityTableName": "demandeadhesion",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

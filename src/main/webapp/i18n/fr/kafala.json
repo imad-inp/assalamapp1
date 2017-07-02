@@ -1,0 +1,26 @@
+{
+    "assalamApp": {
+        "kafala" : {
+            "home": {
+                "title": "Kafalas",
+                "createLabel": "Créer un nouveau Kafala",
+                "createOrEditLabel": "Créer ou éditer un Kafala"
+            },
+            "created": "Un nouveau Kafala a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Kafala avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Kafala avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Kafala {{ id }} ?"
+            },
+            "detail": {
+                "title": "Kafala"
+            },
+            "montant": "Montant",
+            "datedebut": "Datedebut",
+            "paiements": "Paiements",
+            "enfant": "Enfant",
+            "famille": "Famille",
+            "kafil": "Kafil"
+        }
+    }
+}

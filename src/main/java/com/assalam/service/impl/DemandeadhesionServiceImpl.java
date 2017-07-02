@@ -1,0 +1,75 @@
+package com.assalam.service.impl;
+
+import com.assalam.service.DemandeadhesionService;
+import com.assalam.domain.Demandeadhesion;
+import com.assalam.repository.DemandeadhesionRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+/**
+ * Service Implementation for managing Demandeadhesion.
+ */
+@Service
+@Transactional
+public class DemandeadhesionServiceImpl implements DemandeadhesionService{
+
+    private final Logger log = LoggerFactory.getLogger(DemandeadhesionServiceImpl.class);
+
+    private final DemandeadhesionRepository demandeadhesionRepository;
+
+    public DemandeadhesionServiceImpl(DemandeadhesionRepository demandeadhesionRepository) {
+        this.demandeadhesionRepository = demandeadhesionRepository;
+    }
+
+    /**
+     * Save a demandeadhesion.
+     *
+     * @param demandeadhesion the entity to save
+     * @return the persisted entity
+     */
+    @Override
+    public Demandeadhesion save(Demandeadhesion demandeadhesion) {
+        log.debug("Request to save Demandeadhesion : {}", demandeadhesion);
+        return demandeadhesionRepository.save(demandeadhesion);
+    }
+
+    /**
+     *  Get all the demandeadhesions.
+     *
+     *  @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Demandeadhesion> findAll() {
+        log.debug("Request to get all Demandeadhesions");
+        return demandeadhesionRepository.findAll();
+    }
+
+    /**
+     *  Get one demandeadhesion by id.
+     *
+     *  @param id the id of the entity
+     *  @return the entity
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Demandeadhesion findOne(Long id) {
+        log.debug("Request to get Demandeadhesion : {}", id);
+        return demandeadhesionRepository.findOne(id);
+    }
+
+    /**
+     *  Delete the  demandeadhesion by id.
+     *
+     *  @param id the id of the entity
+     */
+    @Override
+    public void delete(Long id) {
+        log.debug("Request to delete Demandeadhesion : {}", id);
+        demandeadhesionRepository.delete(id);
+    }
+}

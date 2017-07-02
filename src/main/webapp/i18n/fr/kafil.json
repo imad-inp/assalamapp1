@@ -1,0 +1,28 @@
+{
+    "assalamApp": {
+        "kafil" : {
+            "home": {
+                "title": "Kafils",
+                "createLabel": "Créer un nouveau Kafil",
+                "createOrEditLabel": "Créer ou éditer un Kafil"
+            },
+            "created": "Un nouveau Kafil a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Kafil avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Kafil avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Kafil {{ id }} ?"
+            },
+            "detail": {
+                "title": "Kafil"
+            },
+            "nom": "Nom",
+            "prenom": "Prenom",
+            "adresse": "Adresse",
+            "tel": "Tel",
+            "membre": "Membre",
+            "commentaires": "Commentaires",
+            "photo": "Photo",
+            "kafalat": "Kafalat"
+        }
+    }
+}

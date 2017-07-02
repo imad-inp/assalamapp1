@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <h2 data-translate="assalamApp.paiement.home.title">Paiements</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" no-padding-left">
+                <button class="btn btn-primary" ui-sref="paiement.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="assalamApp.paiement.home.createLabel">
+                        Create new Paiement
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="date"><span data-translate="assalamApp.paiement.date">Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="montant"><span data-translate="assalamApp.paiement.montant">Montant</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="type"><span data-translate="assalamApp.paiement.type">Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="kafala.id"><span data-translate="assalamApp.paiement.kafala">Kafala</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="kafala.id"><span data-translate="assalamApp.paiement.moispayes">Mois payes</span> <span class="glyphicon glyphicon-sort"></span></th>
+
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="paiement in vm.paiements | filter: { kafala:{id: vm.filter_kafalaId}} track by paiement.id">
+                    <td><a ui-sref="paiement-detail({id:paiement.id})">{{paiement.id}}</a></td>
+                        <td>{{paiement.date | date:'mediumDate'}}</td>
+                    <td>{{paiement.montant}}</td>
+                    <td data-translate="{{'assalamApp.PaiementType.' + paiement.type}}">{{paiement.type}}</td>
+                    <td>
+                        <a ui-sref="kafala-detail({id:paiement.kafala.id})">{{paiement.kafala.id}}</a>
+                    </td>
+                    <td>{{paiement.moispayes}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="paiement-detail({id:paiement.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="paiement.edit({id:paiement.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="paiement.delete({id:paiement.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

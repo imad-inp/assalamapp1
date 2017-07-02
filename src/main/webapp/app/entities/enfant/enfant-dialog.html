@@ -1,0 +1,90 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myEnfantLabel" data-translate="assalamApp.enfant.home.createOrEditLabel">Create or edit a Enfant</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.enfant.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.enfant.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                    ng-model="vm.enfant.nom"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.prenom" for="field_prenom">Prenom</label>
+            <input type="text" class="form-control" name="prenom" id="field_prenom"
+                    ng-model="vm.enfant.prenom"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.age" for="field_age">Age</label>
+            <input type="number" class="form-control" name="age" id="field_age"
+                    ng-model="vm.enfant.age"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.adresse" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                    ng-model="vm.enfant.adresse"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.tel" for="field_tel">Tel</label>
+            <input type="text" class="form-control" name="tel" id="field_tel"
+                    ng-model="vm.enfant.tel"
+                    />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.enfant)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="assalamApp.enfant.photo" for="field_photo">Photo</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.enfant.photoContentType + ';base64,' + vm.enfant.photo}}" style="max-height: 100px;" ng-if="vm.enfant.photo" alt="enfant image"/>
+                <div ng-if="vm.enfant.photo" class="help-block clearfix">
+                    <span class="pull-left">{{vm.enfant.photoContentType}}, {{vm.byteSize(vm.enfant.photo)}}</span>
+                    <button type="button" ng-click="vm.enfant.photo=null;vm.enfant.photoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPhoto($file, vm.enfant)" accept="*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                    ng-model="vm.enfant.photo"
+                    />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                    ng-model="vm.enfant.photoContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.enfant.commentaires" for="field_commentaires">Commentaires</label>
+            <input type="text" class="form-control" name="commentaires" id="field_commentaires"
+                    ng-model="vm.enfant.commentaires"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="assalamApp.enfant.famille" for="field_famille">Famille</label>
+            <select class="form-control" id="field_famille" name="famille" ng-model="vm.enfant.famille" ng-options="famille as famille.id for famille in vm.familles track by famille.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

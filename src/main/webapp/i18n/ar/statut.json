@@ -1,0 +1,11 @@
+{
+    "assalamApp": {
+        "Statut" : {
+            "null": "",
+            "OUVERTE": "لم يدرس بعد",
+            "EN_COURS": "في طور الدراسة",
+            "REFUSEE": "مرفوض",
+            "ACCEPTEE": "مقبول"
+        }
+    }
+}

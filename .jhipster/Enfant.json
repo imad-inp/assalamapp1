@@ -1,0 +1,59 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "kafalat",
+            "otherEntityName": "kafala",
+            "otherEntityRelationshipName": "enfant"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "resultats",
+            "otherEntityName": "resultatsscolaires",
+            "otherEntityRelationshipName": "enfant"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "famille",
+            "otherEntityName": "famille",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "age",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "commentaires",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170620163739",
+    "entityTableName": "enfant",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

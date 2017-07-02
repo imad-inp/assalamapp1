@@ -1,0 +1,66 @@
+<div>
+    <h2><h2 data-translate="assalamApp.resultatsscolaires.home.title">Resultatsscolaires</h2> <h2>{{vm.currentEnfant.nom}} {{vm.currentEnfant.prenom}} </h2></h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="no-padding-left">
+                <button class="btn btn-primary" ui-sref="resultatsscolaires.new({enfantId: vm.filter_enfantId})" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="assalamApp.resultatsscolaires.home.createLabel">
+                        Create new Resultatsscolaires
+                    </span>
+                </button>
+            </div>
+             <div class="col-xs-4 no-padding-left">
+               <select ng-model="vm.filter_enfantId" ng-options="enfant.id as enfant.nom for enfant in vm.enfants track by enfant.id">
+                </select>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="annee"><span data-translate="assalamApp.resultatsscolaires.annee">Annee</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span data-translate="assalamApp.resultatsscolaires.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="enfant.id"><span data-translate="assalamApp.resultatsscolaires.enfant">Enfant</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="resultatsscolaires in vm.resultatsscolaires | filter: { enfant:{id: vm.filter_enfantId}} track by resultatsscolaires.id">
+                    <td><a ui-sref="resultatsscolaires-detail({id:resultatsscolaires.id})">{{resultatsscolaires.id}}</a></td>
+                    <td>{{resultatsscolaires.annee}}</td>
+                    <td>{{resultatsscolaires.description}}</td>
+                    <td>
+                        <a ui-sref="enfant-detail({id:resultatsscolaires.enfant.id})">{{resultatsscolaires.enfant.nom}} {{resultatsscolaires.enfant.prenom}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="resultatsscolaires-detail({id:resultatsscolaires.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="resultatsscolaires.edit({id:resultatsscolaires.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="resultatsscolaires.delete({id:resultatsscolaires.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myKafilLabel" data-translate="assalamApp.kafil.home.createOrEditLabel">Create or edit a Kafil</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.kafil.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.kafil.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafil.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                    ng-model="vm.kafil.nom"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafil.prenom" for="field_prenom">Prenom</label>
+            <input type="text" class="form-control" name="prenom" id="field_prenom"
+                    ng-model="vm.kafil.prenom"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafil.adresse" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                    ng-model="vm.kafil.adresse"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafil.tel" for="field_tel">Tel</label>
+            <input type="text" class="form-control" name="tel" id="field_tel"
+                    ng-model="vm.kafil.tel"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafil.membre" for="field_membre">Membre</label>
+                <input type="checkbox" name="membre" id="field_membre"
+                          ng-model="vm.kafil.membre"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafil.commentaires" for="field_commentaires">Commentaires</label>
+            <input type="text" class="form-control" name="commentaires" id="field_commentaires"
+                    ng-model="vm.kafil.commentaires"
+                    />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.kafil)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="assalamApp.kafil.photo" for="field_photo">Photo</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.kafil.photoContentType + ';base64,' + vm.kafil.photo}}" style="max-height: 100px;" ng-if="vm.kafil.photo" alt="kafil image"/>
+                <div ng-if="vm.kafil.photo" class="help-block clearfix">
+                    <span class="pull-left">{{vm.kafil.photoContentType}}, {{vm.byteSize(vm.kafil.photo)}}</span>
+                    <button type="button" ng-click="vm.kafil.photo=null;vm.kafil.photoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPhoto($file, vm.kafil)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                    ng-model="vm.kafil.photo"
+                    />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                    ng-model="vm.kafil.photoContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

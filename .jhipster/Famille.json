@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "kafalat",
+            "otherEntityName": "kafala",
+            "otherEntityRelationshipName": "famille"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "enfants",
+            "otherEntityName": "enfant",
+            "otherEntityRelationshipName": "famille"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "commentaires",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170620163740",
+    "entityTableName": "famille",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

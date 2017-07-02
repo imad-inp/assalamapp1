@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "paiements",
+            "otherEntityName": "paiement",
+            "otherEntityRelationshipName": "kafala"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "enfant",
+            "otherEntityName": "enfant",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "famille",
+            "otherEntityName": "famille",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "kafil",
+            "otherEntityName": "kafil",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "montant",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "datedebut",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170620163743",
+    "entityTableName": "kafala",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

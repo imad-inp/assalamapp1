@@ -1,0 +1,23 @@
+{
+    "assalamApp": {
+        "demandeadhesion" : {
+            "home": {
+                "title": "طلب الاستفادة",
+                "createLabel": "انشاء طلب جديد",
+                "createOrEditLabel": "انشاء او تحيين طلب"
+            },
+            "created": " تم انشاء طلب جديد {{ param }}",
+            "updated": "{{ param }}تم تحيين طلب الاستفادة",
+            "deleted": "t {{ param }}تم حذف الطلب",
+            "delete": {
+                "question": "هل انت متأكد من حذف الطلب؟"
+            },
+            "detail": {
+                "title": "طلب الاستفادة"
+            },
+            "datedemande": "تاريخ الطلب",
+            "statut": "وضعية الطلب",
+            "demande":"الطلب"
+        }
+    }
+}
