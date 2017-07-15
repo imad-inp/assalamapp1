@@ -1,6 +1,32 @@
 <div>
     <h2 data-translate="assalamApp.demandeadhesion.home.title">Demandeadhesions</h2>
     <jhi-alert></jhi-alert>
+    <div class="row">
+         <div class="col-md-3">
+                <button class="btn btn-primary"  ng-click="vm.setState('OUVERTE')" >
+                    <span class="glyphicon"></span>
+                    <span  data-translate="assalamApp.Statut.OUVERTE">
+                        Ouverte
+                    </span>
+                </button>
+            </div>
+         <div class="col-md-3">
+                <button class="btn btn-primary" ng-click="vm.setState('EN_COURS')" >
+                    <span class="glyphicon "></span>
+                    <span  data-translate="assalamApp.Statut.EN_COURS">
+                        En cours
+                    </span>
+                </button>
+            </div>
+         <div class="col-md-3">
+                <button class="btn btn-primary"  ng-click="vm.setState('ACCEPTEE')" >
+                    <span class="glyphicon "></span>
+                    <span  data-translate="assalamApp.Statut.ATTENTE">
+                       En attente
+                    </span>
+                </button>
+            </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="no-padding-left">
@@ -21,16 +47,18 @@
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="assalamApp.demandeadhesion.datedemande">Datedemande</span></th>
                     <th><span data-translate="assalamApp.demandeadhesion.statut">Statut</span></th>
+                    <th><span data-translate="assalamApp.demandeadhesion.enfant">Enfant</span></th>
                     <th><span data-translate="assalamApp.demandeadhesion.demande">Demande</span></th>
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr ng-repeat="demandeadhesion in vm.demandeadhesions| filter: { } track by demandeadhesion.id" ng-class="demandeadhesion.statut">
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="demandeadhesion in vm.demandeadhesions| filter: { statut : vm.demandesFilter} track by demandeadhesion.id" ng-class="demandeadhesion.statut">
 
                     <td><a ui-sref="demandeadhesion-detail({id:demandeadhesion.id})">{{demandeadhesion.id}}</a></td>
                     <td>{{demandeadhesion.datedemande| date:'mediumDate'}}</td>
                     <td data-translate="{{'assalamApp.Statut.' + demandeadhesion.statut}}">{{demandeadhesion.statut}}</td>
+                      <td >{{demandeadhesion.enfant.fullName}}</td>
                     <td >
                         <a ng-if="demandeadhesion.demande" ng-click="vm.openFile(demandeadhesion.demandeContentType, demandeadhesion.demande)" ng-href="{{'data:' + demandeadhesion.demandeContentType + ';base64,' + demandeadhesion.demande}}" target="_blank">
                             hello
@@ -60,5 +88,9 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
     </div>
 </div>

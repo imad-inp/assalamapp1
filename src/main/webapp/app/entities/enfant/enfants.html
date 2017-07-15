@@ -40,7 +40,7 @@
                     <td><a ui-sref="enfant-detail({id:enfant.id})">{{enfant.id}}</a></td>
                     <td>{{enfant.nom}}</td>
                     <td>{{enfant.prenom}}</td>
-                    <td>{{enfant.age}}</td>
+                    <td>{{vm.getAge(enfant)}}</td>
                     <td><a  ui-sref="resultatsscolaires-filter({enfantId: enfant.id })" class="glyphicon glyphicon-file"></a></td>
                  
                 

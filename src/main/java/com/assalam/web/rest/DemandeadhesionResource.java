@@ -2,9 +2,12 @@ package com.assalam.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.assalam.domain.Demandeadhesion;
+import com.assalam.domain.enumeration.Statut;
 import com.assalam.service.DemandeadhesionService;
 import com.assalam.web.rest.util.HeaderUtil;
+import com.assalam.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,10 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 
 /**
  * REST controller for managing Demandeadhesion.
@@ -75,17 +82,8 @@ public class DemandeadhesionResource {
             .body(result);
     }
 
-    /**
-     * GET  /demandeadhesions : get all the demandeadhesions.
-     *
-     * @return the ResponseEntity with status 200 (OK) and the list of demandeadhesions in body
-     */
-    @GetMapping("/demandeadhesions")
-    @Timed
-    public List<Demandeadhesion> getAllDemandeadhesions() {
-        log.debug("REST request to get all Demandeadhesions");
-        return demandeadhesionService.findAll();
-    }
+    
+    
 
     /**
      * GET  /demandeadhesions/:id : get the "id" demandeadhesion.
@@ -100,7 +98,27 @@ public class DemandeadhesionResource {
         Demandeadhesion demandeadhesion = demandeadhesionService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(demandeadhesion));
     }
-
+   /**
+     * GET  /enfants : get demande adhesion filtered.
+     *
+     * @param pageable the pagination information
+     *  @param statut staut to be filtered
+     * @return the ResponseEntity with status 200 (OK) and the list of enfants in body
+     */
+    @GetMapping("/demandeadhesions")
+    @Timed
+    public ResponseEntity<List<Demandeadhesion>> getDemandeadhesionFiltered(@ApiParam Pageable pageable, @RequestParam(required = false) String statut) {
+        log.debug("REST request to get a page of demandeadhesion filtered by statut" + statut);
+        Page<Demandeadhesion> page = null;
+        if(statut == null){
+            page = demandeadhesionService.findAll(pageable);
+        }
+        else{
+         page = demandeadhesionService.findbyStatut(pageable, Statut.valueOf(statut));
+        }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/demandeadhesionsfiltered");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
     /**
      * DELETE  /demandeadhesions/:id : delete the "id" demandeadhesion.
      *

@@ -11,7 +11,7 @@
         $stateProvider
         .state('demandeadhesion', {
             parent: 'kafala-project',
-            url: '/demandeadhesion',
+            url: '/demandeadhesion?status',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'assalamApp.demandeadhesion.home.title'
@@ -98,7 +98,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/demandeadhesion/demandeadhesion-dialog.html',
+                    templateUrl: 'app/entities/demandeadhesion/demandeadhesion-create-dialog.html',
                     controller: 'DemandeadhesionDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -107,7 +107,7 @@
                         entity: function () {
                             return {
                                 datedemande: null,
-                                statut: null,
+                                statut: 'OUVERTE',
                                 id: null
                             };
                         }

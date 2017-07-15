@@ -1,7 +1,10 @@
 package com.assalam.service;
 
 import com.assalam.domain.Demandeadhesion;
+import com.assalam.domain.enumeration.Statut;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing Demandeadhesion.
@@ -21,7 +24,7 @@ public interface DemandeadhesionService {
      *
      *  @return the list of entities
      */
-    List<Demandeadhesion> findAll();
+    Page<Demandeadhesion> findAll(Pageable pageable);
 
     /**
      *  Get the "id" demandeadhesion.
@@ -37,4 +40,12 @@ public interface DemandeadhesionService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+    
+     /**
+     *  Get the demandeadhesion by statut.
+     *
+     *  @param statut the statut of the entity
+     *  @return the e
+     **/ 
+     public Page<Demandeadhesion> findbyStatut(Pageable pageable, Statut statut);
 }

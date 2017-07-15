@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('DemandeadhesionDialogController', DemandeadhesionDialogController);
 
-    DemandeadhesionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Demandeadhesion','DataUtils'];
+    DemandeadhesionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Demandeadhesion','DataUtils','Enfant'];
 
-    function DemandeadhesionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Demandeadhesion,DataUtils) {
+    function DemandeadhesionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Demandeadhesion,DataUtils, Enfant) {
         var vm = this;
 
         vm.demandeadhesion = entity;
@@ -15,7 +15,11 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
+        vm.enfants = Enfant.query();
         
+        vm.reloadEnfants = function(){
+             vm.enfants = Enfant.query();
+        }
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

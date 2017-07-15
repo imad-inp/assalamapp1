@@ -1,9 +1,9 @@
-(function() {
+(function () {
     'use strict';
 
     angular
-        .module('assalamApp')
-        .controller('EnfantController', EnfantController);
+            .module('assalamApp')
+            .controller('EnfantController', EnfantController);
 
     EnfantController.$inject = ['DataUtils', 'Enfant', 'ParseLinks', 'AlertService', 'paginationConstants'];
 
@@ -11,6 +11,7 @@
 
         var vm = this;
 
+        var currentDate = new Date();
         vm.enfants = [];
         vm.loadPage = loadPage;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
@@ -26,10 +27,16 @@
 
         loadAll();
 
-        function loadAll () {
+        vm.getAge = function (enfant) {
+            var diff = currentDate - new Date(enfant.dateDeNaissance); // This is the difference in milliseconds
+            return Math.floor(diff / 31557600000); // Divide by 1000*60*60*24*365.25F
+        };
+
+
+        function loadAll() {
             Enfant.query({
                 page: vm.page,
-                size: vm.itemsPerPage,
+                size: 1,
                 sort: sort()
             }, onSuccess, onError);
             function sort() {
@@ -53,7 +60,7 @@
             }
         }
 
-        function reset () {
+        function reset() {
             vm.page = 0;
             vm.enfants = [];
             loadAll();

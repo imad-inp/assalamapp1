@@ -17,7 +17,9 @@
             },
             "datedemande": "تاريخ الطلب",
             "statut": "وضعية الطلب",
-            "demande":"الطلب"
+            "demande":"الطلب",
+            "enfant" : "الطفل",
+            "creer-enfant": "اضافة طفل"
         }
     }
 }

@@ -1,10 +1,11 @@
-package com.assalam.domain;
+	package com.assalam.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -28,8 +29,8 @@ public class Enfant implements Serializable {
     @Column(name = "prenom")
     private String prenom;
 
-    @Column(name = "age")
-    private Integer age;
+    @Column(name = "date_de_naissance")
+    private LocalDate dateDeNaissance;
 
     @Column(name = "adresse")
     private String adresse;
@@ -96,17 +97,17 @@ public class Enfant implements Serializable {
         this.prenom = prenom;
     }
 
-    public Integer getAge() {
-        return age;
+    public LocalDate getDateDeNaissance() {
+        return dateDeNaissance;
     }
 
-    public Enfant age(Integer age) {
-        this.age = age;
+    public Enfant DateDeNaissance(LocalDate dateDeNaissance) {
+        this.dateDeNaissance = dateDeNaissance;
         return this;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setDateDeNaissance(LocalDate dateDeNaissance) {
+        this.dateDeNaissance = dateDeNaissance;
     }
 
     public String getAdresse() {
@@ -267,7 +268,7 @@ public class Enfant implements Serializable {
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
             ", prenom='" + getPrenom() + "'" +
-            ", age='" + getAge() + "'" +
+            ", age='" + getDateDeNaissance() + "'" +
             ", adresse='" + getAdresse() + "'" +
             ", tel='" + getTel() + "'" +
             ", photo='" + getPhoto() + "'" +
