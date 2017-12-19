@@ -11,6 +11,7 @@
         var vm = this;
 
         vm.kafala = entity;
+        console.log(vm.kafala);
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;

@@ -9,7 +9,7 @@
 
     function EnfantDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Enfant, Kafala, Resultatsscolaires, Famille) {
         var vm = this;
-
+		
         vm.enfant = entity;
         vm.previousState = previousState.name;
         vm.byteSize = DataUtils.byteSize;

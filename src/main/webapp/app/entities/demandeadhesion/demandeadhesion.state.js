@@ -11,7 +11,7 @@
         $stateProvider
         .state('demandeadhesion', {
             parent: 'kafala-project',
-            url: '/demandeadhesion?status',
+            url: '/demandeadhesion?statut&page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'assalamApp.demandeadhesion.home.title'
@@ -23,7 +23,32 @@
                     controllerAs: 'vm'
                 }
             },
+             params: {
+                 statut : {
+                    value: null,
+                    squash: true
+                },
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'datedemande,asc',
+                    squash: true
+                },
+                search: null
+            },
             resolve: {
+                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                    return {
+                        page: PaginationUtil.parsePage($stateParams.page),
+                        sort: $stateParams.sort === null ? 'datedemande,asc' :  $stateParams.sort   ,
+                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                        ascending: PaginationUtil.parseAscending($stateParams.sort),
+                        search: $stateParams.search,
+                        statut: $stateParams.statut === null ? 'OUVERTE' :  $stateParams.statut
+                    };
+                }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('demandeadhesion');
                     $translatePartialLoader.addPart('statut');

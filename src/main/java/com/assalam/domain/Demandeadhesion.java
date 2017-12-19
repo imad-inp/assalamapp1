@@ -35,9 +35,12 @@ public class Demandeadhesion implements Serializable {
     @Column(name = "demande_content_type")
     private String demandeContentType;
     
-     @OneToOne
-    @JoinColumn(name = "enfant_id")
-    private Enfant enfant;
+    @Column(name = "remarques")
+    private String remarques;
+    
+    @OneToOne
+    @JoinColumn(name = "famille_id")
+    private Famille famille;
 
 
     public Long getId() {
@@ -48,12 +51,12 @@ public class Demandeadhesion implements Serializable {
         this.id = id;
     }
     
-     public Enfant getEnfant() {
-        return enfant;
+     public Famille getFamille() {
+        return famille;
     }
 
-    public void setEnfant(Enfant enfant) {
-        this.enfant = enfant;
+    public void setFamille(Famille famille) {
+        this.famille = famille;
     }
     
 
@@ -85,6 +88,18 @@ public class Demandeadhesion implements Serializable {
 
     public byte[] getDemande() {
         return this.demande;
+    }
+    
+     public Demandeadhesion remarques(String remarques) {
+        this.remarques = remarques;
+        return this;
+    }
+      public void setRemarques(String remarques) {
+        this.remarques = remarques;
+    }
+
+    public String getRemarques() {
+        return this.remarques;
     }
 
     public Demandeadhesion demande(byte[] demande) {

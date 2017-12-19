@@ -39,4 +39,12 @@ public interface EnfantService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+	
+	 /**
+     *  Get the enfant by famille id.
+     *
+     *  @param id of the familly that the child belogns to
+     *  @return the e
+     **/ 
+     public Page<Enfant> findbyFamilleId(Pageable pageable, Long familleId);
 }

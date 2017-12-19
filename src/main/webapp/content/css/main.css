@@ -9,14 +9,18 @@ body {
     background-color:gold !important;
 }
 
-.ACCEPTEE{
-    background-color:#7FFFD4 !important;
+.ATTENTE{
+    background-color:#5CB85C !important;
 }
 
 .REFUSEE{
     background-color:#FC5555 !important;
     color:whitesmoke !important;
 }
+.OUVERTE{
+
+}
+
 
 .PAIEMENT_LATE{
     background-color:#faa !important;
@@ -301,7 +305,9 @@ entity tables helpers
    -webkit-justify-content: flex-end;
    justify-content: flex-end;
 }
-
+.remarques{
+    max-width:200px !important;
+}
 .jh-table > tbody > tr > td {
     /* Align text in td vertically (top aligned by Bootstrap) */
     vertical-align: middle;

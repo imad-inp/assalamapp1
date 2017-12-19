@@ -3,34 +3,35 @@
     angular
             .module('assalamApp')
             .controller('DemandeadhesionController', DemandeadhesionController);
-    DemandeadhesionController.$inject = ['Demandeadhesion', 'DataUtils','$stateParams', 'paginationConstants', 'ParseLinks'];
-    function DemandeadhesionController(Demandeadhesion, DataUtils, $stateParams, paginationConstants, ParseLinks) {
+    DemandeadhesionController.$inject = ['Demandeadhesion', 'DataUtils','$stateParams', 'paginationConstants', 'ParseLinks', '$state','pagingParams'];
+    function DemandeadhesionController(Demandeadhesion, DataUtils, $stateParams, paginationConstants, ParseLinks, $state, pagingParams) {
 
         
         var vm = this;
         vm.demandeadhesions = [];
         vm.demandesFilter =  $stateParams.status;
-        vm.statut = 'EN_COURS';
         vm.itemsPerPage = paginationConstants.itemsPerPage;
-        vm.page = 0;
+        vm.statut = pagingParams.statut === null ? 'OUVERTE' : pagingParams.statut;
+
         vm.links = {
             last: 0
         };
-        vm.filtereddemandes = Demandeadhesion.get({ statut: 'EN_COURS' });
+       
         vm.transition =transition;
         vm.openFile = DataUtils.openFile;
         
         vm.setState = function(statut){
             vm.statut = statut;
-           reset();
+            transition();
         };
         loadAll();
         function loadAll() {
-            Demandeadhesion.query({ page: vm.page,
-                size: vm.itemsPerPage, statut : vm.statut }
+            Demandeadhesion.query({ page: pagingParams.page - 1,
+                size: pagingParams.itemsPerPage, statut : pagingParams.statut }
                     ,onSuccess, onError);
             
              function onSuccess(data, headers) {
+                vm.demandeadhesions = [];
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 for (var i = 0; i < data.length; i++) {
@@ -58,7 +59,8 @@
             $state.transitionTo($state.$current, {
                 page: vm.page,
                 sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
-                search: vm.currentSearch
+                search: vm.currentSearch,
+                statut: vm.statut
             });
         }
     }

@@ -38,7 +38,8 @@ entity Kafala {
 
 entity Demandeadhesion {
 	date_demande LocalDate,
-	statut  Statut
+	statut  Statut,
+	demande Demandeadhesion
     
 }
 entity Paiement{

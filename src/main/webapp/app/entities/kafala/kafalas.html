@@ -23,7 +23,7 @@
                     <th jh-sort-by="datedebut"><span data-translate="assalamApp.kafala.datedebut">Datedebut</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="enfant.id"><span data-translate="assalamApp.kafala.enfant">Enfant</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.kafil">Kafil</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.moispayes">Mois Payes</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.moispayes">Mois Retard</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th><span data-translate="assalamApp.kafala.paiments">Paiements</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -40,17 +40,17 @@
                     <td>
                         <a ui-sref="kafil-detail({id:kafala.kafil.id})">{{kafala.kafil.nom}} {{kafala.kafil.prenom}}</a>
                     </td>
-                     <td>{{kafala.moispayes}}</td>
+                     <td>{{kafala.moisretard}}</td>
                     <td>
                         <a ui-sref="paiement({kafalaId: kafala.id })" class="glyphicon glyphicon-file"></a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="kafala-detail({id:kafala.id})"
+                                    ui-sref="paiement.new({kafalaId:kafala.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.addPayment"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="kafala.edit({id:kafala.id})"

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 
 /**
@@ -62,6 +64,20 @@ public class EnfantServiceImpl implements EnfantService{
     public Enfant findOne(Long id) {
         log.debug("Request to get Enfant : {}", id);
         return enfantRepository.findOne(id);
+    }
+	
+	  
+     /**
+     *  Get Enfants by famille Ids.
+     *
+     *  @param id the id of the entity
+     *  @return the entity
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Enfant> findbyFamilleId(Pageable pageable, Long familleId) {
+        log.debug("Request to get enfants by famille Id : {}", familleId);
+        return enfantRepository.findByFamilleId(pageable, familleId);
     }
 
     /**

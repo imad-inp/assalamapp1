@@ -1,31 +1,47 @@
 <div>
-    <h2 data-translate="assalamApp.demandeadhesion.home.title">Demandeadhesions</h2>
+    <h2><span data-translate="assalamApp.demandeadhesion.home.title"></span> (
+        <span data-translate="{{'assalamApp.Statut.' + vm.statut}}">)</span>)</h2>
     <jhi-alert></jhi-alert>
     <div class="row">
-         <div class="col-md-3">
-                <button class="btn btn-primary"  ng-click="vm.setState('OUVERTE')" >
-                    <span class="glyphicon"></span>
-                    <span  data-translate="assalamApp.Statut.OUVERTE">
-                        Ouverte
+        
+             <div class="col-md-1">
+                
+            </div>
+         <div class="col-md-2">
+                <button class="btn btn-danger"  ng-click="vm.setState('REFUSEE')" >
+                    <span class="glyphicon "></span>
+                    <span  data-translate="assalamApp.Statut.REFUSEE">
+                       En attente
                     </span>
                 </button>
             </div>
-         <div class="col-md-3">
-                <button class="btn btn-primary" ng-click="vm.setState('EN_COURS')" >
+        
+          <div class="col-md-2">
+                <button class="btn btn-success"  ng-click="vm.setState('ATTENTE')" >
+                    <span class="glyphicon "></span>
+                    <span  data-translate="assalamApp.Statut.ATTENTE">
+                       ACCEPTEE
+                    </span>
+                </button>
+            </div>
+           <div class="col-md-2">
+                <button class="btn btn-warning" ng-click="vm.setState('EN_COURS')" >
                     <span class="glyphicon "></span>
                     <span  data-translate="assalamApp.Statut.EN_COURS">
                         En cours
                     </span>
                 </button>
             </div>
-         <div class="col-md-3">
-                <button class="btn btn-primary"  ng-click="vm.setState('ACCEPTEE')" >
-                    <span class="glyphicon "></span>
-                    <span  data-translate="assalamApp.Statut.ATTENTE">
-                       En attente
+         <div class="col-md-2">
+                <button class="btn btn-default"  ng-click="vm.setState('OUVERTE')" >
+                    <span class="glyphicon"></span>
+                    <span  data-translate="assalamApp.Statut.OUVERTE">
+                        Ouverte
                     </span>
                 </button>
             </div>
+     
+        
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -49,6 +65,7 @@
                     <th><span data-translate="assalamApp.demandeadhesion.statut">Statut</span></th>
                     <th><span data-translate="assalamApp.demandeadhesion.enfant">Enfant</span></th>
                     <th><span data-translate="assalamApp.demandeadhesion.demande">Demande</span></th>
+                    <th><span data-translate="assalamApp.demandeadhesion.remarques">Remarques</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -60,17 +77,22 @@
                     <td data-translate="{{'assalamApp.Statut.' + demandeadhesion.statut}}">{{demandeadhesion.statut}}</td>
                       <td >{{demandeadhesion.enfant.fullName}}</td>
                     <td >
-                        <a ng-if="demandeadhesion.demande" ng-click="vm.openFile(demandeadhesion.demandeContentType, demandeadhesion.demande)" ng-href="{{'data:' + demandeadhesion.demandeContentType + ';base64,' + demandeadhesion.demande}}" target="_blank">
-                            hello
+                        <a data-translate="assalamApp.demandeadhesion.demande" ng-if="demandeadhesion.demande" ng-click="vm.openFile(demandeadhesion.demandeContentType, demandeadhesion.demande)" ng-href="{{'data:' + demandeadhesion.demandeContentType + ';base64,' + demandeadhesion.demande}}" target="_blank">
+                            
                         </a>
+                    </td>
+                    <td class="remarques">
+                        {{demandeadhesion.remarques}}
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="demandeadhesion-detail({id:demandeadhesion.id})"
+                            <button ng-if="vm.statut === 'ATTENTE'" type="submit"
+                                    ui-sref="kafala.new({enfantId: demandeadhesion.enfant.id })"
                                     class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.createKafala"></span>
                             </button>
+                            
                             <button type="submit"
                                     ui-sref="demandeadhesion.edit({id:demandeadhesion.id})"
                                     class="btn btn-primary btn-sm">

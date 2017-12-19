@@ -90,11 +90,11 @@
         })
         .state('kafala.new', {
             parent: 'kafala',
-            url: '/new',
+            url: '/new?enfantId',
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+            onEnter: ['$stateParams', '$state', '$uibModal','Enfant', function($stateParams, $state, $uibModal, Enfant) {
                 $uibModal.open({
                     templateUrl: 'app/entities/kafala/kafala-dialog.html',
                     controller: 'KafalaDialogController',
@@ -106,7 +106,9 @@
                             return {
                                 montant: null,
                                 datedebut: null,
-                                id: null
+                                id: null,
+                                enfant : $stateParams.enfantId === null ? null : Enfant.get({id : $stateParams.enfantId})
+                      
                             };
                         }
                     }

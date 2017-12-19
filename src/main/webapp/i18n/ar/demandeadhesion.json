@@ -2,7 +2,7 @@
     "assalamApp": {
         "demandeadhesion" : {
             "home": {
-                "title": "طلب الاستفادة",
+                "title": "طلبات الاستفادة",
                 "createLabel": "انشاء طلب جديد",
                 "createOrEditLabel": "انشاء او تحيين طلب"
             },
@@ -19,7 +19,8 @@
             "statut": "وضعية الطلب",
             "demande":"الطلب",
             "enfant" : "الطفل",
-            "creer-enfant": "اضافة طفل"
+            "creer-enfant": "اضافة طفل",
+            "remarques": "ملاحظات"
         }
     }
 }

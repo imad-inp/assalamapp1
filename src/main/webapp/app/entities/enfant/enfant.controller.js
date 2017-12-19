@@ -5,13 +5,14 @@
             .module('assalamApp')
             .controller('EnfantController', EnfantController);
 
-    EnfantController.$inject = ['DataUtils', 'Enfant', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    EnfantController.$inject = ['DataUtils', 'Enfant', 'ParseLinks', 'AlertService', 'paginationConstants','$stateParams'];
 
-    function EnfantController(DataUtils, Enfant, ParseLinks, AlertService, paginationConstants) {
+    function EnfantController(DataUtils, Enfant, ParseLinks, AlertService, paginationConstants, $stateParams) {
 
         var vm = this;
 
         var currentDate = new Date();
+		vm.familleFilterId = $stateParams.familleFilterId;
         vm.enfants = [];
         vm.loadPage = loadPage;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
@@ -36,7 +37,8 @@
         function loadAll() {
             Enfant.query({
                 page: vm.page,
-                size: 1,
+                size: vm.itemsPerPage,
+				familleId: vm.familleFilterId,
                 sort: sort()
             }, onSuccess, onError);
             function sort() {

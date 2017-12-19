@@ -29,9 +29,16 @@
                  <option value="OUVERTE" data-translate="assalamApp.Statut.OUVERTE">OUVERTE</option>
             </select>
         </div>
+        
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.demandeadhesion.remarques" for="field_remarques">Remarques</label>
+            <input type="text" class="form-control" name="remarques" id="field_remarques"
+                   ng-model="vm.demandeadhesion.remarques"
+                   />
+        </div>
          <div class="form-group">
             <label class="control-label" data-translate="assalamApp.demandeadhesion.creer-enfant" for="field_enfant">Statut</label>
-            <button class="btn btn-primary" ui-sref="enfant.new" id="field_enfant" >
+            <button class="btn btn-primary" ui-sref="famille.new" id="field_famille" >
                     <span class="glyphicon glyphicon-plus"></span>
                     
                 </button>
@@ -50,10 +57,10 @@
               
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="assalamApp.demandeadhesion.statut" for="field_statut">Demande</label>
+            <label class="control-label" data-translate="assalamApp.demandeadhesion.demande" for="field_demande">Demande</label>
             <button type="button" ngf-select class="btn btn-default btn-block"
-                    ngf-change="vm.setDemande($file, vm.demandeadhesion)" accept="*" data-translate="entity.action.addimage">
-                Add image
+                    ngf-change="vm.setDemande($file, vm.demandeadhesion)" accept="*" data-translate="entity.action.addfile">
+                Add file
             </button>
         </div>
 

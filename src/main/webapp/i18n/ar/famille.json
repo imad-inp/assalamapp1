@@ -2,25 +2,26 @@
     "assalamApp": {
         "famille" : {
             "home": {
-                "title": "Familles",
+                "title": "لائحة العائلات",
                 "createLabel": "Créer un nouveau Famille",
-                "createOrEditLabel": "Créer ou éditer un Famille"
+                "createOrEditLabel": "تحيين المعلومات"
             },
             "created": "Un nouveau Famille a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Famille avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Famille avec l'identifiant {{ param }} a été supprimé",
+            "updated": "تم تحيين المعلومات بنجاح",
+            "deleted": "تم حذف العائلة بنجاح",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Famille {{ id }} ?"
+                "question": "هل انت متاكد من حذف العائلة ?"
             },
             "detail": {
-                "title": "Famille"
+                "title": "العائلة"
             },
-            "nom": "Nom",
-            "adresse": "Adresse",
-            "tel": "Tel",
-            "commentaires": "Commentaires",
-            "kafalat": "Kafalat",
-            "enfants": "Enfants"
+            "pere": "اسم الاب",
+			"mere": "اسم الام",
+            "adresse": "العنوان",
+            "tel": "الهاتف",
+            "commentaires": "ملاحظات",
+            "kafalat": "الكفالات",
+            "enfants": "الاطفال"
         }
     }
 }

@@ -98,7 +98,7 @@
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+            onEnter: ['$stateParams', '$state', '$uibModal','Kafala' ,function($stateParams, $state, $uibModal, Kafala) {
                 $uibModal.open({
                     templateUrl: 'app/entities/paiement/paiement-dialog.html',
                     controller: 'PaiementDialogController',
@@ -107,12 +107,15 @@
                     size: 'lg',
                     resolve: {
                         entity: function () {
+							
                             return {
                                 date: null,
                                 montant: null,
                                 type: null,
                                 commentaires: null,
-                                id: null
+                                id: null,
+								kafala: {id: $stateParams.kafalaId }
+								
                             };
                         }
                     }

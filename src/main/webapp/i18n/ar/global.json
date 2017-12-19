@@ -89,13 +89,15 @@
         "action": {
             "addblob": "اضافة ملف",
             "addimage": "اضافة صورة",
+            "addfile": "اضافة ملف",
             "back": "رجوع",
             "cancel": "الغاء",
             "edit": "تحيين",
             "delete": "حذف",
             "open": "فتح",
             "save": "حفظ",
-            "view": "مشاهدة"
+            "view": "مشاهدة",
+            "createKafala": "انشاء الكفالة"
         },
         "detail": {
             "field": "Champs",

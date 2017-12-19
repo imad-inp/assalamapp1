@@ -89,9 +89,16 @@ public class EnfantResource {
      */
     @GetMapping("/enfants")
     @Timed
-    public ResponseEntity<List<Enfant>> getAllEnfants(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<Enfant>> getAllEnfants(@ApiParam Pageable pageable, @RequestParam(required = false) String familleId) {
         log.debug("REST request to get a page of Enfants");
-        Page<Enfant> page = enfantService.findAll(pageable);
+		Page<Enfant> page = null;
+		if(familleId == null){
+            page = enfantService.findAll(pageable);
+        }
+        else{
+         page = enfantService.findbyFamilleId(pageable, Long.valueOf(familleId));
+        }
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/enfants");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

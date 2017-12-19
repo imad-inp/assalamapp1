@@ -29,12 +29,12 @@
                 <option value="OUVERTE" data-translate="assalamApp.Statut.OUVERTE">OUVERTE</option>
                 <option value="EN_COURS" data-translate="assalamApp.Statut.EN_COURS">EN_COURS</option>
                 <option value="REFUSEE" data-translate="assalamApp.Statut.REFUSEE">REFUSEE</option>
-                <option value="ACCEPTEE" data-translate="assalamApp.Statut.ACCEPTEE">ACCEPTEE</option>
+                <option value="ATTENTE" data-translate="assalamApp.Statut.ATTENTE">ATTENTE</option>
             </select>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="assalamApp.demandeadhesion.enfant" for="field_statut">Enfant</label>
-            <select class="form-control" name="enfant" ng-model="vm.demandeadhesion.enfant" id="field_statut" ng-options="enfant as enfant.id for enfant in vm.enfants track by enfant.id">
+            <label class="control-label" data-translate="assalamApp.demandeadhesion.famille" for="field_statut">Famille</label>
+            <select class="form-control" name="famille" ng-model="vm.demandeadhesion.famille" id="field_statut" ng-options="famille as famille.id for famille in vm.famille track by famille.id">
                 <option value=""></option>
             </select>
         </div>
@@ -44,6 +44,12 @@
                     ngf-change="vm.setDemande($file, vm.demandeadhesion)" accept="*" data-translate="entity.action.addimage">
                 Add image
             </button>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.demandeadhesion.remarques" for="field_remarques">Remarques</label>
+            <input type="text" class="form-control" name="remarques" id="field_remarques"
+                   ng-model="vm.demandeadhesion.remarques"
+                   />
         </div>
 
     </div>

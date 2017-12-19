@@ -11,7 +11,7 @@
         $stateProvider
         .state('enfant', {
             parent: 'kafala-project',
-            url: '/enfant',
+            url: '/enfant?familleFilterId',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'assalamApp.enfant.home.title'
@@ -90,7 +90,7 @@
         })
         .state('enfant.new', {
             parent: 'enfant',
-            url: '/new',
+            url: '/new?familleId',
             data: {
                 authorities: ['ROLE_USER']
             },
@@ -148,6 +148,7 @@
                 });
             }]
         })
+		
         .state('enfant.delete', {
             parent: 'enfant',
             url: '/{id}/delete',

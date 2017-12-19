@@ -43,7 +43,7 @@ public class PaiementServiceImpl implements PaiementService{
         log.debug("Request to save Paiement : {}", paiement);
         Paiement paiementToReturn = paiementRepository.save(paiement);
         Kafala kafala = kafalaRepository.findOne(paiement.getKafala().getId());
-        
+        log.debug("kafala update mois payes" + kafala);
         kafala.setMoispayes(kafala.getMoispayes() + paiement.getMoispayes());
         return paiementToReturn;
     }
@@ -86,7 +86,8 @@ public class PaiementServiceImpl implements PaiementService{
         Paiement paiement = findOne(id);
         Kafala kafala = kafalaRepository.findOne(paiement.getKafala().getId());
         Long kafalaMoispayes = kafala.getMoispayes();
+		paiementRepository.delete(id);
         kafala.setMoispayes(kafalaMoispayes - paiement.getMoispayes());
-        paiementRepository.delete(id);
+        
     }
 }

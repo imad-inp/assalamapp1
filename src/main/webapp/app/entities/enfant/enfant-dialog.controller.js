@@ -17,7 +17,10 @@
         vm.save = save;
         vm.kafalas = Kafala.query();
         vm.resultatsscolaires = Resultatsscolaires.query();
-        vm.familles = Famille.query();
+		if($stateParams.familleId == null)
+			vm.familles = Famille.query();
+		else
+			vm.familles = $stateParams.familleId;
         vm.datePickerOpenStatus = {};
 
         vm.openCalendar = openCalendar;
