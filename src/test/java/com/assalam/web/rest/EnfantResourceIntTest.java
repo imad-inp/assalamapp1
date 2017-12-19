@@ -104,7 +104,7 @@ public class EnfantResourceIntTest {
         Enfant enfant = new Enfant()
             .nom(DEFAULT_NOM)
             .prenom(DEFAULT_PRENOM)
-            .age(DEFAULT_AGE)
+            
             .adresse(DEFAULT_ADRESSE)
             .tel(DEFAULT_TEL)
             .photo(DEFAULT_PHOTO)
@@ -175,7 +175,7 @@ public class EnfantResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(enfant.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM.toString())))
-            .andExpect(jsonPath("$.[*].age").value(hasItem(DEFAULT_AGE)))
+          
             .andExpect(jsonPath("$.[*].adresse").value(hasItem(DEFAULT_ADRESSE.toString())))
             .andExpect(jsonPath("$.[*].tel").value(hasItem(DEFAULT_TEL.toString())))
             .andExpect(jsonPath("$.[*].photoContentType").value(hasItem(DEFAULT_PHOTO_CONTENT_TYPE)))
@@ -196,7 +196,7 @@ public class EnfantResourceIntTest {
             .andExpect(jsonPath("$.id").value(enfant.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()))
             .andExpect(jsonPath("$.prenom").value(DEFAULT_PRENOM.toString()))
-            .andExpect(jsonPath("$.age").value(DEFAULT_AGE))
+           
             .andExpect(jsonPath("$.adresse").value(DEFAULT_ADRESSE.toString()))
             .andExpect(jsonPath("$.tel").value(DEFAULT_TEL.toString()))
             .andExpect(jsonPath("$.photoContentType").value(DEFAULT_PHOTO_CONTENT_TYPE))
@@ -225,7 +225,7 @@ public class EnfantResourceIntTest {
         updatedEnfant
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
-            .age(UPDATED_AGE)
+          
             .adresse(UPDATED_ADRESSE)
             .tel(UPDATED_TEL)
             .photo(UPDATED_PHOTO)
