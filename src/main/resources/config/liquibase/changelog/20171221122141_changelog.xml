@@ -5,10 +5,6 @@
             <column name="kafala_state" type="varchar(255)"/>
         </addColumn>
     </changeSet>
-    <changeSet author="ibouklata (generated)" id="1513858923365-2">
-        <addForeignKeyConstraint baseColumnNames="famille_id" baseTableName="demandeadhesion" constraintName="FKal4ij4tnbp1ws4h62e0ktamaa" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="famille"/>
-    </changeSet>
-    <changeSet author="ibouklata (generated)" id="1513858923365-3">
-        <dropForeignKeyConstraint baseTableName="demandeadhesion" constraintName="FKoisl73k53snfhfuav7btstfx7"/>
-    </changeSet>
+    
+    
 </databaseChangeLog>
