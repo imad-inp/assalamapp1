@@ -112,7 +112,8 @@
                                 photo: null,
                                 photoContentType: null,
                                 commentaires: null,
-                                id: null
+                                id: null,
+								famille: {id: $stateParams.familleId}
                             };
                         }
                     }

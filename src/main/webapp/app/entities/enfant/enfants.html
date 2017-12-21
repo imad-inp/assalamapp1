@@ -19,7 +19,7 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     <th jh-sort-by="photo"><span data-translate="assalamApp.enfant.photo">Photo</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!-- <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
                     <th jh-sort-by="nom"><span data-translate="assalamApp.enfant.nom">Nom</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="prenom"><span data-translate="assalamApp.enfant.prenom">Prenom</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="age"><span data-translate="assalamApp.enfant.age">Age</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -37,7 +37,7 @@
                         </a>
                        
                     </td>
-                    <td><a ui-sref="enfant-detail({id:enfant.id})">{{enfant.id}}</a></td>
+                    <!-- <td><a ui-sref="enfant-detail({id:enfant.id})">{{enfant.id}}</a></td> -->
                     <td>{{enfant.nom}}</td>
                     <td>{{enfant.prenom}}</td>
                     <td>{{vm.getAge(enfant)}}</td>

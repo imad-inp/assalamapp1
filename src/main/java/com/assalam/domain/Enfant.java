@@ -38,13 +38,18 @@ public class Enfant implements Serializable {
     @Column(name = "tel")
     private String tel;
 
+    @Column(name = "kafala_state")
+    private String kafalaState;
+
+
+
     @Lob
     @Column(name = "photo")
     private byte[] photo;
 
     @Column(name = "photo_content_type")
     private String photoContentType;
-    
+
     @Transient
     @JsonProperty
     private String fullName;
@@ -164,7 +169,7 @@ public class Enfant implements Serializable {
     public String getFullName() {
         return this.nom + " " + this.prenom;
     }
-    
+
 
     public String getCommentaires() {
         return commentaires;
@@ -240,6 +245,14 @@ public class Enfant implements Serializable {
 
     public void setFamille(Famille famille) {
         this.famille = famille;
+    }
+
+    public String getKafalaState() {
+      return kafalaState;
+    }
+
+    public void setKafalaState(String kafalaState) {
+      this.kafalaState = kafalaState;
     }
 
     @Override
