@@ -311,10 +311,27 @@ entity tables helpers
 .jh-table > tbody > tr > td {
     /* Align text in td vertically (top aligned by Bootstrap) */
     vertical-align: middle;
+    
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
 }
 .align-right * {
     text-align: right ;
 }
+.align-right dt {
+    float: right ;
+}
+.dropdown-menu{
+    z-index:1;
+    position: relative;
+}
+
+
+
+
 
 .jh-table > thead > tr > th > .glyphicon-sort, .jh-table > thead > tr > th > .glyphicon-sort-by-attributes, .jh-table > thead > tr > th > .glyphicon-sort-by-attributes-alt {
     /* less visible sorting icons */

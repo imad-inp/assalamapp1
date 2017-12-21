@@ -117,7 +117,7 @@
         })
         .state('demandeadhesion.new', {
             parent: 'demandeadhesion',
-            url: '/new',
+            url: '/new?familleId',
             data: {
                 authorities: ['ROLE_USER']
             },
@@ -133,7 +133,8 @@
                             return {
                                 datedemande: null,
                                 statut: 'OUVERTE',
-                                id: null
+                                id: null,
+								famille:{id: $stateParams.familleId}
                             };
                         }
                     }

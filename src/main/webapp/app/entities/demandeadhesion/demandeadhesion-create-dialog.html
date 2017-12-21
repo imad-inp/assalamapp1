@@ -36,26 +36,8 @@
                    ng-model="vm.demandeadhesion.remarques"
                    />
         </div>
-         <div class="form-group">
-            <label class="control-label" data-translate="assalamApp.demandeadhesion.creer-enfant" for="field_enfant">Statut</label>
-            <button class="btn btn-primary" ui-sref="famille.new" id="field_famille" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    
-                </button>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="assalamApp.demandeadhesion.enfant" for="field_statut">Enfant</label>
-              
-                 <button type="button" ng-click="vm.reloadEnfants()" class="btn"><span class="glyphicon glyphicon-refresh"></span></button>
-
-            <select class="form-control" name="enfant" ng-model="vm.demandeadhesion.enfant" id="field_statut" ng-options="enfant as enfant.fullName for enfant in vm.enfants track by enfant.id">
-                <option value=""></option>
-            </select>
-            
-           
-                    
-              
-        </div>
+      
+       
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.demandeadhesion.demande" for="field_demande">Demande</label>
             <button type="button" ngf-select class="btn btn-default btn-block"

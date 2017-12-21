@@ -89,9 +89,15 @@ public class PaiementResource {
      */
     @GetMapping("/paiements")
     @Timed
-    public ResponseEntity<List<Paiement>> getAllPaiements(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<Paiement>> getAllPaiements(@ApiParam Pageable pageable, @RequestParam(required = false) String kafalaId) {
         log.debug("REST request to get a page of Paiements");
-        Page<Paiement> page = paiementService.findAll(pageable);
+        Page<Paiement> page = null;
+        if(kafalaId == null){
+          page = paiementService.findAll(pageable);
+        }
+        else {
+          page = paiementService.findByKafalaId(pageable, kafalaId);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/paiements");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

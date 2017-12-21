@@ -20,6 +20,18 @@
                     />
         </div>
         <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.pere" for="field_pere">Pere</label>
+            <input type="text" class="form-control" name="nom" id="field_pere"
+                    ng-model="vm.famille.pere"
+                    />
+        </div>
+          <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.mere" for="mere">Mere</label>
+            <input type="text" class="form-control" name="nom" id="mere"
+                    ng-model="vm.famille.mere"
+                    />
+        </div>
+        <div class="form-group">
             <label class="control-label" data-translate="assalamApp.famille.adresse" for="field_adresse">Adresse</label>
             <input type="text" class="form-control" name="adresse" id="field_adresse"
                     ng-model="vm.famille.adresse"
@@ -37,10 +49,7 @@
                     ng-model="vm.famille.commentaires"
                     />
         </div>
-		    <button class="btn btn-primary" ui-sref="enfant.new({familleId: vm.famille.id })" id="field_enfant" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    
-                </button>
+
 
     </div>
     <div class="modal-footer">

@@ -24,6 +24,50 @@ public class Famille implements Serializable {
     @Column(name = "nom")
     private String nom;
 
+    @Column(name = "pere")
+    private String pere;
+
+    @Column(name = "mere")
+    private String mere;
+
+    @Column(name = "cin_mere")
+    private String cinMere;
+
+    @Column(name = "cin_pere")
+    private String cinPere;
+
+    public String getPere() {
+      return pere;
+    }
+
+    public void setPere(String pere) {
+      this.pere = pere;
+    }
+
+    public String getMere() {
+      return mere;
+    }
+
+    public void setMere(String mere) {
+      this.mere = mere;
+    }
+
+    public String getCinMere() {
+      return cinMere;
+    }
+
+    public void setCinMere(String cinMere) {
+      this.cinMere = cinMere;
+    }
+
+    public String getCinPere() {
+      return cinPere;
+    }
+
+    public void setCinPere(String cinPere) {
+      this.cinPere = cinPere;
+    }
+
     @Column(name = "adresse")
     private String adresse;
 

@@ -3,10 +3,11 @@
         "famille" : {
             "home": {
                 "title": "لائحة العائلات",
-                "createLabel": "Créer un nouveau Famille",
-                "createOrEditLabel": "تحيين المعلومات"
+                "createLabel": "اضافة عائلة جديدة",
+                "createOrEditLabel": "تحيين المعلومات",
+                "createChild": "اضافة  طفل"
             },
-            "created": "Un nouveau Famille a été créé avec l'identifiant {{ param }}",
+            "created": "تمت اضافة العائلة بنجاح",
             "updated": "تم تحيين المعلومات بنجاح",
             "deleted": "تم حذف العائلة بنجاح",
             "delete": {
@@ -15,13 +16,16 @@
             "detail": {
                 "title": "العائلة"
             },
-            "pere": "اسم الاب",
-			"mere": "اسم الام",
+            "nom": "الاسم العائلي",
+            "pere": " الاب",
+			"mere": " الام",
             "adresse": "العنوان",
             "tel": "الهاتف",
             "commentaires": "ملاحظات",
             "kafalat": "الكفالات",
-            "enfants": "الاطفال"
-        }
+            "enfants": "الاطفال",
+            "nouvelleadhesion":"اضافة طلب استفادة",
+            "nouvelenfant":"اضافة طفل"  
+                  }
     }
 }

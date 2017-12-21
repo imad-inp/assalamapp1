@@ -31,7 +31,9 @@
         function isPaimentLate(kafala){
             var kafalaDate = new Date(kafala.datedebut);
             var monthDifference = currentDate.getMonth() - kafalaDate.getMonth() + (12 * (currentDate.getFullYear() - kafalaDate.getFullYear())) + 1;
-            kafala.moisretard = monthDifference - kafala.moispayes;
+            kafala.moisretard = Math.abs(monthDifference - kafala.moispayes);
+            kafala.statut =  monthDifference > kafala.moispayes ? 'en retard': 'en avance'; 
+
            return  monthDifference > kafala.moispayes;          
         };
 

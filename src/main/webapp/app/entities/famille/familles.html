@@ -3,59 +3,89 @@
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
-            <!-- <div class="col-xs-4 no-padding-left"> -->
-                <!-- <button class="btn btn-primary" ui-sref="famille.new" > -->
-                    <!-- <span class="glyphicon glyphicon-plus"></span> -->
-                    <!-- <span  data-translate="assalamApp.famille.home.createLabel"> -->
-                        <!-- Create new Famille -->
-                    <!-- </span> -->
-                <!-- </button> -->
-            <!-- </div> -->
+            <div class="no-padding-left">
+                <button class="btn btn-primary" ui-sref="famille.new">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="assalamApp.famille.home.createLabel">
+                        Create new Demandeadhesion
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
     <br/>
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <!-- <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
-                    <th jh-sort-by="nom"><span data-translate="assalamApp.famille.nom">Nom</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="adresse"><span data-translate="assalamApp.famille.adresse">Adresse</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="tel"><span data-translate="assalamApp.famille.tel">Tel</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="commentaires"><span data-translate="assalamApp.famille.commentaires">Commentaires</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th><span data-translate="assalamApp.famille.enfants">Enfants</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <tr callback="vm.reset()">
+                    <!-- <th ><span data-translate="global.field.id">ID</span></span></th> -->
+                    <th><span data-translate="assalamApp.famille.nom">Nom</span></span>
+                    </th>
+                    <th><span data-translate="assalamApp.famille.pere">Nom Pere</span></span>
+                    </th>
+                    <th><span data-translate="assalamApp.famille.mere">Nom Mere</span></span>
+                    </th>
+                    <th><span data-translate="assalamApp.famille.adresse">Adresse</span></span>
+                    </th>
+                    <th><span data-translate="assalamApp.famille.tel">Tel</span></span>
+                    </th>
+                    <th><span data-translate="assalamApp.famille.commentaires">Commentaires</span></span>
+                    </th>
+                    <th><span data-translate="assalamApp.famille.enfants">Enfants</span></span>
+                    </th>
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="famille in vm.familles track by famille.id">
                     <!-- <td><a ui-sref="famille-detail({id:famille.id})">{{famille.id}}</a></td> -->
                     <td>{{famille.nom}}</td>
+                    <td>{{famille.pere}}</td>
+                    <td>{{famille.mere}}</td>
                     <td>{{famille.adresse}}</td>
                     <td>{{famille.tel}}</td>
                     <td>{{famille.commentaires}}</td>
-					 <td><a  ui-sref="enfant({familleFilterId: famille.id })" class="glyphicon glyphicon-file"></a></td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="enfant.new({familleId:famille.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="famille.edit({id:famille.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
-                            </button>
+                    <td>
+                        <a ui-sref="enfant({familleFilterId: famille.id })" class="glyphicon glyphicon-file"></a>
+                    </td>
+
+                   <td >
+                       <div class="dropdown" uib-dropdown>
+                    <button  class=" btn btn-info dropdown-toggle" uib-dropdown-toggle>
+                    
+                        <span>
+                            <span class="glyphicon glyphicon-settings"></span>
+                            <span class="hidden-sm" data-translate="global.menu.actions">Actions</span>
+                            <b class="caret"></b>
+                        </span>             
+                </button>
+                 <ul class="dropdown-menu" >
+                        <li  >
+                            <a data-translate="assalamApp.famille.nouvelleadhesion" href="" ui-sref="demandeadhesion.new({familleId:famille.id})">Nouvelle demande</a>
+                        </li>
+                         <li  >
+                            <a data-translate="assalamApp.famille.nouvelenfant" href="" ui-sref="enfant.new({familleId:famille.id})">Nouvel Enfant</a>
+                        </li>
+                         <li  >
+                            <a data-translate="entity.action.view" href="" ui-sref="famille-detail({id:famille.id})">View</a>
+                        </li>
+                         <li  >
+                            <a data-translate="entity.action.edit" href="" ui-sref="famille.edit({id:famille.id})">Edit</a>
+                        </li>
+                         <li  >
+                            <a data-translate="entity.action.delete" href="" ui-sref="famille.delete({id:famille.id})">supprimer</a>
+                        </li>
+                    </ul>
+                        <!--<div class="btn-group flex-btn-group-container">
+						
+                           
                             <button type="submit"
                                     ui-sref="famille.delete({id:famille.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
                             </button>
-                        </div>
-
+                        </div>-->
+                        </div>  
                     </td>
                 </tr>
             </tbody>

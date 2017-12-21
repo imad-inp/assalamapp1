@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="ibouklata (generated)" id="1513892376965-1">
+        <addColumn tableName="famille">
+            <column name="cin_mere" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1513892376965-2">
+        <addColumn tableName="famille">
+            <column name="cin_pere" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1513892376965-3">
+        <addColumn tableName="famille">
+            <column name="mere" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1513892376965-4">
+        <addColumn tableName="famille">
+            <column name="pere" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

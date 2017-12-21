@@ -18,12 +18,13 @@
         <table class="jh-table table table-striped table-bordered">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th jh-sort-by="photo"><span data-translate="assalamApp.enfant.photo">Photo</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <!-- <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
-                    <th jh-sort-by="nom"><span data-translate="assalamApp.enfant.nom">Nom</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="prenom"><span data-translate="assalamApp.enfant.prenom">Prenom</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="age"><span data-translate="assalamApp.enfant.age">Age</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th><span data-translate="assalamApp.enfant.resultats">Resultats Scolaires</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th ><span data-translate="assalamApp.enfant.photo">Photo</span></span></th>
+                    <!-- <th ><span data-translate="global.field.id">ID</span></span></th> -->
+                    <th ><span data-translate="assalamApp.enfant.nom">Nom</span></span></th>
+                    <th ><span data-translate="assalamApp.enfant.prenom">Prenom</span></span></th>
+                    <th ><span data-translate="assalamApp.enfant.age">Age</span></span></th>
+                     <th><span data-translate="assalamApp.enfant.etatKafala">Etat kafala</span></span></th>
+                    <th><span data-translate="assalamApp.enfant.resultats">Resultats Scolaires</span></span></th>
                     
                    
                     <th></th>
@@ -41,6 +42,7 @@
                     <td>{{enfant.nom}}</td>
                     <td>{{enfant.prenom}}</td>
                     <td>{{vm.getAge(enfant)}}</td>
+                    <td>{{enfant.kafalaState}}</td>
                     <td><a  ui-sref="resultatsscolaires-filter({enfantId: enfant.id })" class="glyphicon glyphicon-file"></a></td>
                  
                 

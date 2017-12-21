@@ -55,5 +55,6 @@
     "entityTableName": "enfant",
     "dto": "no",
     "pagination": "infinite-scroll",
-    "service": "serviceImpl"
+    "service": "serviceClass"
+	"jpaMetamodelFiltering" :"true"
 }

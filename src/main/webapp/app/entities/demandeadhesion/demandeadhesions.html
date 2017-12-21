@@ -43,18 +43,7 @@
      
         
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="no-padding-left">
-                <button class="btn btn-primary" ui-sref="demandeadhesion.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="assalamApp.demandeadhesion.home.createLabel">
-                        Create new Demandeadhesion
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
+
     <br/>
     <div class="table-responsive">
         <table class="jh-table table table-striped">
@@ -63,7 +52,8 @@
                     <th><span data-translate="global.field.id">ID</span></th>
                     <th><span data-translate="assalamApp.demandeadhesion.datedemande">Datedemande</span></th>
                     <th><span data-translate="assalamApp.demandeadhesion.statut">Statut</span></th>
-                    <th><span data-translate="assalamApp.demandeadhesion.enfant">Enfant</span></th>
+                    <th><span data-translate="assalamApp.demandeadhesion.famille">Famille</span></th>
+                    <th><span data-translate="assalamApp.demandeadhesion.enfants">Enfants</span></th>
                     <th><span data-translate="assalamApp.demandeadhesion.demande">Demande</span></th>
                     <th><span data-translate="assalamApp.demandeadhesion.remarques">Remarques</span></th>
                     <th></th>
@@ -75,7 +65,8 @@
                     <td><a ui-sref="demandeadhesion-detail({id:demandeadhesion.id})">{{demandeadhesion.id}}</a></td>
                     <td>{{demandeadhesion.datedemande| date:'mediumDate'}}</td>
                     <td data-translate="{{'assalamApp.Statut.' + demandeadhesion.statut}}">{{demandeadhesion.statut}}</td>
-                      <td >{{demandeadhesion.enfant.fullName}}</td>
+                      <td ><a ui-sref="famille-detail({id:demandeadhesion.famille.id})">{{demandeadhesion.famille.nom}}</a></td>
+                      <td ><a ui-sref="enfant({familleId:demandeadhesion.famille.id})"><span class="glyphicon glyphicon-user"></span></a></td>
                     <td >
                         <a data-translate="assalamApp.demandeadhesion.demande" ng-if="demandeadhesion.demande" ng-click="vm.openFile(demandeadhesion.demandeContentType, demandeadhesion.demande)" ng-href="{{'data:' + demandeadhesion.demandeContentType + ';base64,' + demandeadhesion.demande}}" target="_blank">
                             
@@ -85,12 +76,18 @@
                         {{demandeadhesion.remarques}}
                     </td>
                     <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button ng-if="vm.statut === 'ATTENTE'" type="submit"
+                      <div class="btn-group flex-btn-group-container">
+                          <!--    <button ng-if="vm.statut === 'ATTENTE'" type="submit"
                                     ui-sref="kafala.new({enfantId: demandeadhesion.enfant.id })"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-plus"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.createKafala"></span>
+                            </button>-->
+                               <button type="submit"
+                                    ui-sref="demandeadhesion-detail({id:demandeadhesion.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             
                             <button type="submit"

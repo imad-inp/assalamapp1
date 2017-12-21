@@ -30,7 +30,8 @@
             Paiement.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
-                sort: sort()
+                sort: sort(),
+                kafalaId : $stateParams.kafalaId
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];

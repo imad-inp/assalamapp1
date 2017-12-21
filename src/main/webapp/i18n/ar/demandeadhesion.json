@@ -20,7 +20,9 @@
             "demande":"الطلب",
             "enfant" : "الطفل",
             "creer-enfant": "اضافة طفل",
-            "remarques": "ملاحظات"
+            "remarques": "ملاحظات",
+			"famille": "العائلة",
+            "enfants": "الاطفال"
         }
     }
 }

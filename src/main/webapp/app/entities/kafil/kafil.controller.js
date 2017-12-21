@@ -28,19 +28,14 @@
 
         function loadAll () {
             Kafil.query({
-                page: vm.page,
+                page:  vm.page,
                 size: vm.itemsPerPage,
-                sort: sort()
+                
             }, onSuccess, onError);
-            function sort() {
-                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
-                if (vm.predicate !== 'id') {
-                    result.push('id');
-                }
-                return result;
-            }
+         
 
             function onSuccess(data, headers) {
+                vm.kafils = []
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 for (var i = 0; i < data.length; i++) {
@@ -52,6 +47,13 @@
                 AlertService.error(error.data.message);
             }
         }
+         function transition() {
+            $state.transitionTo($state.$current, {
+                page: vm.page,
+               
+                search: vm.currentSearch,
+                statut: vm.statut
+         })}
 
         function reset () {
             vm.page = 0;

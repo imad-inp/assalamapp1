@@ -12,6 +12,16 @@
         <dd>
             <span data-translate="{{'assalamApp.Statut.' + vm.demandeadhesion.statut}}">{{vm.demandeadhesion.statut}}</span>
         </dd>
+         <dt><span data-translate="assalamApp.demandeadhesion.famille">Famille</span></dt>
+        <dd>
+            <span >{{vm.demandeadhesion.famille}}</span>
+        </dd>
+         <dt><span data-translate="assalamApp.demandeadhesion.enfants">Enfants</span></dt>
+        <dd>
+            <a ui-sref="enfant({familleId:demandeadhesion.famille.id})">
+            <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </dd>
     </dl>
 
     <button type="submit"

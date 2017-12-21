@@ -1,9 +1,14 @@
 package com.assalam.repository;
 
+import com.assalam.domain.Demandeadhesion;
 import com.assalam.domain.Paiement;
+import com.assalam.domain.enumeration.Statut;
+
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 
 
@@ -13,8 +18,6 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface PaiementRepository extends JpaRepository<Paiement,Long> {
-    
-  @Query("SELECT p FROM Paiement p WHERE p.kafala.id = :kafalaId")
-  List<Paiement> findByKafalaId(Long kafalaId);
-    
+
+  Page<Paiement> findByKafalaId(Pageable pageable, Long kafalaId);
 }

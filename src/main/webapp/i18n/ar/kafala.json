@@ -22,7 +22,10 @@
             "famille": "العائلة",
             "kafil": "الكفيل",
             "moispayes": "الشهور الغير مؤدات",
-            "paiments": "الدفعات"
+            "paiments": "الدفعات",
+            "en retard": "متأخر ب ",
+            "en avance": "متقدم ب",
+            "mois": "شهر"
         }
     }
 }

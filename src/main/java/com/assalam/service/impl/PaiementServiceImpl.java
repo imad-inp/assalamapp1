@@ -1,8 +1,10 @@
 package com.assalam.service.impl;
 
+import com.assalam.domain.Demandeadhesion;
 import com.assalam.domain.Kafala;
 import com.assalam.service.PaiementService;
 import com.assalam.domain.Paiement;
+import com.assalam.domain.enumeration.Statut;
 import com.assalam.repository.KafalaRepository;
 import com.assalam.repository.PaiementRepository;
 import org.slf4j.Logger;
@@ -39,7 +41,7 @@ public class PaiementServiceImpl implements PaiementService{
      */
     @Override
     public Paiement save(Paiement paiement) {
-        
+
         log.debug("Request to save Paiement : {}", paiement);
         Paiement paiementToReturn = paiementRepository.save(paiement);
         Kafala kafala = kafalaRepository.findOne(paiement.getKafala().getId());
@@ -62,11 +64,26 @@ public class PaiementServiceImpl implements PaiementService{
     }
 
     /**
-     *  Get one paiement by id.
-     *
-     *  @param id the id of the entity
-     *  @return the entity
-     */
+   * Get one payments by kafala ID.
+   * 
+   * @param id
+   *          the id of the entity
+   * @return the entity
+   */
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Paiement> findByKafalaId(Pageable pageable, String kafalaId) {
+    log.debug("Request to get Payments by kafala id : {}", kafalaId);
+    return paiementRepository.findByKafalaId(pageable, Long.valueOf(kafalaId));
+  }
+
+  /**
+   * Get one paiement by id.
+   * 
+   * @param id
+   *          the id of the entity
+   * @return the entity
+   */
     @Override
     @Transactional(readOnly = true)
     public Paiement findOne(Long id) {
@@ -82,12 +99,12 @@ public class PaiementServiceImpl implements PaiementService{
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Paiement : {}", id);
-        
+
         Paiement paiement = findOne(id);
         Kafala kafala = kafalaRepository.findOne(paiement.getKafala().getId());
         Long kafalaMoispayes = kafala.getMoispayes();
 		paiementRepository.delete(id);
         kafala.setMoispayes(kafalaMoispayes - paiement.getMoispayes());
-        
+
     }
 }

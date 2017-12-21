@@ -30,14 +30,14 @@ public class Demandeadhesion implements Serializable {
     @Lob
     @Column(name = "demande")
     private byte[] demande;
-    
-    
+
     @Column(name = "demande_content_type")
     private String demandeContentType;
-    
+
+  @Lob
     @Column(name = "remarques")
     private String remarques;
-    
+
     @OneToOne
     @JoinColumn(name = "famille_id")
     private Famille famille;
@@ -50,7 +50,7 @@ public class Demandeadhesion implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
      public Famille getFamille() {
         return famille;
     }
@@ -58,7 +58,7 @@ public class Demandeadhesion implements Serializable {
     public void setFamille(Famille famille) {
         this.famille = famille;
     }
-    
+
 
     public LocalDate getDatedemande() {
         return datedemande;
@@ -89,7 +89,7 @@ public class Demandeadhesion implements Serializable {
     public byte[] getDemande() {
         return this.demande;
     }
-    
+
      public Demandeadhesion remarques(String remarques) {
         this.remarques = remarques;
         return this;
@@ -110,7 +110,7 @@ public class Demandeadhesion implements Serializable {
     public void setDemande(byte[] demande) {
         this.demande = demande;
     }
-    
+
       public String getDemandeContentType() {
         return demandeContentType;
     }
