@@ -6,7 +6,7 @@
 
     Enfant.$inject = ['$resource'];
 
-    function Enfant ($resource) {
+    function Enfant($resource) {
         var resourceUrl =  'api/enfants/:id';
 
         return $resource(resourceUrl, {}, {
