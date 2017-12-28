@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -123,4 +125,22 @@ public class KafalaResource {
         kafalaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+  /**
+   * GET count/kafalas : count the kafalas.
+   * 
+   * @param pageable
+   *          the pagination information
+   * @return the ResponseEntity with status 200 (OK) and the list of kafalas in body
+   */
+  @GetMapping("/count/latekafalas")
+    @Timed
+  public ResponseEntity<Map<String, Integer>> countLateKafalas() {
+        log.debug("REST request to count Kafalas");
+    Integer count = kafalaService.countLateKafalas();
+    Map<String, Integer> countMap = new HashMap();
+    countMap.put("count", count);
+    return new ResponseEntity<>(countMap, HttpStatus.OK);
+    }
+
 }

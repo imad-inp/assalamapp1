@@ -12,27 +12,32 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
     <!-- endbuild -->
 </head>
-<body ng-app="assalamApp"   ng-controller="MainCtrl as vm" ng-attr-dir ="{{vm.currentLang == 'ar' ? 'rtl' : 'ltr'}}" ng-class="{'align-right': vm.currentLang == 'ar'}" ng-strict-di>
+<body ng-app="assalamApp" class=" no-padding"  ng-controller="MainCtrl as vm" ng-attr-dir ="{{vm.currentLang == 'ar' ? 'rtl' : 'ltr'}}" ng-class="{'align-right': vm.currentLang == 'ar'}" ng-strict-di>
     
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <page-ribbon></page-ribbon>
-    <div ui-view="navbar" ng-cloak></div>
-    <div class="container">
+    <div class="col-xs-10 no-padding">
+    <div ui-view="banner" class="banner " ng-cloak></div>
+        
+    <div class="container no-padding">
         <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
-        
-
-    
+    </div>
+    </div>
+    <div class =" col-xs-2 sidebar ">
+       
+    <div ui-view="navbar" ng-cloak></div>  
     </div>
 
     <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
@@ -66,7 +71,7 @@
     <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
     <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
     <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js" defer></script>
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
@@ -118,6 +123,7 @@
     <script src="app/entities/kafala/kafala-delete-dialog.controller.js"></script>
     <script src="app/entities/kafala/kafala.state.js"></script>
     <script src="app/entities/kafala/kafala.service.js"></script>
+     <script src="app/entities/kafala/kafalaCount.service.js"></script>
     <script src="app/entities/kafala/kafala.controller.js"></script>
     <script src="app/entities/famille/famille-dialog.controller.js"></script>
     <script src="app/entities/famille/famille-detail.controller.js"></script>
@@ -130,13 +136,14 @@
     <script src="app/entities/enfant/enfant-detail.controller.js"></script>
     <script src="app/entities/enfant/enfant-delete-dialog.controller.js"></script>
     <script src="app/entities/enfant/enfant.state.js"></script>
-    <script src="app/entities/enfant/enfant.service.js"></script>
+    <script src="app/entities/enfant/enfant.count.service.js"></script>
     <script src="app/entities/enfant/enfant.controller.js"></script>
     <script src="app/entities/demandeadhesion/demandeadhesion-dialog.controller.js"></script>
     <script src="app/entities/demandeadhesion/demandeadhesion-detail.controller.js"></script>
     <script src="app/entities/demandeadhesion/demandeadhesion-delete-dialog.controller.js"></script>
     <script src="app/entities/demandeadhesion/demandeadhesion.state.js"></script>
     <script src="app/entities/demandeadhesion/demandeadhesion.service.js"></script>
+      <script src="app/entities/demandeadhesion/demandeadhesionCount.service.js"></script>
     <script src="app/entities/demandeadhesion/demandeadhesion.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
@@ -218,7 +225,23 @@
     <script src="app/account/account.state.js"></script>
     <script src="app/projects/kafala/home.state.js"></script>
      <script src="app/projects/kafala/home.controller.js"></script>
+     <script src="app/projects/kafala/statistics/statistics.state.js"></script>
+     <script src="app/projects/kafala/statistics/statistics.controller.js"></script>
     <!-- endbuild -->
+
+    <!--  Checkbox, Radio & Switch Plugins -->
+	<script src="app/projects/kafala/statistics/js/bootstrap-checkbox-radio.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="app/projects/kafala/statistics/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="app/projects/kafala/statistics/js/bootstrap-notify.js"></script>
+
+    
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+	<script src="app/projects/kafala/statistics/js/paper-dashboard.js"></script>
 
 </body>
 </html>

@@ -26,6 +26,11 @@
                     templateUrl: 'app/layouts/navbar/navbar.html',
                     controller: 'NavbarController',
                     controllerAs: 'vm'
+                },
+                 'banner@': {
+                    templateUrl: 'app/layouts/header/header.html',
+                    controller: 'NavbarController',
+                    controllerAs: 'vm'
                 }
                 
             },

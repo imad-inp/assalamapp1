@@ -27,9 +27,20 @@ public class Kafala implements Serializable {
 
     @Column(name = "datedebut")
     private LocalDate datedebut;
-    
+
     @Column(name = "mois_payes", nullable = false)
     private Long moispayes = new Long(0);
+
+  @Column(name = "state")
+  private String state = "EN_COURS";
+
+  public String getState() {
+    return state;
+  }
+
+  public void setState(String state) {
+    this.state = state;
+  }
 
     @OneToMany(mappedBy = "kafala")
     @JsonIgnore

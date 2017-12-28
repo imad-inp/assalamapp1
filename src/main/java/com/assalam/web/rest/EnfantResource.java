@@ -2,6 +2,7 @@ package com.assalam.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.assalam.domain.Enfant;
+import com.assalam.domain.enumeration.Statut;
 import com.assalam.service.EnfantService;
 import com.assalam.web.rest.util.HeaderUtil;
 import com.assalam.web.rest.util.PaginationUtil;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -116,6 +119,34 @@ public class EnfantResource {
         Enfant enfant = enfantService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(enfant));
     }
+
+  /**
+   * GET /count/demandeadhesion : get count demande adhesion.
+   * 
+   * @param pageable
+   *          the pagination information
+   * @param statut
+   *          staut to be filtered
+   * @return the ResponseEntity with status 200 (OK) and the list of enfants in body
+   */
+  @GetMapping("/enfants/count")
+  @Timed
+  public ResponseEntity<Map<String, Integer>> getDemandeadhesionFiltered(
+      @RequestParam(required = false) List<String> statuts) {
+    log.debug("REST request to get the count of demandeadhesion filtered by statut" + statuts);
+    Integer count = 0;
+    if (statuts == null) {
+      count = enfantService.findAll().size();
+    }
+    else {
+      count = enfantService.findbyStatuts(statuts).size();
+    }
+
+    Map<String, Integer> countMap = new HashMap();
+    countMap.put("count", count);
+
+    return new ResponseEntity<>(countMap, HttpStatus.OK);
+  }
 
     /**
      * DELETE  /enfants/:id : delete the "id" enfant.

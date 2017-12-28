@@ -29,6 +29,17 @@
                     </span>
                 </div>
         </div>
+          <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafala.state.name" for="field_statut">Statut Kafala</label>
+            <select class="form-control" name="statut" ng-model="vm.kafala.state" id="field_statut">
+                
+                  
+                <option value="EN_COURS" data-translate="assalamApp.kafala.state.EN_COURS">EN COURS</option>
+                
+                 <option value="ACHEVEE" data-translate="assalamApp.kafala.state.ACHEVEE">ACHEVEE</option>
+                   <option value="ARRETEE" data-translate="assalamApp.kafala.state.ARRETEE">ARRETEE</option>
+            </select>
+        </div>
 
         <div class="form-group">
             <label data-translate="assalamApp.kafala.enfant" for="field_enfant">Enfant</label>

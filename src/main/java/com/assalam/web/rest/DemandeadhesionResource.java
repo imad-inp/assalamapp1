@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -82,8 +84,7 @@ public class DemandeadhesionResource {
             .body(result);
     }
 
-    
-    
+
 
     /**
      * GET  /demandeadhesions/:id : get the "id" demandeadhesion.
@@ -119,6 +120,34 @@ public class DemandeadhesionResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/demandeadhesionsfiltered");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+
+  /**
+   * GET /count/demandeadhesion : get count demande adhesion.
+   *
+   * @param pageable
+   *          the pagination information
+   * @param statut
+   *          staut to be filtered
+   * @return the ResponseEntity with status 200 (OK) and the list of enfants in body
+   */
+  @GetMapping("/count/demandeadhesions")
+  @Timed
+  public ResponseEntity<Map<String, Integer>> getDemandeadhesionFiltered(@RequestParam(required = false) String statut) {
+    log.debug("REST request to get the count of demandeadhesion filtered by statut" + statut);
+    Integer count = 0;
+    if (statut == null) {
+      count = demandeadhesionService.findAll().size();
+    }
+    else {
+      count = demandeadhesionService.findbyStatut(Statut.valueOf(statut)).size();
+    }
+
+    Map<String, Integer> countMap = new HashMap();
+    countMap.put("count", count);
+
+    return new ResponseEntity<>(countMap, HttpStatus.OK);
+  }
+
     /**
      * DELETE  /demandeadhesions/:id : delete the "id" demandeadhesion.
      *

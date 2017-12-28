@@ -52,6 +52,13 @@ public class DemandeadhesionServiceImpl implements DemandeadhesionService{
         return demandeadhesionRepository.findAll(pageable);
     }
 
+  @Override
+  @Transactional(readOnly = true)
+  public List<Demandeadhesion> findAll() {
+    log.debug("Request to get all Demandeadhesions");
+    return demandeadhesionRepository.findAll();
+  }
+
     /**
      *  Get one demandeadhesion by id.
      *
@@ -64,7 +71,7 @@ public class DemandeadhesionServiceImpl implements DemandeadhesionService{
         log.debug("Request to get Demandeadhesion : {}", id);
         return demandeadhesionRepository.findOne(id);
     }
-    
+
      /**
      *  Get one demandeadhesion by statut.
      *
@@ -77,6 +84,13 @@ public class DemandeadhesionServiceImpl implements DemandeadhesionService{
         log.debug("Request to get Demandeadhesion by statut : {}", statut);
         return demandeadhesionRepository.findByStatut(pageable, statut);
     }
+
+  @Override
+  @Transactional(readOnly = true)
+  public List<Demandeadhesion> findbyStatut(Statut statut) {
+    log.debug("Request to get Demandeadhesion by statut : {}", statut);
+    return demandeadhesionRepository.findByStatut(statut);
+  }
 
     /**
      *  Delete the  demandeadhesion by id.

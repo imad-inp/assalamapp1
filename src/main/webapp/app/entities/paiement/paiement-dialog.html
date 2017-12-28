@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.paiement.date" for="field_date">Date</label>
                 <div class="input-group">
-                    <input id="field_date" type="text" class="form-control" name="date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.paiement.date" is-open="vm.datePickerOpenStatus.date"
+                    <input required id="field_date" type="text" class="form-control" name="date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.paiement.date" is-open="vm.datePickerOpenStatus.date"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('date')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -25,13 +25,13 @@
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.paiement.montant" for="field_montant">Montant</label>
-            <input type="number" class="form-control" name="montant" id="field_montant"
+            <input required type="number" class="form-control" name="montant" id="field_montant"
                     ng-model="vm.paiement.montant"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.paiement.type" for="field_type">Type</label>
-            <select class="form-control" name="type" ng-model="vm.paiement.type" id="field_type">
+            <select required class="form-control" name="type" ng-model="vm.paiement.type" id="field_type">
                 <option value="CASH" data-translate="assalamApp.PaiementType.CASH">CASH</option>
                 <option value="VIREMENT" data-translate="assalamApp.PaiementType.VIREMENT">VIREMENT</option>
                 <option value="CHEQUE" data-translate="assalamApp.PaiementType.CHEQUE">CHEQUE</option>
@@ -46,7 +46,7 @@
         </div>
          <div class="form-group">
             <label class="control-label" data-translate="assalamApp.paiement.moispayes" for="field_moispayes">Mois payes</label>
-            <input type="number" class="form-control" name="moispayes" id="field_moispayes"
+            <input required type="number" class="form-control" name="moispayes" id="field_moispayes"
                     ng-model="vm.paiement.moispayes"
                     />
         </div>

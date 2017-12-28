@@ -1,5 +1,7 @@
 package com.assalam.repository;
 
+import java.util.List;
+
 import com.assalam.domain.Enfant;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.Page;
@@ -12,6 +14,8 @@ import org.springframework.data.jpa.repository.*;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface EnfantRepository extends JpaRepository<Enfant,Long> {
+public interface EnfantRepository extends JpaRepository<Enfant, Long> {
      Page<Enfant> findByFamilleId(Pageable pageable, Long familleId);
+
+
 }

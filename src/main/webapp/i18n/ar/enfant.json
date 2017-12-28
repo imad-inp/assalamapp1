@@ -6,6 +6,16 @@
                 "createLabel": "اضافة طفل جديد",
                 "createOrEditLabel": "اضافة او تغيير طفل"
             },
+            "statut":{
+                
+                "OUVERTE": "لم تدرس",
+                "BENEFICIARE": "جارية",
+                "ATTENTE": "لائحة الانتظار",
+                "REFUSEE": "مرفوضة",
+                "ACHEVEE": "انتهت بنجاح",
+                "ARRETEE":"موقوفة"
+            },
+            "dateDeNaissance": "تاريخ الازدياد",
             "created": "تمت اضافة طفل جديد  {{ param }}",
             "updated": " {{ param }} تم تحيين الطفل",
             "deleted": "{{ param }} تم مسح الطفل",

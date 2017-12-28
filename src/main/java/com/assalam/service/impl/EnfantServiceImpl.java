@@ -1,10 +1,17 @@
 package com.assalam.service.impl;
 
+import java.util.List;
+
 import com.assalam.service.EnfantService;
 import com.assalam.domain.Enfant;
+import com.assalam.domain.Kafala;
 import com.assalam.repository.EnfantRepository;
+import com.assalam.repository.EnfantRepositoryCustom;
+import com.assalam.repository.KafalaRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,6 +30,12 @@ public class EnfantServiceImpl implements EnfantService{
     private final Logger log = LoggerFactory.getLogger(EnfantServiceImpl.class);
 
     private final EnfantRepository enfantRepository;
+
+  @Autowired
+  private KafalaRepository kafalaRepository;
+
+  @Autowired
+  private EnfantRepositoryCustom enfantRepositoryCustom;
 
     public EnfantServiceImpl(EnfantRepository enfantRepository) {
         this.enfantRepository = enfantRepository;
@@ -53,6 +66,23 @@ public class EnfantServiceImpl implements EnfantService{
         return enfantRepository.findAll(pageable);
     }
 
+  @Override
+  @Transactional(readOnly = true)
+  public List<Enfant> findAll() {
+    log.debug("Request to get all Enfants");
+    return enfantRepository.findAll();
+  }
+
+  @Override
+  public List<Enfant> findbyStatuts(List<String> statuts) {
+    return enfantRepositoryCustom.pullByStatuts(statuts);
+  }
+
+  @Override
+  public Page<Enfant> findbyStatuts(Pageable pageable, List<String> statuts) {
+    return enfantRepositoryCustom.pullByStatuts(pageable, statuts);
+  }
+
     /**
      *  Get one enfant by id.
      *
@@ -65,8 +95,7 @@ public class EnfantServiceImpl implements EnfantService{
         log.debug("Request to get Enfant : {}", id);
         return enfantRepository.findOne(id);
     }
-	
-	  
+
      /**
      *  Get Enfants by famille Ids.
      *
@@ -88,6 +117,13 @@ public class EnfantServiceImpl implements EnfantService{
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Enfant : {}", id);
+    Enfant enfantToDelete = enfantRepository.findOne(id);
+    if (enfantToDelete != null) {
+      for (Kafala kafala : enfantToDelete.getKafalats()) {
+        kafalaRepository.delete(kafala);
+      }
+    }
         enfantRepository.delete(id);
     }
+
 }

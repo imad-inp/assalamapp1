@@ -1,8 +1,24 @@
+html{
+    height: 100%;
+}
 body {
-    background: #fafafa;
+    background: #F4F3EF;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
-   
+   min-height: 100%;
+}
+.banner{
+    height:70px;
+    margin-block-start: 20px;
+    
+    font-size:30px;
+    font-family: "Lucida Bright", Georgia, serif;
+    color: #009688;
+    padding-top: 5px; 
+    margin-bottom:5px; 
+}
+.banner div {
+ text-align:center !important; 
 }
 
 .EN_COURS{
@@ -97,7 +113,7 @@ Logo styles
 }
 
 .logo .logo-img {
-    height: 45px;
+    height: 70px;
     display: inline-block;
 }
 
@@ -330,7 +346,10 @@ entity tables helpers
 }
 
 
-
+.logo{
+    height:70px;
+    object-fit: fill;
+}
 
 
 .jh-table > thead > tr > th > .glyphicon-sort, .jh-table > thead > tr > th > .glyphicon-sort-by-attributes, .jh-table > thead > tr > th > .glyphicon-sort-by-attributes-alt {
@@ -342,6 +361,37 @@ entity tables helpers
     /* full visible sorting icons and pointer when mouse is over them */
     opacity: 1;
     cursor: pointer;
+}
+
+/*class to style th eside abr menu*/
+.sidebar{
+padding-left: 0;
+    background-color: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+position:fixed ;
+height:100vh;
+}
+.sidebar a{
+    font-family: 'Muli', "Helvetica", Arial, sans-serif;
+    font-size: 22px;
+    color:black;
+    
+}
+.sidebar a:hover{
+   font-family: 'Muli', "Helvetica", Arial, sans-serif;
+    font-size: 22px;
+    color:#009688;
+    background-color: rgba(0, 0, 0, 0)
+    !important;
+    
+
+    
+}
+.well {
+     background-color:white;
+
 }
 
 
@@ -363,7 +413,17 @@ entity detail page css
         margin-left: 0;
     }
 }
+.no-padding{
+    padding: 0;
+   
+}
+.green-background{
+    background-color: #1DE9B6 !important;
+}
 
+.red-background{
+    background-color: #FF8A80 !important;
+}
 /* ==========================================================================
 ui bootstrap tweaks
 ========================================================================== */
@@ -382,5 +442,172 @@ ui bootstrap tweaks
 }
 
 
+/*dashboard cards*/
+.card {
+  border-radius: 6px;
+  box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+  background-color: #F4F3EF;
+  color: #252422;
+  margin-bottom: 100px;
+  position: relative;
+  z-index: 1; }
+  .card .image {
+    width: 100%;
+    overflow: hidden;
+    height: 260px;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d; }
+    .card .image img {
+      width: 100%; }
+  .card .content {
+    padding: 15px 15px 10px 15px; }
+  .card .header {
+    padding: 20px 20px 0; }
+  .card .description {
+    font-size: 16px;
+    color: #66615b; }
+  .card h6 {
+    font-size: 12px;
+    margin: 0; }
+  .card .category,
+  .card label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #9A9A9A;
+    margin-bottom: 0px; }
+    .card .category i,
+    .card label i {
+      font-size: 16px; }
+  .card label {
+    font-size: 15px;
+    margin-bottom: 5px; }
+  .card .title {
+    margin: 0;
+    color: #252422;
+    font-weight: 300; }
+  .card .avatar {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 5px; }
+  .card .footer {
+    padding: 0;
+    line-height: 30px; }
+    .card .footer .legend {
+      padding: 5px 0; }
+    .card .footer hr {
+      margin-top: 5px;
+      margin-bottom: 5px; }
+  .card .stats {
+    color: #a9a9a9;
+    font-weight: 300; }
+    .card .stats i {
+      margin-right: 2px;
+      min-width: 15px;
+      display: inline-block; }
+  .card .footer div {
+    display: inline-block; }
+  .card .author {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase; }
+  .card .author i {
+    font-size: 14px; }
+  .card.card-separator:after {
+    height: 100%;
+    right: -15px;
+    top: 0;
+    width: 1px;
+    background-color: #DDDDDD;
+    content: "";
+    position: absolute; }
+  .card .ct-chart {
+    margin: 30px 0 30px;
+    height: 245px; }
+  .card .table tbody td:first-child,
+  .card .table thead th:first-child {
+    padding-left: 15px; }
+  .card .table tbody td:last-child,
+  .card .table thead th:last-child {
+    padding-right: 15px; }
+  .card .alert {
+    border-radius: 4px;
+    position: relative; }
+    .card .alert.alert-with-icon {
+      padding-left: 65px; }
+  .card .icon-big {
+    font-size: 3em;
+    min-height: 64px; }
+  .card .numbers {
+    font-size: 2em;
+    text-align: right; }
+    .card .numbers p {
+      margin: 0; }
+  .card ul.team-members li {
+    padding: 10px 0px; }
+    .card ul.team-members li:not(:last-child) {
+      border-bottom: 1px solid #F1EAE0; }
+
+.card-user .image {
+  border-radius: 8px 8px 0 0;
+  height: 150px;
+  position: relative;
+  overflow: hidden; }
+  .card-user .image img {
+    width: 100%; }
+.card-user .image-plain {
+  height: 0;
+  margin-top: 110px; }
+.card-user .author {
+  text-align: center;
+  text-transform: none;
+  margin-top: -65px; }
+  .card-user .author .title {
+    color: #403D39; }
+    .card-user .author .title small {
+      color: #ccc5b9; }
+.card-user .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 15px; }
+  .card-user .avatar.border-white {
+    border: 5px solid #FFFFFF; }
+  .card-user .avatar.border-gray {
+    border: 5px solid #ccc5b9; }
+.card-user .title {
+  font-weight: 600;
+  line-height: 24px; }
+.card-user .description {
+  margin-top: 10px; }
+.card-user .content {
+  min-height: 200px; }
+.card-user.card-plain .avatar {
+  height: 190px;
+  width: 190px; }
+
+.card-map .map {
+  height: 500px;
+  padding-top: 20px; }
+  .card-map .map > div {
+    height: 100%; }
+
+.card-user .footer,
+.card-price .footer {
+  padding: 5px 15px 10px; }
+.card-user hr,
+.card-price hr {
+  margin: 5px 15px; }
+
+.card-plain {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0; }
+  .card-plain .image {
 
 /* jhipster-needle-css-add-main JHipster will add new css style */

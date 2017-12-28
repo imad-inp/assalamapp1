@@ -42,7 +42,7 @@
                     <td>{{enfant.nom}}</td>
                     <td>{{enfant.prenom}}</td>
                     <td>{{vm.getAge(enfant)}}</td>
-                    <td>{{enfant.kafalaState}}</td>
+                    <td data-translate="{{'assalamApp.enfant.statut.' + enfant.kafalaState}}"></td>
                     <td><a  ui-sref="resultatsscolaires-filter({enfantId: enfant.id })" class="glyphicon glyphicon-file"></a></td>
                  
                 

@@ -16,6 +16,8 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface DemandeadhesionRepository extends JpaRepository<Demandeadhesion,Long> {
-    
+
     Page<Demandeadhesion> findByStatut(Pageable pageable, Statut statut);
+
+  List<Demandeadhesion> findByStatut(Statut statut);
 }

@@ -35,15 +35,12 @@
                     </span>
                 </div>
         </div>
-         <div class="form-group">
+        <div class="form-group">
             <label class="control-label" data-translate="assalamApp.enfant.etatKafala" for="field_statut">Statut Kafala</label>
-            <select class="form-control" name="statut" ng-model="vm.enfant.kafalaState" id="field_statut">
-                <option value="OUVERTE" data-translate="assalamApp.enfant.statut.OUVERTE">OUVERTE</option>
-                  <option value="ATTENTE" data-translate="assalamApp.enfant.statut.ATTENTE">ATTENTE</option>
-                <option value="EN_COURS" data-translate="assalamApp.enfant.statut.BENEFICIARE">Beneficiaire</option>
-                <option value="REFUSEE" data-translate="assalamApp.enfant.statut.REFUSEE">REFUSEE</option>             
-                 <option value="ACHEVEE" data-translate="assalamApp.enfant.statut.ACHEVEE">ACHEVEE</option>
-                   <option value="ARRETEE" data-translate="assalamApp.enfant.statut.ARRETEE">ARRETEE</option>
+            <select class="form-control" name="statut" ng-model="vm.enfant.kafalaState" id="field_statut" required>
+                <option selected disabled hidden style='display: none' value=''></option>
+                <option value="OUVERTE"   data-translate="assalamApp.enfant.statut.OUVERTE" selected="selected">OUVERTE</option>
+                 
             </select>
         </div>
         <div class="form-group">

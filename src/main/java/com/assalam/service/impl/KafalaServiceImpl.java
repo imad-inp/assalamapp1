@@ -2,6 +2,8 @@ package com.assalam.service.impl;
 
 import com.assalam.service.KafalaService;
 import com.assalam.domain.Kafala;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import com.assalam.domain.Paiement;
 import com.assalam.repository.KafalaRepository;
 import com.assalam.repository.PaiementRepository;
@@ -25,7 +27,7 @@ public class KafalaServiceImpl implements KafalaService{
     private final Logger log = LoggerFactory.getLogger(KafalaServiceImpl.class);
 
     private final KafalaRepository kafalaRepository;
-    
+
     @Autowired
     private PaiementRepository paiementRepository;
 
@@ -42,9 +44,9 @@ public class KafalaServiceImpl implements KafalaService{
     @Override
     public Kafala save(Kafala kafala) {
         log.debug("Request to save Kafala : {}", kafala);
-        
+
         return kafalaRepository.save(kafala);
-        
+
     }
 
     /**
@@ -73,6 +75,29 @@ public class KafalaServiceImpl implements KafalaService{
         return kafalaRepository.findOne(id);
     }
 
+  @Override
+  public Integer countLateKafalas() {
+    int count = 0;
+    List<Kafala> kafalas = kafalaRepository.findAll();
+    for (Kafala kafala : kafalas) {
+      if (isLate(kafala)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  /**
+   * Check if a kafala's payments are late
+   *
+   * @param kafala
+   * @return
+   */
+  private boolean isLate(Kafala kafala) {
+    LocalDate startDate = kafala.getDatedebut();
+    return ChronoUnit.MONTHS.between(startDate, LocalDate.now()) + 1 > kafala.getMoispayes();
+  }
+
     /**
      *  Delete the  kafala by id.
      *
@@ -81,11 +106,12 @@ public class KafalaServiceImpl implements KafalaService{
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Kafala : {}", id);
-       /* List<Paiement> paiements = paiementRepository.findByKafalaId(id);
-        log.debug("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", paiements);
-        for(Paiement paiement : paiements){
-            paiementRepository.delete(paiement);
-        }*/
+    Kafala kafalaToDelete = kafalaRepository.findOne(id);
+    if (kafalaToDelete != null) {
+      for (Paiement paiment : kafalaToDelete.getPaiements()) {
+        paiementRepository.delete(paiment);
+      }
+    }
         kafalaRepository.delete(id);
     }
 }

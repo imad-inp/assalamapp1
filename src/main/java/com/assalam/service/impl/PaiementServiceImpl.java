@@ -65,7 +65,7 @@ public class PaiementServiceImpl implements PaiementService{
 
     /**
    * Get one payments by kafala ID.
-   * 
+   *
    * @param id
    *          the id of the entity
    * @return the entity
@@ -79,7 +79,7 @@ public class PaiementServiceImpl implements PaiementService{
 
   /**
    * Get one paiement by id.
-   * 
+   *
    * @param id
    *          the id of the entity
    * @return the entity

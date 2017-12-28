@@ -96,7 +96,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/enfant/enfant-dialog.html',
+                    templateUrl: 'app/entities/enfant/enfant-create-dialog.html',
                     controller: 'EnfantDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',

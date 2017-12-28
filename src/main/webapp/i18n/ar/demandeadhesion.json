@@ -22,7 +22,8 @@
             "creer-enfant": "اضافة طفل",
             "remarques": "ملاحظات",
 			"famille": "العائلة",
-            "enfants": "الاطفال"
+            "enfants": "الاطفال",
+            "demandeNonTraitees":"طلبات الاستفادة غير المدروسة"
         }
     }
 }

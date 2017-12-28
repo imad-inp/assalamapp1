@@ -39,4 +39,11 @@ public interface KafalaService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+  /**
+   * Count the number of late kafalas
+   * 
+   * @return
+   */
+  Integer countLateKafalas();
 }
