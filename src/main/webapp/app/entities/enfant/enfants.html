@@ -33,7 +33,7 @@
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="enfant in vm.enfants track by enfant.id">
                        <td>
-                        <a ng-if="enfant.photo" ng-click="vm.openFile(enfant.photoContentType, enfant.photo)">
+                        <a ng-if="enfant.photo" ng-click="vm.openFile( enfant.photo, enfant.photoContentType)">
                             <img data-ng-src="{{'data:' + enfant.photoContentType + ';base64,' + enfant.photo}}" style="max-height: 30px;" alt="enfant image"/>
                         </a>
                        

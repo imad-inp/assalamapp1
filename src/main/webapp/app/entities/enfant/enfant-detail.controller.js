@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('EnfantDetailController', EnfantDetailController);
 
-    EnfantDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Enfant', 'Kafala', 'Resultatsscolaires', 'Famille'];
+    EnfantDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Enfant', 'Kafala', 'Resultatsscolaires', 'Famille','$window'];
 
-    function EnfantDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Enfant, Kafala, Resultatsscolaires, Famille) {
+    function EnfantDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Enfant, Kafala, Resultatsscolaires, Famille,$window) {
         var vm = this;
 		
         vm.enfant = entity;
@@ -20,4 +20,9 @@
         });
         $scope.$on('$destroy', unsubscribe);
     }
+
+      vm.print = function(){
+            $window.print();
+           
+        }
 })();

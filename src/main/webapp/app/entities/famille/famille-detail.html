@@ -1,28 +1,127 @@
 
-<div>
-    <h2><span data-translate="assalamApp.famille.detail.title">Famille</span> {{vm.famille.id}}</h2>
-    <hr>
-    <jhi-alert-error></jhi-alert-error>
-    <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="assalamApp.famille.nom">Nom</span></dt>
-        <dd>
-            <span>{{vm.famille.nom}}</span>
-        </dd>
-        <dt><span data-translate="assalamApp.famille.adresse">Adresse</span></dt>
-        <dd>
-            <span>{{vm.famille.adresse}}</span>
-        </dd>
-        <dt><span data-translate="assalamApp.famille.tel">Tel</span></dt>
-        <dd>
-            <span>{{vm.famille.tel}}</span>
-        </dd>
-        <dt><span data-translate="assalamApp.famille.commentaires">Commentaires</span></dt>
-        <dd>
-            <span>{{vm.famille.commentaires}}</span>
-        </dd>
-    </dl>
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
 
-    <button type="submit"
+    <div class="modal-header">
+           
+        <div class="printButton" print-remove>
+    <button  ng-click="vm.print()" class="btn btn-primary " id= "print">
+                    <div class="icon-big icon-warning text-center">
+                                          <i class="fa fa-print" aria-hidden="true"></i>
+                                        </div>
+                    
+                </button>
+        </div>
+        <h4 class="modal-title" id="myFamilleLabel" data-translate="assalamApp.famille.detail.title">Create or edit a Famille</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        
+        
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.pere" for="field_pere">Pere</label>
+            <input type="text" class="form-control" name="nom" id="field_pere"
+                    ng-model="vm.famille.pere" readonly
+                    />
+        </div>
+
+          <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.cinPere" for="field_pere">Cin Pere</label>
+            <input type="text" class="form-control" name="nom" id="field_pere"
+                    ng-model="vm.famille.cinPere" readonly
+                    />
+        </div>
+          <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.mere" for="mere">Cin Mere</label>
+            <input type="text" class="form-control" name="nom" id="mere"
+                    ng-model="vm.famille.mere" readonly
+                    />
+        </div>
+         <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.cinMere" for="field_pere">Cin Pere</label>
+            <input type="text" class="form-control" name="nom" id="field_pere"
+                    ng-model="vm.famille.cinMere" readonly
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.adresse" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                    ng-model="vm.famille.adresse" readonly
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.tel" for="field_tel">Tel</label>
+            <input type="text" class="form-control" name="tel" id="field_tel"
+                    ng-model="vm.famille.tel" readonly
+                    />
+        </div>
+          <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.revenu" for="field_commentaires">Revenu mensuel</label>
+            <input type="text" class="form-control" name="tel" id="field_tel"
+                    ng-model="vm.famille.revenuMensuel" readonly
+                    />
+        </div>
+        <h3 data-translate="assalamApp.famille.documents">Documents</h3>
+
+         <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.cinPereCopie" for="field_statut">Demande</label>
+           
+            <a  ng-if="vm.famille.cinPereCopie" ng-click="vm.openFile( vm.famille.cinPereCopie, vm.famille.cinPereCopieContentType)" 
+            target="_blank">
+                           <i class="fa fa-file" aria-hidden="true"></i> 
+                        </a>
+                        
+        </div>
+         <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.cinMereCopie" for="field_statut">Demande</label>
+            
+            <a  ng-if="vm.famille.cinMereCopie" ng-click="vm.openFile( vm.famille.cinMereCopie, vm.famille.cinMereCopieContentType)" 
+            target="_blank">
+                           <i class="fa fa-file" aria-hidden="true"></i> 
+                        </a>
+                        
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.certifMariage" for="field_statut">Demande</label>
+           
+            <a  ng-if="vm.famille.certifMariage" ng-click="vm.openFile( vm.famille.certifMariage, vm.famille.certifMariageContentType)" 
+            target="_blank">
+                           <i class="fa fa-file" aria-hidden="true"></i> 
+                        </a>
+                        
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.certifDeces" for="field_statut">Demande</label>
+           
+            <a  ng-if="vm.famille.certifDecesMari" ng-click="vm.openFile( vm.famille.certifDecesMari, vm.famille.certifDecesMariContentType)" 
+            target="_blank">
+                           <i class="fa fa-file" aria-hidden="true"></i> 
+                        </a>
+                        
+        </div>
+         <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.certifDivorce" for="field_statut">Demande</label>
+           
+            <a  ng-if="vm.famille.certifDivorce" ng-click="vm.openFile( vm.famille.certifDivorce, vm.famille.certifDivorceContentType)" 
+            target="_blank">
+                           <i class="fa fa-file" aria-hidden="true"></i> 
+                        </a>
+                        
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.commentaires" for="field_commentaires">Commentaires</label>
+            <textarea type="text" class="form-control" name="commentaires" id="field_commentaires"
+                    ng-model="vm.famille.commentaires" readonly
+                    />
+        </div>
+
+
+    </div>
+    <div class="modal-footer" print-remove>
+        <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
@@ -32,4 +131,5 @@
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
     </button>
-</div>
+    </div>
+</form>

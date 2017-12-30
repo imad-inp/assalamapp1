@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state','$http','$interval'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state','$http','$interval','$rootScope','$window'];
 
-    function HomeController ($scope, Principal, LoginService, $state,$http,$interval) {
+    function HomeController ($scope, Principal, LoginService, $state,$http,$interval,$rootScope, $window) {
         var vm = this;
 
         vm.account = null;
@@ -17,6 +17,8 @@
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
+
+      
 
         getAccount();
 

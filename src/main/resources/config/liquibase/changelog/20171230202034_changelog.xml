@@ -1,0 +1,73 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="ibouklata (generated)" id="1514665268813-1">
+        <addColumn tableName="famille">
+            <column name="certif_deces_mari" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-2">
+        <addColumn tableName="famille">
+            <column name="certif_deces_mari_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-3">
+        <addColumn tableName="famille">
+            <column name="certif_divorce" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-4">
+        <addColumn tableName="famille">
+            <column name="certif_divorce_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-5">
+        <addColumn tableName="famille">
+            <column name="certif_mariage" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-6">
+        <addColumn tableName="famille">
+            <column name="certif_mariage_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-7">
+        <addColumn tableName="enfant">
+            <column name="certif_naissance" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-8">
+        <addColumn tableName="enfant">
+            <column name="certif_naissance_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-9">
+        <addColumn tableName="famille">
+            <column name="cin_mere_copie" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-10">
+        <addColumn tableName="famille">
+            <column name="cin_mere_copie_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-11">
+        <addColumn tableName="famille">
+            <column name="cin_pere_copie" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-12">
+        <addColumn tableName="famille">
+            <column name="cin_pere_copie_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-13">
+        <addColumn tableName="famille">
+            <column name="etat_social" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1514665268813-14">
+        <addColumn tableName="famille">
+            <column name="revenu_mensuel" type="bigint"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

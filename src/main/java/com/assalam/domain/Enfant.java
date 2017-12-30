@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -41,7 +42,29 @@ public class Enfant implements Serializable {
     @Column(name = "kafala_state")
     private String kafalaState;
 
+  @Lob
+  @Column(name = "certif_naissance")
+  private byte[] certifNaissance;
 
+  @Column(name = "certif_naissance_content_type")
+  private String certifNaissanceContentType;
+
+
+  public byte[] getCertifNaissance() {
+    return certifNaissance;
+  }
+
+  public void setCertifNaissance(byte[] certifNaissance) {
+    this.certifNaissance = certifNaissance;
+  }
+
+  public String getCertifNaissanceContentType() {
+    return certifNaissanceContentType;
+  }
+
+  public void setCertifNaissanceContentType(String certifNaissanceContentType) {
+    this.certifNaissanceContentType = certifNaissanceContentType;
+  }
 
     @Lob
     @Column(name = "photo")

@@ -5,9 +5,9 @@
             .module('assalamApp')
             .controller('EnfantController', EnfantController);
 
-    EnfantController.$inject = ['DataUtils', 'Enfant', 'ParseLinks', 'AlertService', 'paginationConstants','$stateParams'];
+    EnfantController.$inject = ['DataUtils', 'Enfant', 'ParseLinks', 'AlertService', 'paginationConstants','$stateParams','$scope','$sce'];
 
-    function EnfantController(DataUtils, Enfant, ParseLinks, AlertService, paginationConstants, $stateParams) {
+    function EnfantController(DataUtils, Enfant, ParseLinks, AlertService, paginationConstants, $stateParams,$scope,$sce) {
 
         var vm = this;
 
@@ -23,7 +23,19 @@
         vm.predicate = 'id';
         vm.reset = reset;
         vm.reverse = true;
-        vm.openFile = DataUtils.openFile;
+        vm.openFile =  vm.openFile = function(file, fileType){
+           
+            $scope.content = $sce.trustAsResourceUrl('data:' +fileType + ';base64,' + file);
+            var link = document.createElement("a");
+            link.setAttribute("href", $scope.content );
+            link.setAttribute("target", "_blank");
+             link.setAttribute("download", "picture");
+            console.log(link);
+    
+             document.body.appendChild(link); // Required for FF
+            link.click(); // This will download the data file named "download_name.pdf"
+           
+        };
         vm.byteSize = DataUtils.byteSize;
 
         loadAll();

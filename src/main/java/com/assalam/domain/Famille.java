@@ -3,6 +3,7 @@ package com.assalam.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,6 +36,143 @@ public class Famille implements Serializable {
 
     @Column(name = "cin_pere")
     private String cinPere;
+
+  @Column(name = "etat_social")
+  private String etatSocial;
+
+  @Column(name = "revenu_mensuel")
+  private Long revenuMensuel;
+
+  @Lob
+  @Column(name = "certif_mariage")
+  private byte[] certifMariage;
+
+  @Lob
+  @Column(name = "certif_deces_mari")
+  private byte[] certifDecesMari;
+
+  @Lob
+  @Column(name = "certif_divorce")
+  private byte[] certifDivorce;
+
+  @Lob
+  @Column(name = "cin_mere_copie")
+  private byte[] cinMereCopie;
+
+  @Lob
+  @Column(name = "cin_pere_copie")
+  private byte[] cinPereCopie;
+
+  @Column(name = "cin_pere_copie_content_type")
+  private String cinPereCopieContentType;
+
+  @Column(name = "cin_mere_copie_content_type")
+  private String cinMereCopieContentType;
+
+  @Column(name = "certif_divorce_content_type")
+  private String certifDivorceContentType;
+
+  @Column(name = "certif_deces_mari_content_type")
+  private String certifDecesMariContentType;
+
+  @Column(name = "certif_mariage_content_type")
+  private String certifMariageContentType;
+
+  public byte[] getCertifMariage() {
+    return certifMariage;
+  }
+
+  public void setCertifMariage(byte[] certifMariage) {
+    this.certifMariage = certifMariage;
+  }
+
+  public byte[] getCertifDecesMari() {
+    return certifDecesMari;
+  }
+
+  public void setCertifDecesMari(byte[] certifDecesMari) {
+    this.certifDecesMari = certifDecesMari;
+  }
+
+  public byte[] getCertifDivorce() {
+    return certifDivorce;
+  }
+
+  public void setCertifDivorce(byte[] certifDivorce) {
+    this.certifDivorce = certifDivorce;
+  }
+
+  public byte[] getCinMereCopie() {
+    return cinMereCopie;
+  }
+
+  public void setCinMereCopie(byte[] cinMereCopie) {
+    this.cinMereCopie = cinMereCopie;
+  }
+
+  public byte[] getCinPereCopie() {
+    return cinPereCopie;
+  }
+
+  public void setCinPereCopie(byte[] cinPereCopie) {
+    this.cinPereCopie = cinPereCopie;
+  }
+
+  public String getCinPereCopieContentType() {
+    return cinPereCopieContentType;
+  }
+
+  public void setCinPereCopieContentType(String cinPereCopieContentType) {
+    this.cinPereCopieContentType = cinPereCopieContentType;
+  }
+
+  public String getCinMereCopieContentType() {
+    return cinMereCopieContentType;
+  }
+
+  public void setCinMereCopieContentType(String cinMereCopieContentType) {
+    this.cinMereCopieContentType = cinMereCopieContentType;
+  }
+
+  public String getCertifDivorceContentType() {
+    return certifDivorceContentType;
+  }
+
+  public void setCertifDivorceContentType(String certifDivorceContentType) {
+    this.certifDivorceContentType = certifDivorceContentType;
+  }
+
+  public String getCertifDecesMariContentType() {
+    return certifDecesMariContentType;
+  }
+
+  public void setCertifDecesMariContentType(String certifDecesMariContentType) {
+    this.certifDecesMariContentType = certifDecesMariContentType;
+  }
+
+  public String getCertifMariageContentType() {
+    return certifMariageContentType;
+  }
+
+  public void setCertifMariageContentType(String certifMariageContentType) {
+    this.certifMariageContentType = certifMariageContentType;
+  }
+
+  public Long getRevenuMensuel() {
+    return revenuMensuel;
+  }
+
+  public void setRevenuMensuel(Long revenuMensuel) {
+    this.revenuMensuel = revenuMensuel;
+  }
+
+  public String getEtatSocial() {
+    return etatSocial;
+  }
+
+  public void setEtatSocial(String etatSocial) {
+    this.etatSocial = etatSocial;
+  }
 
     public String getPere() {
       return pere;

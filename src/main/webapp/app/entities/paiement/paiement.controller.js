@@ -28,12 +28,12 @@
 
         loadAll();
 
+        
         vm.print = function(){
             $window.print();
-            console.log('printing');
+           
 
         }
-        
 
         function loadAll () {
             Paiement.query({

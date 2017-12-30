@@ -50,18 +50,15 @@
             <thead>
                 <tr callback="vm.reset()">
                     <!-- <th ><span data-translate="global.field.id">ID</span></span></th> -->
-                    <th><span data-translate="assalamApp.famille.nom">Nom</span></span>
-                    </th>
+                    
                     <th><span data-translate="assalamApp.famille.pere">Nom Pere</span></span>
                     </th>
                     <th><span data-translate="assalamApp.famille.mere">Nom Mere</span></span>
                     </th>
-                    <th><span data-translate="assalamApp.famille.adresse">Adresse</span></span>
-                    </th>
+                    
                     <th><span data-translate="assalamApp.famille.tel">Tel</span></span>
                     </th>
-                    <th><span data-translate="assalamApp.famille.commentaires">Commentaires</span></span>
-                    </th>
+                   
                     <th><span data-translate="assalamApp.famille.enfants">Enfants</span></span>
                     </th>
                 </tr>
@@ -69,12 +66,12 @@
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="famille in vm.familles track by famille.id">
                     <!-- <td><a ui-sref="famille-detail({id:famille.id})">{{famille.id}}</a></td> -->
-                    <td>{{famille.nom}}</td>
+                    
                     <td>{{famille.pere}}</td>
                     <td>{{famille.mere}}</td>
-                    <td>{{famille.adresse}}</td>
+                   
                     <td>{{famille.tel}}</td>
-                    <td>{{famille.commentaires}}</td>
+                   
                     <td>
                         <a ui-sref="enfant({familleFilterId: famille.id })" >
                             <i class="fa fa-child" aria-hidden="true"></i>
