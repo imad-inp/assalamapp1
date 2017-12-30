@@ -1,5 +1,7 @@
 package com.assalam.service;
 
+import java.util.List;
+
 import com.assalam.domain.Kafala;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,4 +48,10 @@ public interface KafalaService {
    * @return
    */
   Integer countLateKafalas();
+
+  Page<Kafala> findByKafilId(Pageable pageable, String kafilId);
+
+  Page<Kafala> findByEnfantId(Pageable pageable, String enfantId);
+
+  List<Kafala> findLateKafalas();
 }

@@ -40,6 +40,7 @@
                    <option value="ARRETEE" data-translate="assalamApp.kafala.state.ARRETEE">ARRETEE</option>
             </select>
         </div>
+        
 
         <div class="form-group">
             <label data-translate="assalamApp.kafala.enfant" for="field_enfant">Enfant</label>
@@ -47,6 +48,15 @@
                 <option value=""></option>
             </select>
         </div>
+
+        <div class="form-group">
+            <label class="control-label"  for="field_statut">Engagement</label>
+            <button type="button" ngf-select class="btn btn-default btn-block"
+                    ngf-change="vm.setEngagement($file, vm.kafala)" accept="*" data-translate="entity.action.addimage">
+                Add engagement
+            </button>
+        </div>
+        {{vm.kafala.engagement}}
           <div class="form-group">
             <label data-translate="assalamApp.kafala.kafil" for="field_kafil">Kafil</label>
             <select class="form-control" id="field_kafil" name="kafil" ng-model="vm.kafala.kafil" ng-options="kafil as kafil.fullName for kafil in vm.kafils track by kafil.id">

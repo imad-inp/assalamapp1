@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state','$http','$interval'];
 
-    function HomeController ($scope, Principal, LoginService, $state) {
+    function HomeController ($scope, Principal, LoginService, $state,$http,$interval) {
         var vm = this;
 
         vm.account = null;
@@ -29,5 +29,14 @@
         function register () {
             $state.go('register');
         }
+
+         $interval(wakeUp, 300000);// keep heroku app awake
+         function wakeUp(){
+             $http.get("http://assalamapp2.herokuapp.com");
+           
+         }
+       
+
+        
     }
 })();

@@ -1,8 +1,12 @@
 package com.assalam.service;
 
+import java.util.List;
+
 import com.assalam.domain.Demandeadhesion;
 import com.assalam.domain.Paiement;
 import com.assalam.domain.enumeration.Statut;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,7 +41,7 @@ public interface PaiementService {
    * @return the entity
    */
 
-  public Page<Paiement> findByKafalaId(Pageable pageable, String kafalaId);
+  public List<Paiement> findByKafalaId(String kafalaId);
 
   /**
    * Get the "id" paiement.
@@ -54,4 +58,10 @@ public interface PaiementService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+  byte[] getPaiementsAsPdf(String kafalaId);
+
+  byte[] getPaiementReceipt(Paiement paiement);
+
+
 }

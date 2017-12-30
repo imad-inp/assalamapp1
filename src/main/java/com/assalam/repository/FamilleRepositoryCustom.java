@@ -7,12 +7,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
 import com.assalam.domain.Enfant;
+import com.assalam.domain.Famille;
 
-public interface EnfantRepositoryCustom {
+public interface FamilleRepositoryCustom {
 
 
-  List<Enfant> pullByStatuts(List<String> statuts);
+  List<Famille> pullByName(String name);
 
-  Page<Enfant> pullByStatuts(Pageable pageable, List<String> statuts);
-
+  List<Famille> pullByCin(String cin);
 }

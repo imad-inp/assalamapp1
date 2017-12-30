@@ -7,6 +7,8 @@ import java.time.temporal.ChronoUnit;
 import com.assalam.domain.Paiement;
 import com.assalam.repository.KafalaRepository;
 import com.assalam.repository.PaiementRepository;
+
+import java.util.Iterator;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,4 +116,30 @@ public class KafalaServiceImpl implements KafalaService{
     }
         kafalaRepository.delete(id);
     }
+
+  @Override
+  public Page<Kafala> findByKafilId(Pageable pageable, String kafilId) {
+
+    return kafalaRepository.findByKafilId(pageable, Long.valueOf(kafilId));
+  }
+
+  @Override
+  public Page<Kafala> findByEnfantId(Pageable pageable, String enfantId) {
+
+    return kafalaRepository.findByEnfantId(pageable, Long.valueOf(enfantId));
+  }
+
+  @Override
+  public List<Kafala> findLateKafalas() {
+    List<Kafala> kafalas = kafalaRepository.findAll();
+    Iterator<Kafala> it = kafalas.iterator();
+    while (it.hasNext()) {
+      if (!isLate(it.next())) {
+        it.remove();
+
+      }
+
+    }
+    return kafalas;
+  }
 }

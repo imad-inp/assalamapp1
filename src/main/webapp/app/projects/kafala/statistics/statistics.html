@@ -1,12 +1,12 @@
 
 
 
-        <div class="content">
+        <div class="content" id="exportthis" print-section>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-sm-4">
-                        <a ui-sref="familles">
-                        <div class="card" ng-class="vm.kafalaLateClass" ui-sref="famille">
+                        <a ui-sref="kafalat({late: 'true'})">
+                        <div class="card" >
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -34,7 +34,8 @@
                      <div class="col-lg-4 col-sm-4">
                      </div>
                     <div class="col-lg-4 col-sm-4">
-                        <div class="card" ng-class="vm.demandesOuvertesClass">
+                        <a ui-sref="demandeadhesion({statut: 'OUVERTE'})">
+                        <div class="card" >
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -54,15 +55,16 @@
                                     <hr />
                                      <div class="numbers">
                                            
-                                            {{vm.kafalaLate}}
+                                            {{vm.demandesOuvertes}}
                                         </div>
                                 </div>
                                 
                             </div>
+                        </a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-4">
-                        <div class="card" ng-class="vm.enfantsEnAttenteClass" >
+                        <div class="card"  >
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -91,7 +93,7 @@
                      <div class="col-lg-4 col-sm-4">
                      </div>
                     <div class="col-lg-4 col-sm-4">
-                        <div class="card green-background"  >
+                        <div class="card"  >
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-3">

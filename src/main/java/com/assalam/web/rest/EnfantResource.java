@@ -32,97 +32,111 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class EnfantResource {
 
-    private final Logger log = LoggerFactory.getLogger(EnfantResource.class);
+  private final Logger log = LoggerFactory.getLogger(EnfantResource.class);
 
-    private static final String ENTITY_NAME = "enfant";
+  private static final String ENTITY_NAME = "enfant";
 
-    private final EnfantService enfantService;
+  private final EnfantService enfantService;
 
-    public EnfantResource(EnfantService enfantService) {
-        this.enfantService = enfantService;
+  public EnfantResource(EnfantService enfantService) {
+    this.enfantService = enfantService;
+  }
+
+  /**
+   * POST /enfants : Create a new enfant.
+   * 
+   * @param enfant
+   *          the enfant to create
+   * @return the ResponseEntity with status 201 (Created) and with body the new enfant, or with status 400 (Bad Request)
+   *         if the enfant has already an ID
+   * @throws URISyntaxException
+   *           if the Location URI syntax is incorrect
+   */
+  @PostMapping("/enfants")
+  @Timed
+  public ResponseEntity<Enfant> createEnfant(@RequestBody Enfant enfant) throws URISyntaxException {
+    log.debug("REST request to save Enfant : {}", enfant);
+    if (enfant.getId() != null) {
+      return ResponseEntity.badRequest()
+          .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new enfant cannot already have an ID"))
+          .body(null);
+    }
+    Enfant result = enfantService.save(enfant);
+    return ResponseEntity.created(new URI("/api/enfants/" + result.getId()))
+        .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+        .body(result);
+  }
+
+  /**
+   * PUT /enfants : Updates an existing enfant.
+   * 
+   * @param enfant
+   *          the enfant to update
+   * @return the ResponseEntity with status 200 (OK) and with body the updated enfant,
+   *         or with status 400 (Bad Request) if the enfant is not valid,
+   *         or with status 500 (Internal Server Error) if the enfant couldn't be updated
+   * @throws URISyntaxException
+   *           if the Location URI syntax is incorrect
+   */
+  @PutMapping("/enfants")
+  @Timed
+  public ResponseEntity<Enfant> updateEnfant(@RequestBody Enfant enfant) throws URISyntaxException {
+    log.debug("REST request to update Enfant : {}", enfant);
+    if (enfant.getId() == null) {
+      return createEnfant(enfant);
+    }
+    Enfant result = enfantService.save(enfant);
+    return ResponseEntity.ok()
+        .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, enfant.getId().toString()))
+        .body(result);
+  }
+
+  /**
+   * GET /enfants : get all the enfants.
+   * 
+   * @param pageable
+   *          the pagination information
+   * @return the ResponseEntity with status 200 (OK) and the list of enfants in body
+   */
+  @GetMapping("/enfants")
+  @Timed
+  public ResponseEntity<List<Enfant>> getAllEnfants(@ApiParam Pageable pageable,
+      @RequestParam(required = false) String familleId, @RequestParam(required = false) List<String> statuts) {
+    log.debug("REST request to get a page of Enfants");
+    Page<Enfant> page = null;
+    if (familleId != null) {
+      page = enfantService.findbyFamilleId(pageable, Long.valueOf(familleId));
+
+    }
+    else if (statuts != null) {
+      page = enfantService.findbyStatuts(pageable, statuts);
+    }
+    else {
+      page = enfantService.findAll(pageable);
     }
 
-    /**
-     * POST  /enfants : Create a new enfant.
-     *
-     * @param enfant the enfant to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new enfant, or with status 400 (Bad Request) if the enfant has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PostMapping("/enfants")
-    @Timed
-    public ResponseEntity<Enfant> createEnfant(@RequestBody Enfant enfant) throws URISyntaxException {
-        log.debug("REST request to save Enfant : {}", enfant);
-        if (enfant.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new enfant cannot already have an ID")).body(null);
-        }
-        Enfant result = enfantService.save(enfant);
-        return ResponseEntity.created(new URI("/api/enfants/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
+    HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/enfants");
+    return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+  }
 
-    /**
-     * PUT  /enfants : Updates an existing enfant.
-     *
-     * @param enfant the enfant to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated enfant,
-     * or with status 400 (Bad Request) if the enfant is not valid,
-     * or with status 500 (Internal Server Error) if the enfant couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PutMapping("/enfants")
-    @Timed
-    public ResponseEntity<Enfant> updateEnfant(@RequestBody Enfant enfant) throws URISyntaxException {
-        log.debug("REST request to update Enfant : {}", enfant);
-        if (enfant.getId() == null) {
-            return createEnfant(enfant);
-        }
-        Enfant result = enfantService.save(enfant);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, enfant.getId().toString()))
-            .body(result);
-    }
-
-    /**
-     * GET  /enfants : get all the enfants.
-     *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of enfants in body
-     */
-    @GetMapping("/enfants")
-    @Timed
-    public ResponseEntity<List<Enfant>> getAllEnfants(@ApiParam Pageable pageable, @RequestParam(required = false) String familleId) {
-        log.debug("REST request to get a page of Enfants");
-		Page<Enfant> page = null;
-		if(familleId == null){
-            page = enfantService.findAll(pageable);
-        }
-        else{
-         page = enfantService.findbyFamilleId(pageable, Long.valueOf(familleId));
-        }
-
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/enfants");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
-    /**
-     * GET  /enfants/:id : get the "id" enfant.
-     *
-     * @param id the id of the enfant to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the enfant, or with status 404 (Not Found)
-     */
-    @GetMapping("/enfants/{id}")
-    @Timed
-    public ResponseEntity<Enfant> getEnfant(@PathVariable Long id) {
-        log.debug("REST request to get Enfant : {}", id);
-        Enfant enfant = enfantService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(enfant));
-    }
+  /**
+   * GET /enfants/:id : get the "id" enfant.
+   * 
+   * @param id
+   *          the id of the enfant to retrieve
+   * @return the ResponseEntity with status 200 (OK) and with body the enfant, or with status 404 (Not Found)
+   */
+  @GetMapping("/enfants/{id}")
+  @Timed
+  public ResponseEntity<Enfant> getEnfant(@PathVariable Long id) {
+    log.debug("REST request to get Enfant : {}", id);
+    Enfant enfant = enfantService.findOne(id);
+    return ResponseUtil.wrapOrNotFound(Optional.ofNullable(enfant));
+  }
 
   /**
    * GET /count/demandeadhesion : get count demande adhesion.
-   * 
+   *
    * @param pageable
    *          the pagination information
    * @param statut
@@ -131,34 +145,35 @@ public class EnfantResource {
    */
   @GetMapping("/enfants/count")
   @Timed
-  public ResponseEntity<Map<String, Integer>> getDemandeadhesionFiltered(
-      @RequestParam(required = false) List<String> statuts) {
-    log.debug("REST request to get the count of demandeadhesion filtered by statut" + statuts);
-    Integer count = 0;
-    if (statuts == null) {
-      count = enfantService.findAll().size();
+  public ResponseEntity<Map<String, Long>> getDemandeadhesionFiltered(
+      @RequestParam(required = false) String statut) {
+    log.debug("REST request to get the count of demandeadhesion filtered by statut" + statut);
+    Long count;
+    if (statut == null) {
+      count = new Long(enfantService.findAll().size());
     }
     else {
-      count = enfantService.findbyStatuts(statuts).size();
+      count = enfantService.countByStatut(statut);
     }
 
-    Map<String, Integer> countMap = new HashMap();
+    Map<String, Long> countMap = new HashMap();
     countMap.put("count", count);
 
     return new ResponseEntity<>(countMap, HttpStatus.OK);
   }
 
-    /**
-     * DELETE  /enfants/:id : delete the "id" enfant.
-     *
-     * @param id the id of the enfant to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
-    @DeleteMapping("/enfants/{id}")
-    @Timed
-    public ResponseEntity<Void> deleteEnfant(@PathVariable Long id) {
-        log.debug("REST request to delete Enfant : {}", id);
-        enfantService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
+  /**
+   * DELETE /enfants/:id : delete the "id" enfant.
+   * 
+   * @param id
+   *          the id of the enfant to delete
+   * @return the ResponseEntity with status 200 (OK)
+   */
+  @DeleteMapping("/enfants/{id}")
+  @Timed
+  public ResponseEntity<Void> deleteEnfant(@PathVariable Long id) {
+    log.debug("REST request to delete Enfant : {}", id);
+    enfantService.delete(id);
+    return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+  }
 }

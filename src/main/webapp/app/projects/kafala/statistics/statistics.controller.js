@@ -20,6 +20,18 @@
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
+
+    /* var printContents = document.getElementById('exportthis').innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;*/
+
+    
+
        
         
         $rootScope.currentProject = 'kafala';
@@ -68,5 +80,21 @@
         function register () {
             $state.go('register');
         }
+
+       /*  html2canvas(document.getElementById('exportthis'), {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500,
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("Score_Details.pdf");
+            }
+        });*/
+
+        
+
     }
 })();

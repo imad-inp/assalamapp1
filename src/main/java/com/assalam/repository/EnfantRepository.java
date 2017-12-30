@@ -17,5 +17,7 @@ import org.springframework.data.jpa.repository.*;
 public interface EnfantRepository extends JpaRepository<Enfant, Long> {
      Page<Enfant> findByFamilleId(Pageable pageable, Long familleId);
 
+  long countByKafalaState(String statut);
+
 
 }

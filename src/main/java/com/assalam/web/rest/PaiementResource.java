@@ -1,18 +1,26 @@
 package com.assalam.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.assalam.domain.Paiement;
 import com.assalam.service.PaiementService;
+import com.assalam.service.sms.SmsServiceImpl;
 import com.assalam.web.rest.util.HeaderUtil;
 import com.assalam.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
+import io.undertow.util.Headers;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +42,8 @@ public class PaiementResource {
     private static final String ENTITY_NAME = "paiement";
 
     private final PaiementService paiementService;
+
+
 
     public PaiementResource(PaiementService paiementService) {
         this.paiementService = paiementService;
@@ -92,22 +102,52 @@ public class PaiementResource {
     public ResponseEntity<List<Paiement>> getAllPaiements(@ApiParam Pageable pageable, @RequestParam(required = false) String kafalaId) {
         log.debug("REST request to get a page of Paiements");
         Page<Paiement> page = null;
+    List<Paiement> paiements = null;
+
         if(kafalaId == null){
-          page = paiementService.findAll(pageable);
+      paiements = paiementService.findAll(pageable).getContent();
+
         }
         else {
-          page = paiementService.findByKafalaId(pageable, kafalaId);
+      paiements = paiementService.findByKafalaId(kafalaId);
         }
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/paiements");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+
+
+    return new ResponseEntity<>(paiements, HttpStatus.OK);
     }
 
     /**
-     * GET  /paiements/:id : get the "id" paiement.
-     *
-     * @param id the id of the paiement to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the paiement, or with status 404 (Not Found)
-     */
+   * GET /paiements/csv : get all the paiements.
+   * 
+   * @param pageable
+   *          the pagination information
+   * @return the ResponseEntity with status 200 (OK) and the list of paiements in body
+   */
+  @PostMapping("/paiements/pdf")
+  @Timed
+  public ResponseEntity<byte[]> getPaiementReceipt(@RequestBody Paiement paiement) {
+    log.debug("REST request to get the receipt of the payment");
+    byte[] document = null;
+
+
+
+    document = paiementService.getPaiementReceipt(paiement);
+
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.parseMediaType("application/pdf"));
+
+    headers.setContentDispositionFormData("imad", "imad.pdf");
+    return new ResponseEntity<>(document, headers, HttpStatus.OK);
+  }
+
+  /**
+   * GET /paiements/:id : get the "id" paiement.
+   * 
+   * @param id
+   *          the id of the paiement to retrieve
+   * @return the ResponseEntity with status 200 (OK) and with body the paiement, or with status 404 (Not Found)
+   */
     @GetMapping("/paiements/{id}")
     @Timed
     public ResponseEntity<Paiement> getPaiement(@PathVariable Long id) {

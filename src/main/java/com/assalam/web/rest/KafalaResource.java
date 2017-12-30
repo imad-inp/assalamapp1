@@ -91,19 +91,43 @@ public class KafalaResource {
      */
     @GetMapping("/kafalas")
     @Timed
-    public ResponseEntity<List<Kafala>> getAllKafalas(@ApiParam Pageable pageable) {
+  public ResponseEntity<List<Kafala>> getAllKafalas(@ApiParam Pageable pageable,
+      @RequestParam(name = "kafilId", required = false) String kafilId,
+      @RequestParam(name = "enfantId", required = false) String enfantId) {
         log.debug("REST request to get a page of Kafalas");
-        Page<Kafala> page = kafalaService.findAll(pageable);
+    Page<Kafala> page = null;
+    if (kafilId != null) {
+      page = kafalaService.findByKafilId(pageable, kafilId);
+    }
+    else if (enfantId != null) {
+      page = kafalaService.findByEnfantId(pageable, enfantId);
+    }
+    else {
+      page = kafalaService.findAll(pageable);
+    }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/kafalas");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    /**
-     * GET  /kafalas/:id : get the "id" kafala.
-     *
-     * @param id the id of the kafala to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the kafala, or with status 404 (Not Found)
-     */
+  @GetMapping("/kafalas/late")
+  @Timed
+  public ResponseEntity<List<Kafala>> getLateKafalas() {
+    log.debug("REST request to get a page of Kafalas");
+
+    List<Kafala> kafalas = kafalaService.findLateKafalas();
+
+    return new ResponseEntity<>(kafalas, HttpStatus.OK);
+  }
+
+
+
+      /**
+   * GET /kafalas/:id : get the "id" kafala.
+   * 
+   * @param id
+   *          the id of the kafala to retrieve
+   * @return the ResponseEntity with status 200 (OK) and with body the kafala, or with status 404 (Not Found)
+   */
     @GetMapping("/kafalas/{id}")
     @Timed
     public ResponseEntity<Kafala> getKafala(@PathVariable Long id) {
@@ -134,7 +158,7 @@ public class KafalaResource {
    * @return the ResponseEntity with status 200 (OK) and the list of kafalas in body
    */
   @GetMapping("/count/latekafalas")
-    @Timed
+  @Timed
   public ResponseEntity<Map<String, Integer>> countLateKafalas() {
         log.debug("REST request to count Kafalas");
     Integer count = kafalaService.countLateKafalas();

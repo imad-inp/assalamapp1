@@ -20,7 +20,10 @@
             "type": "نوع الاداء",
             "commentaires": "معلومات اضافية",
             "kafala": "الكفالة",
-            "moispayes":"عدد الاشهر"
+            "moispayes":"عدد الاشهر",
+            "printReceipt": "تحميل الوصل",
+            "kafil": "الكفيل",
+            "enfant": "الطفل"
         }
     }
 }

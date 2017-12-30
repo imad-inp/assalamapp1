@@ -74,4 +74,17 @@ public class FamilleServiceImpl implements FamilleService{
         log.debug("Request to delete Famille : {}", id);
         familleRepository.delete(id);
     }
+
+  @Override
+  public Page<Famille> findByLastName(Pageable pageable, String searchValue) {
+    return familleRepository.findByPereContainingOrMereContaining(pageable, searchValue, searchValue);
+
+  }
+
+  @Override
+  public Page<Famille> findByCin(Pageable pageable, String searchValue) {
+
+    return familleRepository.findByCinPereContainingOrCinMereContaining(pageable, searchValue, searchValue);
+
+  }
 }

@@ -13,21 +13,23 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link media="print" rel="stylesheet" href="bower_components/angularPrint/angularPrint.css">
+
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
     <!-- endbuild -->
 </head>
-<body ng-app="assalamApp" class=" no-padding"  ng-controller="MainCtrl as vm" ng-attr-dir ="{{vm.currentLang == 'ar' ? 'rtl' : 'ltr'}}" ng-class="{'align-right': vm.currentLang == 'ar'}" ng-strict-di>
+<body  print-section ng-app="assalamApp" class=" no-padding"  ng-controller="MainCtrl as vm" ng-attr-dir ="{{vm.currentLang == 'ar' ? 'rtl' : 'ltr'}}" ng-class="{'align-right': vm.currentLang == 'ar'}" ng-strict-di>
     
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <page-ribbon></page-ribbon>
-    <div class="col-xs-10 no-padding">
-    <div ui-view="banner" class="banner " ng-cloak></div>
+    <page-ribbon print-remove></page-ribbon>
+    <div class="col-xs-10 no-padding" id="maincontent">
+    <div  ui-view="banner" class="banner " ng-cloak></div>
         
     <div class="container no-padding">
         <div class="well" ui-view="content">
@@ -35,7 +37,8 @@
         </div>
     </div>
     </div>
-    <div class =" col-xs-2 sidebar ">
+    
+    <div  print-remove class =" col-xs-2 sidebar ">
        
     <div ui-view="navbar" ng-cloak></div>  
     </div>
@@ -75,6 +78,10 @@
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+        <script src="bower_components/html2canvas/build/html2canvas.js"></script>
+        <script src="bower_components/pdfmake/build/pdfmake.js"></script>
+        <script src="bower_components/angularPrint/angularPrint.js"></script>
+        <script src="bower_components/dom-to-image/dist/dom-to-image.min.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 
@@ -105,12 +112,14 @@
     <script src="app/entities/resultatsscolaires/resultatsscolaires-delete-dialog.controller.js"></script>
     <script src="app/entities/resultatsscolaires/resultatsscolaires.state.js"></script>
     <script src="app/entities/resultatsscolaires/resultatsscolaires.service.js"></script>
+    
     <script src="app/entities/resultatsscolaires/resultatsscolaires.controller.js"></script>
     <script src="app/entities/paiement/paiement-dialog.controller.js"></script>
     <script src="app/entities/paiement/paiement-detail.controller.js"></script>
     <script src="app/entities/paiement/paiement-delete-dialog.controller.js"></script>
     <script src="app/entities/paiement/paiement.state.js"></script>
     <script src="app/entities/paiement/paiement.service.js"></script>
+    <script src="app/entities/paiement/paiement.service.pdf.js"></script>
     <script src="app/entities/paiement/paiement.controller.js"></script>
     <script src="app/entities/kafil/kafil-dialog.controller.js"></script>
     <script src="app/entities/kafil/kafil-detail.controller.js"></script>
@@ -124,6 +133,7 @@
     <script src="app/entities/kafala/kafala.state.js"></script>
     <script src="app/entities/kafala/kafala.service.js"></script>
      <script src="app/entities/kafala/kafalaCount.service.js"></script>
+     <script src="app/entities/kafala/kafala.late.service.js"></script>
     <script src="app/entities/kafala/kafala.controller.js"></script>
     <script src="app/entities/famille/famille-dialog.controller.js"></script>
     <script src="app/entities/famille/famille-detail.controller.js"></script>

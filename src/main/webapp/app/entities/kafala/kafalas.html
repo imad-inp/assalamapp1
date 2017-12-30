@@ -25,7 +25,9 @@
                     <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.kafil">Kafil</span></span></th>
                      <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.state.name">Kafala State</span></span></th>
                     <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.moispayes">Mois Retard</span></span></th>
+                    <th><span data-translate="assalamApp.kafala.engagment">Engagemnt</span></span></th>
                     <th><span data-translate="assalamApp.kafala.paiments">Paiements</span></span></th>
+                    
                     <th></th>
                 </tr>
             </thead>
@@ -44,6 +46,10 @@
                     <td data-translate="{{'assalamApp.kafala.state.' + kafala.state}}"></td>
 
                      <td ><span data-translate="{{'assalamApp.kafala.' + kafala.statut}}"></span>&nbsp{{kafala.moisretard}}&nbsp<span data-translate="assalamApp.kafala.mois"></span></td>
+                    <td >
+                        <a data-translate="assalamApp.demandeadhesion.demande" ng-if="kafala.engagement" ng-click="vm.openFile('', kafala.engagement)" ng-href="{{kafala.engagementContentType + 'data:' + ';base64,' + kafala.engagement}}" target="_blank">
+                            
+                        </a>
                     <td>
                         <a ui-sref="paiement({kafalaId: kafala.id })" class="glyphicon glyphicon-file"></a>
                     </td>

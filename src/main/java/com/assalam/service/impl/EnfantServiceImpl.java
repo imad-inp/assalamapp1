@@ -73,6 +73,7 @@ public class EnfantServiceImpl implements EnfantService{
     return enfantRepository.findAll();
   }
 
+
   @Override
   public List<Enfant> findbyStatuts(List<String> statuts) {
     return enfantRepositoryCustom.pullByStatuts(statuts);
@@ -125,5 +126,11 @@ public class EnfantServiceImpl implements EnfantService{
     }
         enfantRepository.delete(id);
     }
+
+  @Override
+  public Long countByStatut(String statut) {
+
+    return enfantRepository.countByKafalaState(statut);
+  }
 
 }

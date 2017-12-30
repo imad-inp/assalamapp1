@@ -39,4 +39,8 @@ public interface FamilleService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+  Page<Famille> findByLastName(Pageable pageable, String searchValue);
+
+  Page<Famille> findByCin(Pageable pageable, String searchValue);
 }

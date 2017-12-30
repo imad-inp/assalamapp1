@@ -11,7 +11,7 @@
         $stateProvider
         .state('kafala', {
             parent: 'kafala-project',
-            url: '/kafalat?kafilId?isLate',
+            url: '/kafalat?kafilId?late',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'assalamApp.kafala.home.title'

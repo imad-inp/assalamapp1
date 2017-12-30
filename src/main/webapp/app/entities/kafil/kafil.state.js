@@ -13,7 +13,7 @@
             parent: 'kafala-project',
             url: '/kafil',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'assalamApp.kafil.home.title'
             },
             views: {

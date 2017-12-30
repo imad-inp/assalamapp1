@@ -2,7 +2,7 @@ html{
     height: 100%;
 }
 body {
-    background: #F4F3EF;
+    background: #F2F4F8;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
    min-height: 100%;
@@ -10,10 +10,10 @@ body {
 .banner{
     height:70px;
     margin-block-start: 20px;
-    
+    background-color: #177BBB;
     font-size:30px;
     font-family: "Lucida Bright", Georgia, serif;
-    color: #009688;
+    color: #f5f5f5;
     padding-top: 5px; 
     margin-bottom:5px; 
 }
@@ -295,6 +295,13 @@ Custom alerts for notification
         width: 50%;
     }
 }
+@media print {
+   
+   #maincontent{
+       width: 100%;
+   }
+    
+}
 
 /* ==========================================================================
 entity tables helpers
@@ -324,6 +331,9 @@ entity tables helpers
 .remarques{
     max-width:200px !important;
 }
+.sameLine{
+    display: inline-block;
+}
 .jh-table > tbody > tr > td {
     /* Align text in td vertically (top aligned by Bootstrap) */
     vertical-align: middle;
@@ -334,9 +344,14 @@ entity tables helpers
     white-space: nowrap;
 
 }
+.printButton{
+    text-align: center !important ;
+}
+
 .align-right * {
     text-align: right ;
 }
+
 .align-right dt {
     float: right ;
 }
@@ -382,9 +397,10 @@ height:100vh;
 .sidebar a:hover{
    font-family: 'Muli', "Helvetica", Arial, sans-serif;
     font-size: 22px;
-    color:#009688;
-    background-color: rgba(0, 0, 0, 0)
-    !important;
+    color:white;
+    background-color: #126DA7 !important;
+   
+    
     
 
     
@@ -446,7 +462,7 @@ ui bootstrap tweaks
 .card {
   border-radius: 6px;
   box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
-  background-color: #F4F3EF;
+  background-color: #BBDEFB;
   color: #252422;
   margin-bottom: 100px;
   position: relative;

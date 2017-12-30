@@ -1,8 +1,39 @@
-<div>
+<div >
     <h2 data-translate="assalamApp.famille.home.title">Familles</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
+            <div class="col-xs-2 no-padding-right">
+            </div>
+            <div class="col-xs-6 no-padding-right">
+                <label  > 
+                    
+                <input type="radio" ng-model="vm.searchType" value="Name">
+               <span  data-translate="assalamApp.famille.search.name"></span>  
+                 </label>
+                 
+               <label >   
+                <input type="radio" ng-model="vm.searchType" value="Cin">
+               <span  data-translate="assalamApp.famille.search.cin"></span>  
+                 </label>
+                 
+                <form name="searchForm" class="form-inline">
+                    
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'global.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search()">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.searchType">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
             <div class="no-padding-left">
                 <button class="btn btn-primary" ui-sref="famille.new">
                     <span class="glyphicon glyphicon-plus"></span>
@@ -14,7 +45,7 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive">
+    <div id = "exportthis" class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
                 <tr callback="vm.reset()">
@@ -45,7 +76,9 @@
                     <td>{{famille.tel}}</td>
                     <td>{{famille.commentaires}}</td>
                     <td>
-                        <a ui-sref="enfant({familleFilterId: famille.id })" class="glyphicon glyphicon-file"></a>
+                        <a ui-sref="enfant({familleFilterId: famille.id })" >
+                            <i class="fa fa-child" aria-hidden="true"></i>
+                        </a>
                     </td>
 
                    <td >

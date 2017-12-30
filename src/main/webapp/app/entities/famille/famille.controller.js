@@ -21,6 +21,7 @@
         vm.predicate = 'id';
         vm.reset = reset;
         vm.reverse = true;
+        
 
         loadAll();
 
@@ -28,7 +29,9 @@
             Famille.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
-                sort: sort()
+                sort: sort(),
+                searchType: vm.searchType,
+                searchValue: vm.searchQuery
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
@@ -51,6 +54,14 @@
             }
         }
 
+        vm.search = function(){
+            reset();
+        }
+
+        vm.clear = function(){
+            vm.searchType =null;
+            vm.searchQuery = null;
+        }
         function reset () {
             vm.page = 0;
             vm.familles = [];
@@ -61,5 +72,8 @@
             vm.page = page;
             loadAll();
         }
+
+        
+  
     }
 })();

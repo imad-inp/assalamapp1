@@ -43,7 +43,7 @@ public interface EnfantService {
      */
     void delete(Long id);
 
-	         /**
+	           /**
    * Get the enfant by famille id.
    * 
    * @param id
@@ -57,4 +57,6 @@ public interface EnfantService {
   List<Enfant> findbyStatuts(List<String> statuts);
 
   Page<Enfant> findbyStatuts(Pageable pageable, List<String> statuts);
+
+  Long countByStatut(String statut);
 }

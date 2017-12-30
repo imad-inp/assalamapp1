@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('KafalaDialogController', KafalaDialogController);
 
-    KafalaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Kafala', 'Paiement', 'Enfant', 'Famille', 'Kafil'];
+    KafalaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Kafala', 'Paiement', 'Enfant', 'Famille', 'Kafil', 'DataUtils'];
 
-    function KafalaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Kafala, Paiement, Enfant, Famille, Kafil) {
+    function KafalaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Kafala, Paiement, Enfant, Famille, Kafil, DataUtils) {
         var vm = this;
 
         vm.kafala = entity;
@@ -49,6 +49,20 @@
         }
 
         vm.datePickerOpenStatus.datedebut = false;
+
+            vm.setEngagement = function ($file, kafala) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+              if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        kafala.engagement = base64Data;
+                        kafala.engagementContentType = $file.type;
+                    });
+                });
+            }
+        };
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

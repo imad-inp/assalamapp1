@@ -26,7 +26,7 @@ public class Paiement implements Serializable {
 
     @Column(name = "montant")
     private Long montant;
-    
+
     @Column(name = "mois_payes")
     private Long moispayes;
 
@@ -112,7 +112,7 @@ public class Paiement implements Serializable {
     public void setKafala(Kafala kafala) {
         this.kafala = kafala;
     }
-    
+
     public Long getMoispayes() {
         return this.moispayes;
     }

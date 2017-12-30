@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('KafalaController', KafalaController);
 
-    KafalaController.$inject = ['Kafala', 'ParseLinks', 'AlertService', 'paginationConstants', '$stateParams'];
+    KafalaController.$inject = ['Kafala', 'ParseLinks', 'AlertService', 'paginationConstants', '$stateParams', 'DataUtils', 'KafalaLate'];
 
-    function KafalaController(Kafala, ParseLinks, AlertService, paginationConstants, $stateParams) {
+    function KafalaController(Kafala, ParseLinks, AlertService, paginationConstants, $stateParams, DataUtils, KafalaLate) {
 
         var vm = this;
         
@@ -22,10 +22,17 @@
         vm.predicate = 'id';
         vm.reset = reset;
         vm.reverse = true;
+
+        vm.openFile = DataUtils.openFile;
         
         vm.filter_kafilId = $stateParams.kafilId;
 
-        loadAll();
+        if($stateParams.late){            loadLate();
+        }
+        else{        
+            loadAll();
+        }
+
         
         
         function isPaimentLate(kafala){
@@ -37,12 +44,21 @@
            return  monthDifference > kafala.moispayes;          
         };
 
+        function loadLate(){
+             KafalaLate.query({}, function(data){
+                   for (var i = 0; i < data.length; i++) {
+                    data[i].isLate = true;
+                    vm.kafalas.push(data[i]);
+                }   });
+        }
+
         function loadAll () {
             Kafala.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
                 sort: sort()
             }, onSuccess, onError);
+
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {

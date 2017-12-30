@@ -20,4 +20,6 @@ import org.springframework.data.jpa.repository.*;
 public interface PaiementRepository extends JpaRepository<Paiement,Long> {
 
   Page<Paiement> findByKafalaId(Pageable pageable, Long kafalaId);
+
+  List<Paiement> findByKafalaId(Long valueOf);
 }
