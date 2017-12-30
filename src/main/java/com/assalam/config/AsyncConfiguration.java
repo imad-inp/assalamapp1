@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.*;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import com.assalam.schedule.HerokuWaker;
+
 import java.util.concurrent.Executor;
 
 @Configuration
@@ -38,6 +40,12 @@ public class AsyncConfiguration implements AsyncConfigurer {
         executor.setThreadNamePrefix("assalam-app-Executor-");
         return new ExceptionHandlingAsyncTaskExecutor(executor);
     }
+
+  @Bean(name = "herokuWaker")
+  public HerokuWaker getHerokuWaker() {
+    log.debug("Creating Heroku Waker");
+    return new HerokuWaker();
+  }
 
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
