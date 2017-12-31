@@ -16,10 +16,10 @@
 spring:
     profiles:
         active: dev
-        include: swagger
+        include: no-liquibase
     devtools:
         restart:
-            enabled: true
+            enabled: false
         livereload:
             enabled: false # we use gulp + BrowserSync for livereload
             
@@ -44,12 +44,12 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
-        show-sql: true
+        show-sql: false
         properties:
             hibernate.id.new_generator_mappings: true
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true
+            hibernate.generate_statistics: false
             hibernate.connection.useUnicode: true
             hibernate.connection.characterEncoding: UTF-8
     mail:
@@ -63,7 +63,7 @@ spring:
         cache: false
 
 liquibase:
-    contexts: dev
+    contexts: prod
 
 # ===================================================================
 # To enable SSL, generate a certificate using:
@@ -123,7 +123,8 @@ jhipster:
             host: localhost
             port: 5000
             queue-size: 512
-
+logging.level.org.springframework.web: ERROR
+logging.level.org.hibernate: ERROR
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class

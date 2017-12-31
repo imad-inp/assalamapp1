@@ -12,7 +12,7 @@
             parent: 'kafala-project',
             url: '/statistics',
             data: {
-                authorities: ['ROLE_KAFALA'],
+                authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.enfant.home.title'
             },
             views: {

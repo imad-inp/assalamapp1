@@ -36,6 +36,7 @@
 
         function save () {
             vm.isSaving = true;
+            vm.user.langKey = 'ar';
             if (vm.user.id !== null) {
                 User.update(vm.user, onSaveSuccess, onSaveError);
             } else {
