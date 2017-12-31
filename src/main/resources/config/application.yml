@@ -29,6 +29,12 @@ spring:
         # Otherwise, it will be filled in by maven when building the WAR file
         # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
         active: #spring.profiles.active#
+    # Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly.
+    http.encoding.charset: UTF-8
+    # Enable http encoding support.
+    http.encoding.enabled: true
+    # Force the encoding to the configured charset on HTTP requests and responses.
+    http.encoding.force: true
     jackson:
         serialization.write_dates_as_timestamps: false
     jpa:

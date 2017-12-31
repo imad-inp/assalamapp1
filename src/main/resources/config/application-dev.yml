@@ -22,6 +22,11 @@ spring:
             enabled: true
         livereload:
             enabled: false # we use gulp + BrowserSync for livereload
+    http.encoding.charset: UTF-8
+    # Enable http encoding support.
+    http.encoding.enabled: true
+    # Force the encoding to the configured charset on HTTP requests and responses.
+    http.encoding.force: true
     jackson:
         serialization.indent_output: true
     datasource:
