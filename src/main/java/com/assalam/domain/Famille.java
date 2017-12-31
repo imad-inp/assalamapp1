@@ -357,7 +357,7 @@ public class Famille implements Serializable {
     public String toString() {
         return "Famille{" +
             "id=" + getId() +
-            ", nom='" + getNom() + "'" +
+        ", nom='" + getNom() + "'" +
             ", adresse='" + getAdresse() + "'" +
             ", tel='" + getTel() + "'" +
             ", commentaires='" + getCommentaires() + "'" +
