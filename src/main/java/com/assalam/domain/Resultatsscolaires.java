@@ -18,8 +18,8 @@ public class Resultatsscolaires implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "annee")
-    private Integer annee;
+  @Column(name = "annee_scolaire")
+  private String anneeScolaire;
 
     @Column(name = "description")
     private String description;
@@ -47,17 +47,17 @@ public class Resultatsscolaires implements Serializable {
         this.id = id;
     }
 
-    public Integer getAnnee() {
-        return annee;
+  public String getAnnee() {
+    return anneeScolaire;
     }
 
-    public Resultatsscolaires annee(Integer annee) {
-        this.annee = annee;
+  public Resultatsscolaires annee(String annee) {
+    this.anneeScolaire = annee;
         return this;
     }
 
-    public void setAnnee(Integer annee) {
-        this.annee = annee;
+  public void setAnnee(String annee) {
+    this.anneeScolaire = annee;
     }
 
     public String getDescription() {

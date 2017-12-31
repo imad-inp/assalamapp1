@@ -5,27 +5,20 @@
         .module('assalamApp')
         .controller('PaiementDetailController', PaiementDetailController);
 
-    PaiementDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Paiement', 'Kafala'];
+    PaiementDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Paiement', 'Kafala', '$window'];
 
-    function PaiementDetailController($scope, $rootScope, $stateParams, previousState, entity, Paiement, Kafala) {
+    function PaiementDetailController($scope, $rootScope, $stateParams, previousState, entity, Paiement, Kafala, $window) {
         var vm = this;
 
         vm.paiement = entity;
         vm.previousState = previousState.name;
-        var node = document.getElementById('exportthis');
+       
 
-    domtoimage.toPng(node)
-    .then(function (dataUrl) {
-        var img = new Image();
-        img.src = dataUrl;
-         var link = document.createElement('a');
-        link.download = 'my-image-name.jpeg';
-        link.href = dataUrl;
-        link.click();
-    })
-    .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-    });
+         vm.print = function(){
+            $window.print();
+           
+
+        }
 
         var unsubscribe = $rootScope.$on('assalamApp:paiementUpdate', function(event, result) {
             vm.paiement = result;

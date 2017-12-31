@@ -2,10 +2,11 @@
     "assalamApp": {
         "PaiementType" : {
             "null": "",
-            "CASH": "CASH",
-            "VIREMENT": "VIREMENT",
-            "CHEQUE": "CHEQUE",
-            "CB": "CB"
+            "CASH": "نقدا",
+            "CASH_BANK": "نقدا للبنك",
+            "VIREMENT": "تحويل بنكي",
+            "CHEQUE": "شيك",
+            "CB": "بطاقة الكترونية"
         }
     }
 }

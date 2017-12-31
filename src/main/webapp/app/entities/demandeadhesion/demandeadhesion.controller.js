@@ -11,7 +11,7 @@
         vm.demandeadhesions = [];
         vm.demandesFilter =  $stateParams.status;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
-        vm.statut =null;
+        vm.statut =$stateParams.statut;
 
         vm.links = {
             last: 0

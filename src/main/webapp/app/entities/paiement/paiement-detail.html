@@ -1,15 +1,29 @@
 
 <div id="exportthis">
-    <h2><span data-translate="assalamApp.paiement.detail.title">Paiement</span> {{vm.paiement.id}}</h2>
+    <div class="printButton" print-hide>
+    <button  ng-click="vm.print()" class="btn btn-primary " id= "print"   >
+                    <div class="icon-big icon-warning text-center">
+                                          <i class="fa fa-print" aria-hidden="true"></i>
+                                        </div>                
+                </button>
+    </div>
+    <div class="col-xs-3">
+    </div>
+    <div class="col-xs-3 labelPaiement">
+    <h3 data-translate="assalamApp.paiement.enfant" class = "sameLine">Enfant </h3>:
+    <h4 class = "sameLine"> {{vm.paiement.kafala.enfant.fullName}} </h4>
+      </div>
+      <div class="col-xs-3">
+    <h3 data-translate="assalamApp.paiement.kafil"  class = "sameLine">Kafil</h3>:
+    <h4 class = "sameLine"> {{vm.paiement.kafala.kafil.fullName}} </h4>
+    </div>
+   
+    <h2><span data-translate="assalamApp.paiement.detail.title">Paiement</span> </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
       
 
-        <div class="form-group" ng-show="vm.paiement.id">
-            <label for="id" data-translate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.paiement.id" readonly />
-        </div>
+        
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.paiement.date" for="field_date">Date</label>
                 <div class="input-group">
@@ -35,34 +49,30 @@
                 <option value="CB" data-translate="assalamApp.PaiementType.CB">CB</option>
             </select>
         </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="assalamApp.paiement.commentaires" for="field_commentaires">Commentaires</label>
-            <input readonly type="text" class="form-control" name="commentaires" id="field_commentaires"
-                    ng-model="vm.paiement.commentaires"
-                    />
-        </div>
          <div class="form-group">
             <label class="control-label" data-translate="assalamApp.paiement.moispayes" for="field_moispayes">Mois payes</label>
             <input readonly type="number" class="form-control" name="moispayes" id="field_moispayes"
                     ng-model="vm.paiement.moispayes"
                     />
         </div>
-
         <div class="form-group">
-            <label data-translate="assalamApp.paiement.kafala" for="field_kafala">Kafala</label>
-            <input readonly class="form-control" id="field_kafala" name="kafala" ng-model="vm.paiement.kafala.id" ng-options="kafala as kafala.id for kafala in vm.kafalas track by kafala.id"/>
-                
-           
+            <label class="control-label" data-translate="assalamApp.paiement.commentaires" for="field_commentaires">Commentaires</label>
+            <input readonly type="text" class="form-control" name="commentaires" id="field_commentaires"
+                    ng-model="vm.paiement.commentaires"
+                    />
         </div>
+        
+
+        
 
 
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
+            class="btn btn-info" print-hide>
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button" ui-sref="paiement-detail.edit({id:vm.paiement.id})" class="btn btn-primary">
+    <button type="button" ui-sref="paiement-detail.edit({id:vm.paiement.id})" class="btn btn-primary" print-hide>
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
     </button>

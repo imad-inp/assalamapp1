@@ -11,10 +11,7 @@
                     </span>
                 </button>
             </div>
-             <div class="col-xs-4 no-padding-left">
-               <select ng-model="vm.filter_enfantId" ng-options="enfant.id as enfant.nom for enfant in vm.enfants track by enfant.id">
-                </select>
-            </div>
+             
         </div>
     </div>
     <br/>
@@ -22,7 +19,7 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th ><span data-translate="global.field.id">ID</span></span></th>
+                   
                     <th ><span data-translate="assalamApp.resultatsscolaires.annee">Annee</span></span></th>
                     <th ><span data-translate="assalamApp.resultatsscolaires.description">Description</span></span></th>
                     <th jh-sort-by="enfant.id"><span data-translate="assalamApp.resultatsscolaires.enfant">Enfant</span></span></th>
@@ -31,7 +28,7 @@
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="resultatsscolaires in vm.resultatsscolaires | filter: { enfant:{id: vm.filter_enfantId}} track by resultatsscolaires.id">
-                    <td><a ui-sref="resultatsscolaires-detail({id:resultatsscolaires.id})">{{resultatsscolaires.id}}</a></td>
+                    
                     <td>{{resultatsscolaires.annee}}</td>
                     <td>{{resultatsscolaires.description}}</td>
                     <td>

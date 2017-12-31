@@ -130,7 +130,8 @@
                             return {
                                 annee: null,
                                 description: null,
-                                id: null
+                                id: null,
+                                enfant: {id: $stateParams.enfantId }
                                 
                             };
                         }

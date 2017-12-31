@@ -7,7 +7,7 @@
         .controller('MainCtrl', ['$scope','$translate', function($scope,$translate) {
             var vm = this;
     
-    vm.currentLang =  'ar';
+    vm.currentLang =  $translate.proposedLanguage();
        
     $scope.$on('langChanged', function (event, args) {
      

@@ -45,9 +45,9 @@
                     <th ><span data-translate="assalamApp.paiement.date">Date</span></span></th>
                     <th ><span data-translate="assalamApp.paiement.montant">Montant</span></span></th>
                     <th ><span data-translate="assalamApp.paiement.type">Type</span></span></th>
-                    <th jh-sort-by="kafala.id"><span data-translate="assalamApp.paiement.kafala">Kafala</span></span></th>
+               
                     <th jh-sort-by="kafala.id"><span data-translate="assalamApp.paiement.moispayes">Mois payes</span></span></th>
-                    <th jh-sort-by="kafala.id"><span data-translate="assalamApp.paiement.printReceipt">Payment receipt</span></span></th>
+                    
 
                 </tr>
             </thead>
@@ -57,22 +57,16 @@
                         <td>{{paiement.date | date:'mediumDate'}}</td>
                     <td>{{paiement.montant}}</td>
                     <td data-translate="{{'assalamApp.PaiementType.' + paiement.type}}">{{paiement.type}}</td>
-                    <td>
-                        <a ui-sref="kafala-detail({id:paiement.kafala.id})">{{paiement.kafala.id}}</a>
-                    </td>
+                   
                     <td>{{paiement.moispayes}}</td>
-                    <td >
-                   <!-- <a ng-href="{{content}}" download="{{content}}" >-->
-                        <i class="fa fa-file-pdf-o" ng-click="vm.getReceipt(paiement)" ></i>                           
-          <!--              </a>-->
-                     </td>
+                    
                     <td print-remove class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="paiement-detail({id:paiement.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                                <span class="hidden-sm-down" data-translate="assalamApp.paiement.printReceipt"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="paiement.edit({id:paiement.id})"

@@ -13,7 +13,7 @@
                 "question": "هل انت متاكد من حذف الاداء؟ {{ id }} ?"
             },
             "detail": {
-                "title": "اداء"
+                "title": "وصل الاداء"
             },
             "date": "تاريخ الاداء",
             "montant": "المبلغ",
@@ -21,7 +21,7 @@
             "commentaires": "معلومات اضافية",
             "kafala": "الكفالة",
             "moispayes":"عدد الاشهر",
-            "printReceipt": "تحميل الوصل",
+            "printReceipt": "طبع الوصل",
             "kafil": "الكفيل",
             "enfant": "الطفل"
         }
