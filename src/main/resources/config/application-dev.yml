@@ -44,6 +44,11 @@ spring:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
+            hibernate:
+                connection:
+                    characterEncoding: utf-8
+                    CharSet: utf-8
+                    useUnicode: true
     mail:
         host: localhost
         port: 25
