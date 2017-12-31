@@ -65,7 +65,7 @@
             }
 
             function getEnfantsEnAttente(){
-               EnfantCount.query({'statut' : 'OUVERTE'}, function(data){
+               EnfantCount.query({'statut' : 'ATTENTE'}, function(data){
                    vm.enfantsEnAttente = data.count;  
                 
                  vm.enfantsEnAttenteClass = vm.enfantsEnAttente > 0 ? "red-background" : "green-background"; });

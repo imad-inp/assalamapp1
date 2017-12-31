@@ -47,8 +47,8 @@
 
                      <td ><span data-translate="{{'assalamApp.kafala.' + kafala.statut}}"></span>&nbsp{{kafala.moisretard}}&nbsp<span data-translate="assalamApp.kafala.mois"></span></td>
                     <td >
-                        <a data-translate="assalamApp.demandeadhesion.demande" ng-if="kafala.engagement" ng-click="vm.openFile('', kafala.engagement)" ng-href="{{kafala.engagementContentType + 'data:' + ';base64,' + kafala.engagement}}" target="_blank">
-                            
+                        <a  ng-if="kafala.engagement" ng-click="vm.openFile('', kafala.engagement)" ng-href="{{kafala.engagementContentType + 'data:' + ';base64,' + kafala.engagement}}" target="_blank">
+                            <i class="fa fa-file" aria-hidden="true"></i>
                         </a>
                     <td>
                         <a ui-sref="paiement({kafalaId: kafala.id })" class="glyphicon glyphicon-file"></a>

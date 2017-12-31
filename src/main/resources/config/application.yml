@@ -93,7 +93,7 @@ jhipster:
         license-url:
     ribbon:
         display-on-active-profiles: dev
-
+   
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
@@ -104,3 +104,5 @@ jhipster:
 # ===================================================================
 
 application:
+    remote-app:
+        url: http://assalamapp.herokuapp.com

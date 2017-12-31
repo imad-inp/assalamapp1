@@ -8,8 +8,12 @@
     EnfantDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Enfant', 'Kafala', 'Resultatsscolaires', 'Famille','$window'];
 
     function EnfantDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Enfant, Kafala, Resultatsscolaires, Famille,$window) {
+
         var vm = this;
-		
+		 vm.print = function(){
+            $window.print();
+           
+        }
         vm.enfant = entity;
         vm.previousState = previousState.name;
         vm.byteSize = DataUtils.byteSize;
@@ -21,8 +25,5 @@
         $scope.$on('$destroy', unsubscribe);
     }
 
-      vm.print = function(){
-            $window.print();
-           
-        }
+     
 })();

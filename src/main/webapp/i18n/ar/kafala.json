@@ -34,7 +34,9 @@
             "en retard": "متأخر ب ",
             "en avance": "متقدم ب",
             "mois": "شهر",
-            "addPayment": "اضافة دفعة"
+            "addPayment": "اضافة دفعة",
+            "engagement": "التزام الكفيل"
+            
            
         }
     }
