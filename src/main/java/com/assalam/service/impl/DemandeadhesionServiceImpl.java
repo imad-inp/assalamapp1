@@ -102,4 +102,10 @@ public class DemandeadhesionServiceImpl implements DemandeadhesionService{
         log.debug("Request to delete Demandeadhesion : {}", id);
         demandeadhesionRepository.delete(id);
     }
+
+  @Override
+  public Page<Demandeadhesion> findbyFamilleId(Pageable pageable, Long familleId) {
+
+    return demandeadhesionRepository.findByFamilleId(pageable, familleId);
+  }
 }

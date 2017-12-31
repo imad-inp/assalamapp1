@@ -20,4 +20,6 @@ public interface DemandeadhesionRepository extends JpaRepository<Demandeadhesion
     Page<Demandeadhesion> findByStatut(Pageable pageable, Statut statut);
 
   List<Demandeadhesion> findByStatut(Statut statut);
+
+  Page<Demandeadhesion> findByFamilleId(Pageable pageable, Long familleId);
 }

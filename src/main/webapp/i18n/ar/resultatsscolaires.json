@@ -2,22 +2,23 @@
     "assalamApp": {
         "resultatsscolaires" : {
             "home": {
-                "title": "Resultatsscolaires",
-                "createLabel": "Créer un nouveau Resultatsscolaires",
-                "createOrEditLabel": "Créer ou éditer un Resultatsscolaires"
+                "title": "النتائج الدراسية",
+                "createLabel": "اضافة نتيجة دراسية",
+                "createOrEditLabel": "تحيين"
             },
-            "created": "Un nouveau Resultatsscolaires a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Resultatsscolaires avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Resultatsscolaires avec l'identifiant {{ param }} a été supprimé",
+            "created": "تمت اضافة النتيجة الدراسية بنجاح",
+            "updated": "تم تحيين النتيجة الدراسية بنجاح",
+            "deleted": "تم حذف النتيجة الدراسية بنجاح",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Resultatsscolaires {{ id }} ?"
+                "question": " هل انت متاكد من حذف النتيجة الدراسية؟ ?"
             },
             "detail": {
-                "title": "Resultatsscolaires"
+                "title": "النتائج الدراسية"
             },
-            "annee": "Annee",
-            "description": "Description",
-            "enfant": "Enfant"
+            "annee": "السنة الدراسية",
+            "description": "ملاحظات",
+            "enfant": "الطفل",
+            "resultat": "النتيجة"
         }
     }
 }

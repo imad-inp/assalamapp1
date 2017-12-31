@@ -24,6 +24,18 @@ public class Resultatsscolaires implements Serializable {
     @Column(name = "description")
     private String description;
 
+  @Lob
+  @Column(name = "resultat")
+  private byte[] resultat;
+
+  public byte[] getResultat() {
+    return resultat;
+  }
+
+  public void setResultat(byte[] resultat) {
+    this.resultat = resultat;
+  }
+
     @ManyToOne
     private Enfant enfant;
 

@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('KafalaController', KafalaController);
 
-    KafalaController.$inject = ['Kafala', 'ParseLinks', 'AlertService', 'paginationConstants', '$stateParams', 'DataUtils', 'KafalaLate'];
+    KafalaController.$inject = ['Kafala', 'ParseLinks', 'AlertService', 'paginationConstants', '$stateParams', 'DataUtils', 'KafalaLate','$scope','$sce'];
 
-    function KafalaController(Kafala, ParseLinks, AlertService, paginationConstants, $stateParams, DataUtils, KafalaLate) {
+    function KafalaController(Kafala, ParseLinks, AlertService, paginationConstants, $stateParams, DataUtils, KafalaLate,$scope, $sce) {
 
         var vm = this;
         
@@ -48,9 +48,12 @@
              KafalaLate.query({}, function(data){
                    for (var i = 0; i < data.length; i++) {
                     data[i].isLate = true;
+                     data[i].isLate = isPaimentLate(data[i]);
                     vm.kafalas.push(data[i]);
                 }   });
         }
+
+        
 
         function loadAll () {
             Kafala.query({
@@ -91,5 +94,20 @@
             vm.page = page;
             loadAll();
         }
+
+        vm.openFile = function(file, fileType){
+             $scope.content = $sce.trustAsResourceUrl('data:' +fileType + ';base64,' + file);
+         
+            var link = document.createElement("a");
+            link.setAttribute("href", $scope.content );
+            link.setAttribute("target", "_blank");
+             link.setAttribute("download", "picture");
+            console.log(link);
+    
+             document.body.appendChild(link); // Required for FF
+            link.click(); // This will download the data file named "download_name.pdf"
+           
+        }
+
     }
 })();

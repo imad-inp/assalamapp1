@@ -50,11 +50,14 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label"  for="field_statut">Engagement</label>
+            <label class="control-label" data-translate="assalamApp.kafala.engagement"  for="field_statut">Engagement</label>
             <button type="button" ngf-select class="btn btn-default btn-block"
-                    ngf-change="vm.setEngagement($file, vm.kafala)" accept="*" data-translate="entity.action.addimage">
+                    ngf-change="vm.setEngagement($file, vm.kafala)" accept="*" data-translate="entity.action.addfile">
                 Add engagement
             </button>
+             <a  ng-if="vm.kafala.engagement" ng-click="vm.openFile( vm.kafala.engagement, vm.kafala.engagementContentType)" target="_blank">
+                 <i class="fa fa-file" ></i> 
+             </a>
         </div>
        
           <div class="form-group">

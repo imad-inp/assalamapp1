@@ -22,6 +22,7 @@ spring:
             enabled: true
         livereload:
             enabled: false # we use gulp + BrowserSync for livereload
+            
     http.encoding.charset: UTF-8
     # Enable http encoding support.
     http.encoding.enabled: true
@@ -31,7 +32,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/assalamApp?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://:3306/assalamApp?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password: 
         hikari:

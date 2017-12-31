@@ -328,6 +328,12 @@ entity tables helpers
    -webkit-justify-content: flex-end;
    justify-content: flex-end;
 }
+/*.dropleft:hover .dropdown-menu {
+    display: block;
+   min-width: -webkit-fill-available;
+   background-color: #F2F4F8;
+}*/
+
 .form-control{
     color:black;
 }
@@ -380,6 +386,12 @@ entity tables helpers
     opacity: 1;
     cursor: pointer;
 }
+.banner2 {
+    background-color: white;
+    height: 70px;
+    border-bottom: 1px solid lightgrey;
+}
+
 
 /*class to style th eside abr menu*/
 .sidebar{

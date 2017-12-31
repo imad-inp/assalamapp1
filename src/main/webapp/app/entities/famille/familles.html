@@ -60,6 +60,7 @@
                     </th>
                    
                     <th><span data-translate="assalamApp.famille.enfants">Enfants</span></span>
+                     <th><span data-translate="assalamApp.famille.demandes">Enfants</span></span>
                     </th>
                 </tr>
             </thead>
@@ -73,8 +74,16 @@
                     <td>{{famille.tel}}</td>
                    
                     <td>
+                          
                         <a ui-sref="enfant({familleFilterId: famille.id })" >
-                            <i class="fa fa-child" aria-hidden="true"></i>
+                            <i class="fa fa-child" ></i> 
+                        </a>
+                    </td>
+                     <td>
+                      
+                        <a   ui-sref="demandeadhesion({familleId: famille.id })" >
+                            
+                            <i class="fa fa-file" ></i>
                         </a>
                     </td>
 

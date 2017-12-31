@@ -56,4 +56,6 @@ public interface DemandeadhesionService {
   public Page<Demandeadhesion> findbyStatut(Pageable pageable, Statut statut);
 
   public List<Demandeadhesion> findbyStatut(Statut statut);
+
+  Page<Demandeadhesion> findbyFamilleId(Pageable pageable, Long valueOf);
 }

@@ -11,7 +11,7 @@
         $stateProvider
         .state('demandeadhesion', {
             parent: 'kafala-project',
-            url: '/demandeadhesion?statut&page&sort&search',
+            url: '/demandeadhesion?statut&familleId&page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'assalamApp.demandeadhesion.home.title'

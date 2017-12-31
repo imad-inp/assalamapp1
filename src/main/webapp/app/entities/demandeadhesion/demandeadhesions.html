@@ -2,47 +2,7 @@
     <h2><span data-translate="assalamApp.demandeadhesion.home.title"></span> (
         <span data-translate="{{'assalamApp.Statut.' + vm.statut}}">)</span>)</h2>
     <jhi-alert></jhi-alert>
-    <div class="row">
-        
-             <div class="col-md-1">
-                
-            </div>
-         <div class="col-md-2">
-                <button class="btn btn-danger"  ng-click="vm.setState('REFUSEE')" >
-                    <span class="glyphicon "></span>
-                    <span  data-translate="assalamApp.Statut.REFUSEE">
-                       En attente
-                    </span>
-                </button>
-            </div>
-        
-          <div class="col-md-2">
-                <button class="btn btn-success"  ng-click="vm.setState('ATTENTE')" >
-                    <span class="glyphicon "></span>
-                    <span  data-translate="assalamApp.Statut.ATTENTE">
-                       ACCEPTEE
-                    </span>
-                </button>
-            </div>
-           <div class="col-md-2">
-                <button class="btn btn-warning" ng-click="vm.setState('EN_COURS')" >
-                    <span class="glyphicon "></span>
-                    <span  data-translate="assalamApp.Statut.EN_COURS">
-                        En cours
-                    </span>
-                </button>
-            </div>
-         <div class="col-md-2">
-                <button class="btn btn-default"  ng-click="vm.setState('OUVERTE')" >
-                    <span class="glyphicon"></span>
-                    <span  data-translate="assalamApp.Statut.OUVERTE">
-                        Ouverte
-                    </span>
-                </button>
-            </div>
-     
-        
-    </div>
+   
 
     <br/>
     <div class="table-responsive">
@@ -65,7 +25,7 @@
                     <td><a ui-sref="demandeadhesion-detail({id:demandeadhesion.id})">{{demandeadhesion.id}}</a></td>
                     <td>{{demandeadhesion.datedemande| date:'mediumDate'}}</td>
                     <td data-translate="{{'assalamApp.Statut.' + demandeadhesion.statut}}">{{demandeadhesion.statut}}</td>
-                      <td ><a ui-sref="famille-detail({id:demandeadhesion.famille.id})">{{demandeadhesion.famille.nom}}</a></td>
+                      <td ><a ui-sref="famille-detail({id:demandeadhesion.famille.id})">{{demandeadhesion.famille.pere}} <br> {{demandeadhesion.famille.mere}}</a></td>
                       <td ><a ui-sref="enfant({familleId:demandeadhesion.famille.id})"><span class="glyphicon glyphicon-user"></span></a></td>
                     <td >
                         <a data-translate="assalamApp.demandeadhesion.demande" ng-if="demandeadhesion.demande" ng-click="vm.openFile(demandeadhesion.demandeContentType, demandeadhesion.demande)" ng-href="{{'data:' + demandeadhesion.demandeContentType + ';base64,' + demandeadhesion.demande}}" target="_blank">

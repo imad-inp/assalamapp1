@@ -11,7 +11,7 @@
         vm.demandeadhesions = [];
         vm.demandesFilter =  $stateParams.status;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
-        vm.statut = pagingParams.statut === null ? 'OUVERTE' : pagingParams.statut;
+        vm.statut =null;
 
         vm.links = {
             last: 0
@@ -27,7 +27,7 @@
         loadAll();
         function loadAll() {
             Demandeadhesion.query({ page: pagingParams.page - 1,
-                size: pagingParams.itemsPerPage, statut : pagingParams.statut }
+                size: pagingParams.itemsPerPage, statut : pagingParams.statut, familleId: $stateParams.familleId }
                     ,onSuccess, onError);
             
              function onSuccess(data, headers) {
