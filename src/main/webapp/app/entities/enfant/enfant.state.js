@@ -11,9 +11,9 @@
         $stateProvider
         .state('enfant', {
             parent: 'kafala-project',
-            url: '/enfant?familleFilterId',
+            url: '/enfant?familleFilterId&statut',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.enfant.home.title'
             },
             views: {
@@ -35,7 +35,7 @@
             parent: 'enfant',
             url: '/enfant/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.enfant.detail.title'
             },
             views: {
@@ -67,7 +67,7 @@
             parent: 'enfant-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -92,7 +92,7 @@
             parent: 'enfant',
             url: '/new?familleId',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -128,7 +128,7 @@
             parent: 'enfant',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -154,7 +154,7 @@
             parent: 'enfant',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

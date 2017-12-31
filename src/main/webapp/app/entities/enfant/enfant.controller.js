@@ -51,6 +51,7 @@
                 page: vm.page,
                 size: vm.itemsPerPage,
 				familleId: vm.familleFilterId,
+                statut: $stateParams.statut,
                 sort: sort()
             }, onSuccess, onError);
             function sort() {

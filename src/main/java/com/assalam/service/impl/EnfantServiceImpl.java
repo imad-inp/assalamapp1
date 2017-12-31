@@ -74,14 +74,10 @@ public class EnfantServiceImpl implements EnfantService{
   }
 
 
-  @Override
-  public List<Enfant> findbyStatuts(List<String> statuts) {
-    return enfantRepositoryCustom.pullByStatuts(statuts);
-  }
 
   @Override
-  public Page<Enfant> findbyStatuts(Pageable pageable, List<String> statuts) {
-    return enfantRepositoryCustom.pullByStatuts(pageable, statuts);
+  public Page<Enfant> findbyStatuts(Pageable pageable, String statut) {
+    return enfantRepository.findByKafalaState(pageable, statut);
   }
 
     /**

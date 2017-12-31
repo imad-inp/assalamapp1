@@ -35,6 +35,17 @@
                     ng-model="vm.famille.cinMere"
                     />
         </div>
+
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.etatSocial.name" for="field_pere">Cin Pere</label>
+            <select class="form-control" name="statut" ng-model="vm.famille.etatSocial" id="field_statut">
+                <option value="PAUVRE" data-translate="assalamApp.famille.etatSocial.PAUVRE">OUVERTE</option>
+                  <option value="DIVORCE" data-translate="assalamApp.famille.etatSocial.DIVORCE">ATTENTE</option>
+                <option value="ORPHELINS" data-translate="assalamApp.famille.etatSocial.ORPHELINS">Beneficiaire</option>
+                <option value="LAISSE" data-translate="assalamApp.famille.etatSocial.LAISSE">REFUSEE</option>             
+                
+            </select>
+        </div>
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.famille.adresse" for="field_adresse">Adresse</label>
             <input type="text" class="form-control" name="adresse" id="field_adresse"

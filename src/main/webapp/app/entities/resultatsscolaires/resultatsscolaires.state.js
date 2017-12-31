@@ -13,7 +13,7 @@
             parent: 'kafala-project',
             url: '/resultatsscolaires?enfantId',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.resultatsscolaires.home.title',
                 
             },
@@ -36,7 +36,7 @@
             parent: 'kafala-project',
             url: '/resultatsscolaires',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.resultatsscolaires.home.title',
                 
             },
@@ -59,7 +59,7 @@
             parent: 'resultatsscolaires-filter',
             url: '/resultatsscolaires/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.resultatsscolaires.detail.title'
             },
             views: {
@@ -91,7 +91,7 @@
             parent: 'resultatsscolaires-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -116,7 +116,7 @@
             parent: 'resultatsscolaires-filter',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -147,7 +147,7 @@
             parent: 'resultatsscolaires-filter',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -172,7 +172,7 @@
             parent: 'resultatsscolaires',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

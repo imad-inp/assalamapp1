@@ -19,5 +19,6 @@ public interface EnfantRepository extends JpaRepository<Enfant, Long> {
 
   long countByKafalaState(String statut);
 
+  Page<Enfant> findByKafalaState(Pageable pageable, String kafalaState);
 
 }

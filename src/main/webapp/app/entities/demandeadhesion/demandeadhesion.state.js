@@ -13,7 +13,7 @@
             parent: 'kafala-project',
             url: '/demandeadhesion?statut&familleId&page&sort&search',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.demandeadhesion.home.title'
             },
             views: {
@@ -61,7 +61,7 @@
             parent: 'demandeadhesion',
             url: '/demandeadhesion/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.demandeadhesion.detail.title'
             },
             views: {
@@ -94,7 +94,7 @@
             parent: 'demandeadhesion-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -119,7 +119,7 @@
             parent: 'demandeadhesion',
             url: '/new?familleId',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -149,7 +149,7 @@
             parent: 'demandeadhesion',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -174,7 +174,7 @@
             parent: 'demandeadhesion',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_INAYA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

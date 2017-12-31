@@ -39,7 +39,15 @@
              "cinPereCopie":"البطاقة الوطنية - الاب",
              "certifDeces":"شهادة وفاة الزوج",
              "certifDivorce":"شهادة الطلاق",
-             "demandes":"طلبات الاستفادة"
+             "demandes":"طلبات الاستفادة",
+             "etatSocial":{
+                 "name": "الحالة الاجتماعية",
+                 "PAUVRE": "معوزة",
+                 "ORPHELINS": "ايتام",
+                 "DIVORCE":"الابوان مطلقان",
+                 "LAISSE":"متخلى عنهم"
+
+             }
 
                   }
     }

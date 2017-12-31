@@ -13,7 +13,7 @@
             parent: 'kafala-project',
             url: '/kafil',
             data: {
-                authorities: ['ROLE_ADMIN'],
+                authorities: ['ROLE_KAFALA'],
                 pageTitle: 'assalamApp.kafil.home.title'
             },
             views: {
@@ -35,7 +35,7 @@
             parent: 'kafil',
             url: '/kafil/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_KAFALA'],
                 pageTitle: 'assalamApp.kafil.detail.title'
             },
             views: {
@@ -67,7 +67,7 @@
             parent: 'kafil-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -92,7 +92,7 @@
             parent: 'kafil',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -127,7 +127,7 @@
             parent: 'kafil',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -152,7 +152,7 @@
             parent: 'kafil',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

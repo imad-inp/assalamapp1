@@ -13,7 +13,7 @@
             parent: 'kafala-project',
             url: '/kafalat?kafilId?late',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_KAFALA'],
                 pageTitle: 'assalamApp.kafala.home.title'
             },
             views: {
@@ -35,7 +35,7 @@
             parent: 'kafala',
             url: '/kafalat/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_KAFALA'],
                 pageTitle: 'assalamApp.kafala.detail.title'
             },
             views: {
@@ -67,7 +67,7 @@
             parent: 'kafala-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -92,7 +92,7 @@
             parent: 'kafala',
             url: '/new?enfantId',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal','Enfant', function($stateParams, $state, $uibModal, Enfant) {
                 $uibModal.open({
@@ -107,7 +107,7 @@
                                 montant: null,
                                 datedebut: null,
                                 id: null,
-                                enfant : $stateParams.enfantId === null ? null : Enfant.get({id : $stateParams.enfantId})
+                                enfant : {id : $stateParams.enfantId}
                       
                             };
                         }
@@ -123,7 +123,7 @@
             parent: 'kafala',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -148,7 +148,7 @@
             parent: 'kafala',
             url: '/{id}/paiments',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
              views: {
                 'paiements@': {
@@ -180,7 +180,7 @@
             parent: 'kafala',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

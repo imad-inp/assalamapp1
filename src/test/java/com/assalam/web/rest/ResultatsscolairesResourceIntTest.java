@@ -38,8 +38,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = AssalamApp.class)
 public class ResultatsscolairesResourceIntTest {
 
-    private static final Integer DEFAULT_ANNEE = 1;
-    private static final Integer UPDATED_ANNEE = 2;
+  private static final String DEFAULT_ANNEE = "1";
+
+  private static final String UPDATED_ANNEE = "2";
 
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";

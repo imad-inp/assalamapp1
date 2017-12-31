@@ -43,6 +43,11 @@
                     />
         </div>
         <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.etatSocial.name" for="field_pere">Etat Social</label>
+            <p class ="form-control" data-translate="{{'assalamApp.famille.etatSocial.' + vm.famille.etatSocial}}" readonly>
+            </p>
+        </div>
+        <div class="form-group">
             <label class="control-label" data-translate="assalamApp.famille.adresse" for="field_adresse">Adresse</label>
             <input type="text" class="form-control" name="adresse" id="field_adresse"
                     ng-model="vm.famille.adresse" readonly

@@ -12,7 +12,7 @@
             "question": "Etes-vous certain de vouloir supprimer l'utilisateur {{ login }} ?"
         },
         "detail": {
-            "title": "Utilisateur"
+            "title": "المستخدمون"
         },
         "login": "Login",
         "firstName": "Prénom",

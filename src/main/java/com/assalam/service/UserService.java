@@ -87,10 +87,11 @@ public class UserService {
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
         Set<Authority> authorities = new HashSet<>();
-        String encryptedPassword = passwordEncoder.encode(password);
+
         newUser.setLogin(login);
         // new user gets initially a generated password
-        newUser.setPassword(encryptedPassword);
+    newUser.setPassword("assalam");
+
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
         newUser.setEmail(email);
@@ -127,7 +128,7 @@ public class UserService {
             user.setAuthorities(authorities);
         }
         String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
-        user.setPassword(encryptedPassword);
+        user.setPassword(passwordEncoder.encode("assalam"));
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(ZonedDateTime.now());
         user.setActivated(true);
@@ -189,7 +190,7 @@ public class UserService {
         });
     }
 
-    @Transactional(readOnly = true)    
+  @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
         return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
     }

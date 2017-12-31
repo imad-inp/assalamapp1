@@ -334,6 +334,12 @@ entity tables helpers
    background-color: #F2F4F8;
 }*/
 
+.entity-detail{
+    background-color: #EEEEEE;
+    border: solid 1px grey;
+    border-radius: 30%;
+}
+
 .form-control{
     color:black;
 }

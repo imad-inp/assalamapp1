@@ -35,7 +35,7 @@
          
 
             function onSuccess(data, headers) {
-                vm.kafils = []
+                
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 for (var i = 0; i < data.length; i++) {
@@ -47,13 +47,13 @@
                 AlertService.error(error.data.message);
             }
         }
-         function transition() {
+         /*function transition() {
             $state.transitionTo($state.$current, {
                 page: vm.page,
                
                 search: vm.currentSearch,
                 statut: vm.statut
-         })}
+         })}*/
 
         function reset () {
             vm.page = 0;

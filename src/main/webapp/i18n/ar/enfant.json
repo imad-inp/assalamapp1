@@ -8,12 +8,12 @@
             },
             "statut":{
                 
-                "OUVERTE": "لم تدرس",
+                "OUVERTE": "لم يدرس الطلب بعد",
                 "BENEFICIARE": "جارية",
                 "ATTENTE": "لائحة الانتظار",
-                "REFUSEE": "مرفوضة",
-                "ACHEVEE": "انتهت بنجاح",
-                "ARRETEE":"موقوفة"
+                "REFUSEE": "الطلب مرفوض",
+                "ACHEVEE": "انتهت الكفالة بنجاح",
+                "ARRETEE":"توقفت الكفالة"
             },
             "dateDeNaissance": "تاريخ الازدياد",
             "created": "تمت اضافة طفل جديد  {{ param }}",
@@ -35,7 +35,9 @@
             "kafalat": "الكفالات المستفاد منها",
             "resultats": "النتائج الدراسية",
             "famille": "العائلة",
-            "etatKafala": "وضعية الكفالة"
+            "etatKafala": "وضعية الكفالة",
+            "createKafala": "انشاء كفالة"
+
         }
     }
 }

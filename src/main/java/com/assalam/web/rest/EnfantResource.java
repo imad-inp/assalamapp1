@@ -101,15 +101,15 @@ public class EnfantResource {
   @GetMapping("/enfants")
   @Timed
   public ResponseEntity<List<Enfant>> getAllEnfants(@ApiParam Pageable pageable,
-      @RequestParam(required = false) String familleId, @RequestParam(required = false) List<String> statuts) {
+      @RequestParam(required = false) String familleId, @RequestParam(required = false) String statut) {
     log.debug("REST request to get a page of Enfants");
     Page<Enfant> page = null;
     if (familleId != null) {
       page = enfantService.findbyFamilleId(pageable, Long.valueOf(familleId));
 
     }
-    else if (statuts != null) {
-      page = enfantService.findbyStatuts(pageable, statuts);
+    else if (statut != null) {
+      page = enfantService.findbyStatuts(pageable, statut);
     }
     else {
       page = enfantService.findAll(pageable);

@@ -14,7 +14,7 @@
             parent: 'kafala-project',
             url: '/paiement?kafalaId',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_KAFALA'],
                 pageTitle: 'assalamApp.paiement.home.title'
             },
             views: {
@@ -38,7 +38,7 @@
             parent: 'paiement',
             url: '/detail/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_KAFALA'],
                 pageTitle: 'assalamApp.paiement.detail.title'
             },
             views: {
@@ -71,7 +71,7 @@
             parent: 'paiement-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -96,7 +96,7 @@
             parent: 'paiement',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal','Kafala' ,function($stateParams, $state, $uibModal, Kafala) {
                 $uibModal.open({
@@ -130,7 +130,7 @@
             parent: 'paiement',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -155,7 +155,7 @@
             parent: 'paiement',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_KAFALA']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
