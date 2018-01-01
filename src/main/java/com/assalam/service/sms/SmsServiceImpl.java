@@ -69,12 +69,12 @@ public class SmsServiceImpl {
   private HttpHeaders createHeaders(final String username, final String password) {
     return new HttpHeaders() {
       {
-        String auth = username + ":" + password;
-        byte[] encodedAuth = Base64.encodeBase64(
-            auth.getBytes(Charset.forName("US-ASCII")));
-        String authHeader = "Basic " + new String(encodedAuth);
-        set("Content-Type", "application/json");
-        set("Authorization", authHeader);
+        // String auth = username + ":" + password;
+        // byte[] encodedAuth = Base64.encodeBase64(
+        // auth.getBytes(Charset.forName("US-ASCII")));
+        // String authHeader = "Basic " + new String(encodedAuth);
+        // set("Content-Type", "application/json");
+        // set("Authorization", authHeader);
 
       }
     };
