@@ -117,7 +117,7 @@
         })
         .state('demandeadhesion.new', {
             parent: 'demandeadhesion',
-            url: '/new?familleId',
+            url: '/new',
             data: {
                 authorities: ['ROLE_INAYA']
             },
