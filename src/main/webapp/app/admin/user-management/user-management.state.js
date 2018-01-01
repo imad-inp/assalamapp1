@@ -50,7 +50,7 @@
         .state('user-management.new', {
             url: '/new',
             data: {
-                authorities: ['ROLE_ADMIN']
+                authorities: ['ROLE_SUPERVISEUR']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -79,7 +79,7 @@
         .state('user-management.edit', {
             url: '/{login}/edit',
             data: {
-                authorities: ['ROLE_ADMIN']
+                authorities: ['ROLE_SUPERVISEUR']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -104,7 +104,7 @@
             parent: 'user-management',
             url: '/user/{login}',
             data: {
-                authorities: ['ROLE_ADMIN'],
+                authorities: ['ROLE_SUPERVISEUR'],
                 pageTitle: 'user-management.detail.title'
             },
             views: {
@@ -124,7 +124,7 @@
         .state('user-management.delete', {
             url: '/{login}/delete',
             data: {
-                authorities: ['ROLE_ADMIN']
+                authorities: ['ROLE_SUPERVISEUR']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
