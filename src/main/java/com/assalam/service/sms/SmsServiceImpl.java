@@ -1,7 +1,6 @@
 package com.assalam.service.sms;
 
-import java.nio.charset.Charset;
-import org.apache.commons.codec.binary.Base64;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
