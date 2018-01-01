@@ -51,7 +51,7 @@
             Enfant.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
-				familleId: vm.familleFilterId,
+				familleId: $stateParams.familleId,
                 statut: $stateParams.statut,
                 sort: sort()
             }, onSuccess, onError);

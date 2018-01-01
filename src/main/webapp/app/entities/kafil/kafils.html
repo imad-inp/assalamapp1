@@ -18,7 +18,7 @@
         <table class="jh-table table table-striped table-bordered">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th ><span data-translate="global.field.id">ID</span></span></th>
+                    
                     <th ><span data-translate="assalamApp.kafil.nom">Nom</span></span></th>
                     <th ><span data-translate="assalamApp.kafil.prenom">Prenom</span></span></th>
 
@@ -31,7 +31,7 @@
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="kafil in vm.kafils track by kafil.id">
-                    <td><a ui-sref="kafil-detail({id:kafil.id})">{{kafil.id}}</a></td>
+                   
                       
                     <td>{{kafil.nom}}</td>
                     <td>{{kafil.prenom}}</td>
