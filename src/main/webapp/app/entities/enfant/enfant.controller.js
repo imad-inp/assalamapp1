@@ -13,6 +13,7 @@
 
         var currentDate = new Date();
 		vm.familleFilterId = $stateParams.familleFilterId;
+        vm.familleContext = ($stateParams.familleId == null);
         vm.enfants = [];
         vm.loadPage = loadPage;
         vm.itemsPerPage = paginationConstants.itemsPerPage;

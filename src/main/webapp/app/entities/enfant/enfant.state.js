@@ -11,7 +11,7 @@
         $stateProvider
         .state('enfant', {
             parent: 'kafala-project',
-            url: '/enfant?familleFilterId&statut',
+            url: '/enfant?familleId&statut',
             data: {
                 authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.enfant.home.title'
@@ -90,7 +90,7 @@
         })
         .state('enfant.new', {
             parent: 'enfant',
-            url: '/new?familleId',
+            url: '/new',
             data: {
                 authorities: ['ROLE_INAYA']
             },
@@ -118,9 +118,9 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('enfant', null, { reload: 'enfant' });
+                    $state.go('^');
                 }, function() {
-                    $state.go('enfant');
+                    $state.go('famille');
                 });
             }]
         })
@@ -143,7 +143,7 @@
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('enfant', null, { reload: 'enfant' });
+                    $state.go('^');
                 }, function() {
                     $state.go('^');
                 });
