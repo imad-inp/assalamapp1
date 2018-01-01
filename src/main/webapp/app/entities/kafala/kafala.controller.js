@@ -59,7 +59,9 @@
             Kafala.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
-                sort: sort()
+                sort: sort(),
+                kafilId: $stateParams.kafilId,
+                enfantId: $stateParams.enfantId
             }, onSuccess, onError);
 
             function sort() {

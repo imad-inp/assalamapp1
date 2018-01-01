@@ -25,6 +25,7 @@
                     <th ><span data-translate="assalamApp.enfant.prenom">Prenom</span></span></th>
                     <th ><span data-translate="assalamApp.enfant.age">Age</span></span></th>
                      <th><span data-translate="assalamApp.enfant.etatKafala">Etat kafala</span></span></th>
+                      <th><span data-translate="assalamApp.enfant.kafala">kafala</span></span></th>
                     <th><span data-translate="assalamApp.enfant.resultats">Resultats Scolaires</span></span></th>
                     
                    
@@ -44,6 +45,7 @@
                     <td>{{enfant.prenom}}</td>
                     <td>{{vm.getAge(enfant)}}</td>
                     <td data-translate="{{'assalamApp.enfant.statut.' + enfant.kafalaState}}"></td>
+                     <td><a  ui-sref="kafala({enfantId: enfant.id })"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></td>
                     <td><a  ui-sref="resultatsscolaires-filter({enfantId: enfant.id })" class="glyphicon glyphicon-file"></a></td>
                  
                 

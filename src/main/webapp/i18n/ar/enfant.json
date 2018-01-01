@@ -9,7 +9,7 @@
             "statut":{
                 
                 "OUVERTE": "لم يدرس الطلب بعد",
-                "BENEFICIARE": "جارية",
+                "EN_COURS": "الكفالة جارية",
                 "ATTENTE": "لائحة الانتظار",
                 "REFUSEE": "الطلب مرفوض",
                 "ACHEVEE": "انتهت الكفالة بنجاح",
@@ -36,7 +36,8 @@
             "resultats": "النتائج الدراسية",
             "famille": "العائلة",
             "etatKafala": "وضعية الكفالة",
-            "createKafala": "انشاء كفالة"
+            "createKafala": "انشاء كفالة",
+            "kafala": "الكفالات"
 
         }
     }
