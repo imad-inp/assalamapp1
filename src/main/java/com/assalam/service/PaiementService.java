@@ -23,7 +23,7 @@ public interface PaiementService {
      * @param paiement the entity to save
      * @return the persisted entity
      */
-    Paiement save(Paiement paiement);
+  Paiement save(Paiement paiement, boolean isSaving);
 
     /**
      *  Get all the paiements.

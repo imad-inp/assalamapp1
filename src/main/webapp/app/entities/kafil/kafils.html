@@ -36,7 +36,9 @@
                     <td>{{kafil.nom}}</td>
                     <td>{{kafil.prenom}}</td>
                     
-                    <td>{{kafil.membre}}</td>
+                    <td><i ng-show = "kafil.membre"  class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    <i ng-hide = "kafil.membre"  class="fa fa-times" aria-hidden="true"></i>
+                    </td>
                     
                  
                     <td><a  ui-sref="kafala({kafilId: kafil.id })" class="glyphicon glyphicon-file"></a></td>

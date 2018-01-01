@@ -66,13 +66,22 @@ public class PaiementServiceImpl implements PaiementService {
    * @return the persisted entity
    */
   @Override
-  public Paiement save(Paiement paiement) {
+  public Paiement save(Paiement paiement, boolean isSaving) {
 
     log.debug("Request to save Paiement : {}", paiement);
+    Long moisPayesToRemove = null;
+    // if we're in update mode, get the paid months of the previous payment.
+    if (isSaving) {
+      moisPayesToRemove = paiementRepository.getOne(paiement.getId()).getMoispayes();
+    }
+
     Paiement paiementToReturn = paiementRepository.save(paiement);
+
     Kafala kafala = kafalaRepository.findOne(paiement.getKafala().getId());
+
     log.debug("kafala update mois payes" + kafala);
-    kafala.setMoispayes(kafala.getMoispayes() + paiement.getMoispayes());
+    kafala.setMoispayes(kafala.getMoispayes() + paiement.getMoispayes() - moisPayesToRemove);
+
     return paiementToReturn;
   }
 
@@ -237,22 +246,5 @@ public class PaiementServiceImpl implements PaiementService {
     return byteArrayOutputStream.toByteArray();
   }
 
-  private PdfPCell getCellWithPhrase(Phrase p1) {
-    PdfPCell cell;
-    cell = new PdfPCell();
-    cell.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
-    cell.setBorder(PdfPCell.NO_BORDER);
-    cell.addElement(p1);
-    return cell;
-  }
-
-  private ColumnText writeColumn(PdfWriter writer, Phrase p) throws DocumentException {
-    ColumnText canvas = new ColumnText(writer.getDirectContent());
-    canvas.setSimpleColumn(36, 750, 559, 780);
-    canvas.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
-    canvas.addElement(p);
-    canvas.go();
-    return canvas;
-  }
 }
 

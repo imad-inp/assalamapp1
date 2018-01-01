@@ -63,7 +63,7 @@ public class PaiementResource {
         if (paiement.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new paiement cannot already have an ID")).body(null);
         }
-        Paiement result = paiementService.save(paiement);
+    Paiement result = paiementService.save(paiement, false);
         return ResponseEntity.created(new URI("/api/paiements/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,7 +85,7 @@ public class PaiementResource {
         if (paiement.getId() == null) {
             return createPaiement(paiement);
         }
-        Paiement result = paiementService.save(paiement);
+    Paiement result = paiementService.save(paiement, true);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, paiement.getId().toString()))
             .body(result);
