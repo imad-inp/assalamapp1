@@ -31,6 +31,41 @@
                 }]
             }
         })
+        .state('enfant.newKafala', {
+            parent: 'enfant',
+            url: '/newKafala?enfantId',
+            data: {
+                authorities: ['ROLE_KAFALA']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','Enfant', function($stateParams, $state, $uibModal, Enfant) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/kafala/kafala-dialog.html',
+                    controller: 'KafalaDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('kafala');
+                    return $translate.refresh();
+                }],
+                        entity: function () {
+                            return {
+                                montant: null,
+                                datedebut: null,
+                                id: null,
+                                enfant : {id : $stateParams.enfantId}
+                      
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $state.go('enfant', null, { reload: 'enfant' });
+                }, function() {
+                    $state.go('enfant');
+                });
+            }]
+        })
         .state('enfant-detail', {
             parent: 'enfant',
             url: '/enfant/{id}',

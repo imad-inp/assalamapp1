@@ -6,9 +6,9 @@
                 "createLabel": "اضافة كفالة جديدة",
                 "createOrEditLabel": "اضافة ان تحيين كفالة"
             },
-            "created": "Un nouveau Kafala a été créé avec l'identifiantتمت اضافة الكفالة {{ param }}",
-            "updated": "تم تحيين الكفالة{{ param }}",
-            "deleted": "تم حذف الكفالة{{ param }}",
+            "created": "تمت اضافة الكفالة ",
+            "updated": "تم تحيين الكفالة",
+            "deleted": "تم حذف الكفالة",
             "delete": {
                 "question": "هل انت متاكد من حذف هذه الكفالة؟ {{ id }} ?"
             },
