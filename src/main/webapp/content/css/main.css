@@ -373,6 +373,7 @@ entity tables helpers
 .dropdown-menu{
     z-index:1;
     position: relative;
+    float:right;
 }
 
 

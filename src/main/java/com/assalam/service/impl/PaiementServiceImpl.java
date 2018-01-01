@@ -69,7 +69,7 @@ public class PaiementServiceImpl implements PaiementService {
   public Paiement save(Paiement paiement, boolean isSaving) {
 
     log.debug("Request to save Paiement : {}", paiement);
-    Long moisPayesToRemove = null;
+    Long moisPayesToRemove = 0L;
     // if we're in update mode, get the paid months of the previous payment.
     if (isSaving) {
       moisPayesToRemove = paiementRepository.getOne(paiement.getId()).getMoispayes();
