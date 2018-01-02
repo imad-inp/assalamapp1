@@ -418,6 +418,11 @@ height:100vh;
     color: rgba(0, 0, 0, .7);
     
 }
+
+.sidebar a > i{
+  color: #177BBB ;
+    
+}
 .sidebar > li > a:hover, .nav > li > a:focus{
     padding-right: 20px;
 }
@@ -425,13 +430,13 @@ height:100vh;
    font-family: 'Muli', "Helvetica", Arial, sans-serif;
     font-size: 26px;
     color:#F3FAFC;
-    background-color: #126DA7 !important;
+    background-color: #5BC0DE !important;
 }
 
 
 .active a{
-    color:#177BBB;
-    background-color: white !important;
+   
+    background-color: #eeeeee !important;
 }
 
 .well {
@@ -490,7 +495,7 @@ ui bootstrap tweaks
 
 /*dashboard cards*/
 .card {
-  border-radius: 6px;
+ /* border-radius: 6px;*/
   box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
   background-color: #BBDEFB;
   color: #252422;
