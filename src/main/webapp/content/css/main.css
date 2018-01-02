@@ -374,6 +374,7 @@ entity tables helpers
     z-index:1;
     position: relative;
     float:right;
+    width:100%;
 }
 
 
@@ -418,6 +419,9 @@ height:100vh;
     color: rgba(0, 0, 0, .7);
     
 }
+/*.sidebar ul{
+    width:100%;
+}*/
 
 .sidebar a > i{
   color: #177BBB ;

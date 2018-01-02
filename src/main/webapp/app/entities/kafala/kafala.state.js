@@ -119,6 +119,46 @@
                 });
             }]
         })
+        .state('kafala.newPayment', {
+            parent: 'kafala',
+            url: '/newPayment?kafalaId',
+            data: {
+                authorities: ['ROLE_KAFALA']
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('paiement');                   
+                    return $translate.refresh();
+                }]
+            },
+             onEnter: ['$stateParams', '$state', '$uibModal','Kafala' ,function($stateParams, $state, $uibModal, Kafala) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/paiement/paiement-dialog.html',
+                    controller: 'PaiementDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+							
+                            return {
+                                date: null,
+                                montant: null,
+                                type: null,
+                                commentaires: null,
+                                id: null,
+								kafala: {id: $stateParams.kafalaId }
+								
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $state.go('kafala', null, { reload: 'kafala' });
+                }, function() {
+                    $state.go('kafala');
+                });
+            }]
+        })
         .state('kafala.edit', {
             parent: 'kafala',
             url: '/{id}/edit',
