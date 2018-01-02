@@ -394,19 +394,20 @@ entity tables helpers
     cursor: pointer;
 }
 .banner2 {
-    background-color: #25B8CC;
+    background-color: #177BBB;
     height: 70px;
-    border-bottom: 1px solid lightgrey;
+    color: #f5f5f5;
+    padding-right:15px;
+    
 }
 
 
 /*class to style th eside abr menu*/
 .sidebar{
 padding-left: 0;
-    background-color:#25B8CC;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-    color:#AA0000 !important;
+    background-color:white;
+ /*   border: 1px solid #e3e3e3;   border-radius: 4px;*/
+    
 box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 position:fixed ;
 height:100vh;
@@ -414,8 +415,11 @@ height:100vh;
 .sidebar a{
     font-family: 'Muli', "Helvetica", Arial, sans-serif;
     font-size: 26px;
-    color:#F3FAFC;
+    color: rgba(0, 0, 0, .7);
     
+}
+.sidebar > li > a:hover, .nav > li > a:focus{
+    padding-right: 20px;
 }
 .sidebar a:hover{
    font-family: 'Muli', "Helvetica", Arial, sans-serif;
@@ -426,8 +430,8 @@ height:100vh;
 
 
 .active a{
-    color:black;
-    background-color: white;
+    color:#177BBB;
+    background-color: white !important;
 }
 
 .well {
@@ -456,6 +460,7 @@ entity detail page css
 }
 .no-padding{
     padding: 0;
+    border:0;
    
 }
 .green-background{
