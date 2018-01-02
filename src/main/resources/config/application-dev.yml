@@ -33,9 +33,9 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://:3306/assalamApp?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: root
-        password: 
+        url: jdbc:mysql://assalam.clfaojgukymr.us-west-2.rds.amazonaws.com:3306/assalamApp?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: assalamapp
+        password: UyCMBu6o
         hikari:
             data-source-properties:
                 cachePrepStmts: true
