@@ -1,9 +1,11 @@
 package com.assalam.service.impl;
 
+
+
 import com.assalam.service.KafalaService;
 import com.assalam.domain.Kafala;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+
 import com.assalam.domain.Paiement;
 import com.assalam.repository.KafalaRepository;
 import com.assalam.repository.PaiementRepository;
@@ -97,7 +99,9 @@ public class KafalaServiceImpl implements KafalaService{
    */
   private boolean isLate(Kafala kafala) {
     LocalDate startDate = kafala.getDatedebut();
-    return ChronoUnit.MONTHS.between(startDate, LocalDate.now()) + 1 > kafala.getMoispayes();
+    long monthDiff = LocalDate.now().getMonthValue() - startDate.getMonthValue();
+    long yearDiff = (LocalDate.now().getYear() - startDate.getYear());
+    return monthDiff + (yearDiff * 12) + 1 > kafala.getMoispayes();
   }
 
     /**
