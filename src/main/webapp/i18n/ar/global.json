@@ -54,8 +54,8 @@
             "language": "اختيار اللغة"
         },
         "form": {
-            "username": "Nom d'utilisateur",
-            "username.placeholder": "Votre nom d'utilisateur",
+            "username": "اسم المستخدم",
+            "username.placeholder": "اسم المستخدم",
             "newpassword": "Nouveau mot de passe",
             "newpassword.placeholder": "Nouveau mot de passe",
             "confirmpassword": "Confirmation du nouveau mot de passe",

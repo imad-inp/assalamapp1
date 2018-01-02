@@ -1,19 +1,19 @@
 {
     "login": {
-        "title": "Authentification",
+        "title": "تسجيل الدخول",
         "form": {
-            "password": "Mot de passe",
-            "password.placeholder": "Votre mot de passe",
-            "rememberme": "Garder la session ouverte",
-            "button": "Connexion"
+            "password": "كلمة السر",
+            "password.placeholder": "ادخل كلمة السر",
+            "rememberme": "حفظ كلمة السر؟",
+            "button": "دخول"
         },
         "messages": {
             "error": {
-                "authentication": "<strong>Erreur d'authentification !</strong> Veuillez vérifier vos identifiants de connexion."
+                "authentication": "المرجو التاكد من معلومات الدخول"
             }
         },
         "password" : {
-            "forgot": "Avez-vous oublié votre mot de passe ?"
+            "forgot": "هل نسيت كلمة السر؟"
         }
     }
 }
