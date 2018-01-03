@@ -92,21 +92,31 @@ public class KafalaResource {
     @GetMapping("/kafalas")
     @Timed
   public ResponseEntity<List<Kafala>> getAllKafalas(@ApiParam Pageable pageable,
-      @RequestParam(name = "kafilId", required = false) String kafilId,
-      @RequestParam(name = "enfantId", required = false) String enfantId) {
+      @RequestParam(name = "searchType", required = true) String searchType,
+      @RequestParam(name = "searchValue", required = false) String searchValue) {
         log.debug("REST request to get a page of Kafalas");
+    List<Kafala> list = null;
     Page<Kafala> page = null;
-    if (kafilId != null) {
-      page = kafalaService.findByKafilId(pageable, kafilId);
-    }
-    else if (enfantId != null) {
-      page = kafalaService.findByEnfantId(pageable, enfantId);
-    }
-    else {
+    HttpHeaders headers = new HttpHeaders();
+    switch (searchType) {
+    case "enfantId":
+      page = kafalaService.findByEnfantId(pageable, searchValue);
+      break;
+    case "kafilId":
+      page = kafalaService.findByKafilId(pageable, searchValue);
+      break;
+    case "state":
+      list = kafalaService.findByState(searchValue);
+      break;
+    default:
       page = kafalaService.findAll(pageable);
     }
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/kafalas");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    if (page != null) {
+      headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/kafalas");
+
+      list = page.getContent();
+    }
+    return new ResponseEntity<>(list, headers, HttpStatus.OK);
     }
 
   @GetMapping("/kafalas/late")

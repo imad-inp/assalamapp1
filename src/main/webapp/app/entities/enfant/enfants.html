@@ -45,7 +45,7 @@
                     <td>{{enfant.prenom}}</td>
                     <td>{{vm.getAge(enfant)}}</td>
                     <td data-translate="{{'assalamApp.enfant.statut.' + enfant.kafalaState}}"></td>
-                     <td><a  ui-sref="kafala({enfantId: enfant.id })"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></td>
+                     <td><a  ui-sref="kafala({searchType :'enfantId', searchValue:enfant.id})"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></td>
                     <td><a  ui-sref="resultatsscolaires-filter({enfantId: enfant.id })" class="glyphicon glyphicon-file"></a></td>
                  
                 

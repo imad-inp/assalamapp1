@@ -60,8 +60,8 @@
                 page: vm.page,
                 size: vm.itemsPerPage,
                 sort: sort(),
-                kafilId: $stateParams.kafilId,
-                enfantId: $stateParams.enfantId
+                searchType: $stateParams.searchType,
+                searchValue: $stateParams.searchValue
             }, onSuccess, onError);
 
             function sort() {
@@ -73,8 +73,12 @@
             }
 
             function onSuccess(data, headers) {
-                vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
+                if(headers('link')){
+                     vm.links = ParseLinks.parse(headers('link'));
+                      vm.totalItems = headers('X-Total-Count');
+                }
+               
+               
                 for (var i = 0; i < data.length; i++) {
                     data[i].isLate = isPaimentLate(data[i]);
                     vm.kafalas.push(data[i]);

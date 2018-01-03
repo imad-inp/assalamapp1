@@ -54,4 +54,6 @@ public interface KafalaService {
   Page<Kafala> findByEnfantId(Pageable pageable, String enfantId);
 
   List<Kafala> findLateKafalas();
+
+  List<Kafala> findByState(String searchValue);
 }

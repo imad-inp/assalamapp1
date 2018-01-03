@@ -1,5 +1,7 @@
 package com.assalam.repository;
 
+import java.util.List;
+
 import com.assalam.domain.Enfant;
 import com.assalam.domain.Kafala;
 import org.springframework.stereotype.Repository;
@@ -18,4 +20,6 @@ public interface KafalaRepository extends JpaRepository<Kafala,Long> {
   Page<Kafala> findByKafilId(Pageable pageable, Long kafilId);
 
   Page<Kafala> findByEnfantId(Pageable pageable, Long enfantId);
+
+  List<Kafala> findByState(String state);
 }

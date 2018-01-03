@@ -146,4 +146,9 @@ public class KafalaServiceImpl implements KafalaService{
     }
     return kafalas;
   }
+
+  @Override
+  public List<Kafala> findByState(String state) {
+    return kafalaRepository.findByState(state);
+  }
 }

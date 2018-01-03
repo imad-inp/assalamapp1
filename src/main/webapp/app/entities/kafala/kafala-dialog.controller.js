@@ -10,15 +10,22 @@
     function KafalaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Kafala, Paiement, Enfant, Famille, Kafil, DataUtils) {
         var vm = this;
 
+
+
+        
+
+
+
+
         vm.kafala = entity;
         console.log(vm.kafala);
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.paiements = Paiement.query();
+        
         vm.enfants = Enfant.query();
-        vm.familles = Famille.query();
+        
         vm.kafils = Kafil.query();
 
         $timeout(function (){
@@ -67,5 +74,7 @@
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
+
+        
     }
 })();

@@ -114,12 +114,31 @@
                         <span data-translate="global.menu.entities.paiement">Paiement</span>
                     </a>
                 </li>-->
-                    <!--   <li ng-show="vm.$state.includes('kafala-project')" ui-sref-active="active">
-                        <a ui-sref="kafala({ })" ng-click="vm.collapseNavbar()">
-                            <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                            <span data-translate="global.menu.entities.kafala">Kafala</span>
-                        </a>
-                    </li>-->
+                       <li ng-show="vm.$state.includes('kafala-project')" ui-sref-active="active"  class="dropdown" uib-dropdown  >
+                     
+                    <a   ng-click="vm.collapseNavbar()" class="dropdown-toggle" uib-dropdown-toggle>
+                         <i class="fa fa-handshake-o" aria-hidden="true"></i>&nbsp;
+                        <span data-translate="global.menu.entities.kafala">Kafala</span>
+                        <b class="caret"></b>
+                    </a>
+                    
+                    
+                 <ul class="dropdown-menu" >
+                        <li  >
+                            <a data-translate="assalamApp.kafala.state.EN_COURS" href="" ui-sref="kafala({searchType :'state', searchValue:'EN_COURS'})">Nouvelle demande</a>
+                        </li>
+                        <li  >
+                            <a data-translate="assalamApp.kafala.state.ACHEVEE" href="" ui-sref="kafala({searchType :'state', searchValue:'ACHEVEE'})">Nouvelle demande</a>
+                        </li>
+                        <li  >
+                            <a data-translate="assalamApp.kafala.state.ARRETEE" href="" ui-sref="kafala({searchType :'state', searchValue:'ARRETEE'})">Nouvelle demande</a>
+                        </li>
+                         
+                        
+                    </ul>
+                   
+                    
+                </li>
                
                
                

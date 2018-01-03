@@ -26,10 +26,8 @@
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="assalamApp.enfant.age" for="field_age">Age</label>
-            <input type="number" class="form-control" name="age" id="field_age"
-                    ng-model="vm.enfant.age" readonly
-                    />
+            <label class="control-label" data-translate="assalamApp.enfant.age" for="field_age">Age</label><br>
+            {{vm.getAge()}}
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.enfant.adresse" for="field_adresse">Adresse</label>

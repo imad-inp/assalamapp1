@@ -43,6 +43,7 @@
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('global');
                     $translatePartialLoader.addPart('enfant');
+                    $translatePartialLoader.addPart('kafala');
                 }]
             }
         });
