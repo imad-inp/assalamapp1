@@ -13,8 +13,8 @@
         vm.famille = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.kafalas = Kafala.query();
-        vm.enfants = Enfant.query();
+       
+    
 
         
         $timeout(function (){

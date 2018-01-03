@@ -146,4 +146,23 @@ public class FamilleResource {
     familleService.delete(id);
     return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
   }
+
+  /**
+   * SEARCH /_search/imads?query=:query : search for the imad corresponding
+   * to the query.
+   * 
+   * @param query
+   *          the query of the imad search
+   * @param pageable
+   *          the pagination information
+   * @return the result of the search
+   */
+  @GetMapping("/_search/imads")
+  @Timed
+  public ResponseEntity<List<Famille>> searchFamilles(@RequestParam String query, @ApiParam Pageable pageable) {
+    log.debug("REST request to search for a page of Imads for query {}", query);
+    Page<Famille> page = familleService.search(query, pageable);
+    HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/famille");
+    return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+  }
 }
