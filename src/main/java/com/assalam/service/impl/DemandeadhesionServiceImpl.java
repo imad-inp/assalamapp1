@@ -2,14 +2,19 @@ package com.assalam.service.impl;
 
 import com.assalam.service.DemandeadhesionService;
 import com.assalam.domain.Demandeadhesion;
+import com.assalam.domain.Files;
 import com.assalam.domain.enumeration.Statut;
 import com.assalam.repository.DemandeadhesionRepository;
+import com.assalam.repository.FilesRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -24,6 +29,9 @@ public class DemandeadhesionServiceImpl implements DemandeadhesionService{
 
     private final DemandeadhesionRepository demandeadhesionRepository;
 
+  @Autowired
+  private FilesRepository filesRepository;
+
     public DemandeadhesionServiceImpl(DemandeadhesionRepository demandeadhesionRepository) {
         this.demandeadhesionRepository = demandeadhesionRepository;
     }
@@ -37,6 +45,13 @@ public class DemandeadhesionServiceImpl implements DemandeadhesionService{
     @Override
     public Demandeadhesion save(Demandeadhesion demandeadhesion) {
         log.debug("Request to save Demandeadhesion : {}", demandeadhesion);
+    if (demandeadhesion.getTmpDemande() != null) {
+      Files file = new Files();
+      file.setFile(demandeadhesion.getTmpDemande());
+      file.setFileContentType(demandeadhesion.getTmpDemandeContentType());
+      Files result = filesRepository.save(file);
+      demandeadhesion.setDemandeRef(result.getId());
+    }
         return demandeadhesionRepository.save(demandeadhesion);
     }
 

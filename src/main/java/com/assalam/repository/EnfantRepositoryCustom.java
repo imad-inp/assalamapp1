@@ -15,4 +15,6 @@ public interface EnfantRepositoryCustom {
 
   Page<Enfant> pullByStatuts(Pageable pageable, List<String> statuts);
 
+  List<Enfant> findAllReduced();
+
 }

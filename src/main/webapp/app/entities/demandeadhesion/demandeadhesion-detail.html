@@ -12,15 +12,20 @@
         <dd>
             <span data-translate="{{'assalamApp.Statut.' + vm.demandeadhesion.statut}}">{{vm.demandeadhesion.statut}}</span>
         </dd>
-         <dt><span data-translate="assalamApp.demandeadhesion.famille">Famille</span></dt>
+        <!-- <dt><span data-translate="assalamApp.demandeadhesion.famille">Famille</span></dt>
         <dd>
             <span >{{vm.demandeadhesion.famille}}</span>
-        </dd>
-         <dt><span data-translate="assalamApp.demandeadhesion.enfants">Enfants</span></dt>
+        </dd>-->
+         <!--<dt><span data-translate="assalamApp.demandeadhesion.enfants">Enfants</span></dt>
         <dd>
             <a ui-sref="enfant({familleId:demandeadhesion.famille.id})">
             <span class="glyphicon glyphicon-user"></span>
             </a>
+        </dd>-->
+        <dt><span data-translate="assalamApp.demandeadhesion.demande"></span></dt>
+        <dd>
+              <a  ng-if="vm.demande" ng-click="vm.openFile( vm.demande.fileContentType, vm.demande.file)" 
+            target="_blank"><i class="fa fa-file" aria-hidden="true"></i></a>   
         </dd>
     </dl>
 

@@ -19,7 +19,7 @@
         <table class="jh-table table table-striped table-bordered">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th ><span data-translate="assalamApp.enfant.photo">Photo</span></span></th>
+                    
                     <!-- <th ><span data-translate="global.field.id">ID</span></span></th> -->
                     <th ><span data-translate="assalamApp.enfant.nom">Nom</span></span></th>
                     <th ><span data-translate="assalamApp.enfant.prenom">Prenom</span></span></th>
@@ -34,18 +34,13 @@
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="enfant in vm.enfants track by enfant.id">
-                       <td>
-                        <a ng-if="enfant.photo" ng-click="vm.openFile( enfant.photo, enfant.photoContentType)">
-                            <img data-ng-src="{{'data:' + enfant.photoContentType + ';base64,' + enfant.photo}}" style="max-height: 30px;" alt="enfant image"/>
-                        </a>
-                       
-                    </td>
+                      
                     <!-- <td><a ui-sref="enfant-detail({id:enfant.id})">{{enfant.id}}</a></td> -->
                     <td>{{enfant.nom}}</td>
                     <td>{{enfant.prenom}}</td>
                     <td>{{vm.getAge(enfant)}}</td>
                     <td data-translate="{{'assalamApp.enfant.statut.' + enfant.kafalaState}}"></td>
-                     <td><a  ui-sref="kafala({searchType :'enfantId', searchValue:enfant.id})"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></td>
+                     <td><a  ui-sref="kafala({enfantId: enfant.id })"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></td>
                     <td><a  ui-sref="resultatsscolaires-filter({enfantId: enfant.id })" class="glyphicon glyphicon-file"></a></td>
                  
                 
@@ -72,7 +67,7 @@
                             <a data-translate="entity.action.edit" href="" ui-sref="enfant.edit({id:enfant.id})">Edit</a>
                         </li>
                          <li  >
-                            <a data-translate="entity.action.delete" href="" ui-sref="enfant.delete({id:enfantamille.id})">supprimer</a>
+                            <a data-translate="entity.action.delete" href="" ui-sref="enfant.delete({id:enfant.id})">supprimer</a>
                         </li>
                     </ul>
                        

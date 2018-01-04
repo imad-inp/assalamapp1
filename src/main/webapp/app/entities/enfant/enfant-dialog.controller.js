@@ -5,9 +5,12 @@
             .module('assalamApp')
             .controller('EnfantDialogController', EnfantDialogController);
 
-    EnfantDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Enfant', 'Kafala', 'Resultatsscolaires', 'Famille'];
+    EnfantDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Enfant',
+     'Kafala', 'Resultatsscolaires', 'Famille', 'Files'];
 
-    function EnfantDialogController($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Enfant, Kafala, Resultatsscolaires, Famille) {
+    function EnfantDialogController($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Enfant, Kafala, Resultatsscolaires,
+     Famille, Files
+    ) {
         var vm = this;
 
         vm.enfant = entity;
@@ -17,6 +20,9 @@
         vm.save = save;
         vm.kafalas = Kafala.query();
         vm.resultatsscolaires = Resultatsscolaires.query();
+
+        vm.photo ={};
+
 		if($stateParams.familleId == null)
 			vm.familles = Famille.query();
 		else
@@ -24,6 +30,8 @@
         vm.datePickerOpenStatus = {};
 
         vm.openCalendar = openCalendar;
+
+        vm.birthDay =  new Date(vm.enfant.dateDeNaissance);
 
         $timeout(function () {
             angular.element('.form-group:eq(1)>input').focus();
@@ -35,6 +43,7 @@
 
         function save() {
             vm.isSaving = true;
+            vm.enfant.dateDeNaissance = vm.birthDay.toISOString().split('T')[0];
             if (vm.enfant.id !== null) {
                 Enfant.update(vm.enfant, onSaveSuccess, onSaveError);
             } else {
@@ -44,8 +53,11 @@
 
         function onSaveSuccess(result) {
             $scope.$emit('assalamApp:enfantUpdate', result);
+            Files.save(vm.photo, function(data){
             $uibModalInstance.close(result);
-            vm.isSaving = false;
+            })
+           
+            
         }
 
         function onSaveError() {
@@ -60,8 +72,10 @@
             if ($file) {
                 DataUtils.toBase64($file, function (base64Data) {
                     $scope.$apply(function () {
-                        enfant.photo = base64Data;
-                        enfant.photoContentType = $file.type;
+                        vm.enfant.tmpPhoto = base64Data;
+                        vm.enfant.tmpPhotoContentType = $file.type;
+                     
+                  
                     });
                 });
             }

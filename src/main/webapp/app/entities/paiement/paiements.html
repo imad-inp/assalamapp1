@@ -45,6 +45,8 @@
                     <th ><span data-translate="assalamApp.paiement.date">Date</span></span></th>
                     <th ><span data-translate="assalamApp.paiement.montant">Montant</span></span></th>
                     <th ><span data-translate="assalamApp.paiement.type">Type</span></span></th>
+                     <th ><span data-translate="assalamApp.paiement.proofNum">numero recu</span></span></th>
+                     <th ><span data-translate="assalamApp.paiement.proof">proof</span></span></th>
                
                     <th jh-sort-by="kafala.id"><span data-translate="assalamApp.paiement.moispayes">Mois payes</span></span></th>
                     
@@ -57,8 +59,15 @@
                         <td>{{paiement.date | date:'mediumDate'}}</td>
                     <td>{{paiement.montant}}</td>
                     <td data-translate="{{'assalamApp.PaiementType.' + paiement.type}}">{{paiement.type}}</td>
-                   
+                    <td>{{paiement.numRecu}}</td>
+                    
+                    <td >
+                        <a  ng-if="paiement.evidenceRef" ng-click="vm.openFile( paiement)"   target="_blank">
+                            <i class="fa fa-file" aria-hidden="true"></i>
+                        </a>
+                    <td>
                     <td>{{paiement.moispayes}}</td>
+
                     
                     <td print-remove class="text-right">
                         <div class="btn-group flex-btn-group-container">

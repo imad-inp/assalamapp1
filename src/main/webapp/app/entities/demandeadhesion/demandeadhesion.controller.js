@@ -3,8 +3,8 @@
     angular
             .module('assalamApp')
             .controller('DemandeadhesionController', DemandeadhesionController);
-    DemandeadhesionController.$inject = ['Demandeadhesion', 'DataUtils','$stateParams', 'paginationConstants', 'ParseLinks', '$state','pagingParams'];
-    function DemandeadhesionController(Demandeadhesion, DataUtils, $stateParams, paginationConstants, ParseLinks, $state, pagingParams) {
+    DemandeadhesionController.$inject = ['Demandeadhesion', 'DataUtils','$stateParams', 'paginationConstants', 'ParseLinks', '$state','pagingParams', 'Files', '$scope','$sce' ];
+    function DemandeadhesionController(Demandeadhesion, DataUtils, $stateParams, paginationConstants, ParseLinks, $state, pagingParams, Files, $scope,$sce) {
 
         
         var vm = this;
@@ -54,6 +54,25 @@
             vm.page = page;
             loadAll();
         };
+
+          vm.openFile = function(demandeadhesion){
+            var demande = Files.get({id:demandeadhesion.demandeRef}, function(result){
+                 $scope.content = $sce.trustAsResourceUrl('data:' + result.fileContentType + ';base64,' + result.file);
+                             var link = document.createElement("a");
+            link.setAttribute("href", $scope.content );
+            link.setAttribute("target", "_blank");
+             link.setAttribute("download", "picture");
+          
+    
+             document.body.appendChild(link); // Required for FF
+            link.click(); // This will download the data file named "download_name.pdf"
+            });
+
+           
+         
+
+           
+        }
         
             function transition() {
             $state.transitionTo($state.$current, {

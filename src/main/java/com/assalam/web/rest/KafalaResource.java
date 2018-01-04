@@ -31,85 +31,111 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class KafalaResource {
 
-    private final Logger log = LoggerFactory.getLogger(KafalaResource.class);
+  private final Logger log = LoggerFactory.getLogger(KafalaResource.class);
 
-    private static final String ENTITY_NAME = "kafala";
+  private static final String ENTITY_NAME = "kafala";
 
-    private final KafalaService kafalaService;
+  private final KafalaService kafalaService;
 
-    public KafalaResource(KafalaService kafalaService) {
-        this.kafalaService = kafalaService;
+  public KafalaResource(KafalaService kafalaService) {
+    this.kafalaService = kafalaService;
+  }
+
+  /**
+   * POST /kafalas : Create a new kafala.
+   *
+   * @param kafala
+   *          the kafala to create
+   * @return the ResponseEntity with status 201 (Created) and with body the new kafala, or with status 400 (Bad Request)
+   *         if the kafala has already an ID
+   * @throws URISyntaxException
+   *           if the Location URI syntax is incorrect
+   */
+  @PostMapping("/kafalas")
+  @Timed
+  public ResponseEntity<Kafala> createKafala(@RequestBody Kafala kafala) throws URISyntaxException {
+    log.debug("REST request to save Kafala : {}", kafala);
+    if (kafala.getId() != null) {
+      return ResponseEntity.badRequest()
+          .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new kafala cannot already have an ID"))
+          .body(null);
     }
+    Kafala result = kafalaService.save(kafala);
+    return ResponseEntity.created(new URI("/api/kafalas/" + result.getId()))
+        .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+        .body(result);
+  }
 
-    /**
-     * POST  /kafalas : Create a new kafala.
-     *
-     * @param kafala the kafala to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new kafala, or with status 400 (Bad Request) if the kafala has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PostMapping("/kafalas")
-    @Timed
-    public ResponseEntity<Kafala> createKafala(@RequestBody Kafala kafala) throws URISyntaxException {
-        log.debug("REST request to save Kafala : {}", kafala);
-        if (kafala.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new kafala cannot already have an ID")).body(null);
-        }
-        Kafala result = kafalaService.save(kafala);
-        return ResponseEntity.created(new URI("/api/kafalas/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+  /**
+   * PUT /kafalas : Updates an existing kafala.
+   *
+   * @param kafala
+   *          the kafala to update
+   * @return the ResponseEntity with status 200 (OK) and with body the updated kafala,
+   *         or with status 400 (Bad Request) if the kafala is not valid,
+   *         or with status 500 (Internal Server Error) if the kafala couldn't be updated
+   * @throws URISyntaxException
+   *           if the Location URI syntax is incorrect
+   */
+  @PutMapping("/kafalas")
+  @Timed
+  public ResponseEntity<Kafala> updateKafala(@RequestBody Kafala kafala) throws URISyntaxException {
+    log.debug("REST request to update Kafala : {}", kafala);
+    if (kafala.getId() == null) {
+      return createKafala(kafala);
     }
+    Kafala result = kafalaService.save(kafala);
+    return ResponseEntity.ok()
+        .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, kafala.getId().toString()))
+        .body(result);
+  }
 
-    /**
-     * PUT  /kafalas : Updates an existing kafala.
-     *
-     * @param kafala the kafala to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated kafala,
-     * or with status 400 (Bad Request) if the kafala is not valid,
-     * or with status 500 (Internal Server Error) if the kafala couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PutMapping("/kafalas")
-    @Timed
-    public ResponseEntity<Kafala> updateKafala(@RequestBody Kafala kafala) throws URISyntaxException {
-        log.debug("REST request to update Kafala : {}", kafala);
-        if (kafala.getId() == null) {
-            return createKafala(kafala);
-        }
-        Kafala result = kafalaService.save(kafala);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, kafala.getId().toString()))
-            .body(result);
-    }
-
-    /**
-     * GET  /kafalas : get all the kafalas.
-     *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of kafalas in body
-     */
-    @GetMapping("/kafalas")
-    @Timed
+  /**
+   * GET /kafalas : get all the kafalas.
+   *
+   * @param pageable
+   *          the pagination information
+   * @return the ResponseEntity with status 200 (OK) and the list of kafalas in body
+   */
+  @GetMapping("/kafalas")
+  @Timed
   public ResponseEntity<List<Kafala>> getAllKafalas(@ApiParam Pageable pageable,
-      @RequestParam(name = "searchType", required = true) String searchType,
+      @RequestParam(name = "searchType", required = false) String searchType,
       @RequestParam(name = "searchValue", required = false) String searchValue) {
-        log.debug("REST request to get a page of Kafalas");
+    log.debug("REST request to get a page of Kafalas");
     List<Kafala> list = null;
     Page<Kafala> page = null;
     HttpHeaders headers = new HttpHeaders();
-    switch (searchType) {
-    case "enfantId":
-      page = kafalaService.findByEnfantId(pageable, searchValue);
-      break;
-    case "kafilId":
-      page = kafalaService.findByKafilId(pageable, searchValue);
-      break;
-    case "state":
-      list = kafalaService.findByState(searchValue);
-      break;
-    default:
+    if (searchType == null) {
       page = kafalaService.findAll(pageable);
+    }
+    else {
+      switch (searchType) {
+      case "enfantId":
+        page = kafalaService.findByEnfantId(pageable, searchValue);
+        break;
+      case "kafilId":
+        page = kafalaService.findByKafilId(pageable, searchValue);
+        break;
+      case "state":
+        list = kafalaService.findByState(searchValue);
+        break;
+      case "startYear":
+        list = kafalaService.findByStartYear(searchValue);
+        break;
+      case "startYear&state":
+        String startDate = searchValue.split("&")[0];
+        String state = searchValue.split("&")[1];
+        list = kafalaService.findByStartYearAndState(startDate, state);
+        break;
+      case "endYear&state":
+        String endDate = searchValue.split("&")[0];
+        String state2 = searchValue.split("&")[1];
+        list = kafalaService.findByEndYearAndState(endDate, state2);
+        break;
+      default:
+        page = kafalaService.findAll(pageable);
+      }
     }
     if (page != null) {
       headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/kafalas");
@@ -117,7 +143,7 @@ public class KafalaResource {
       list = page.getContent();
     }
     return new ResponseEntity<>(list, headers, HttpStatus.OK);
-    }
+  }
 
   @GetMapping("/kafalas/late")
   @Timed
@@ -129,40 +155,39 @@ public class KafalaResource {
     return new ResponseEntity<>(kafalas, HttpStatus.OK);
   }
 
-
-
-      /**
+  /**
    * GET /kafalas/:id : get the "id" kafala.
-   * 
+   *
    * @param id
    *          the id of the kafala to retrieve
    * @return the ResponseEntity with status 200 (OK) and with body the kafala, or with status 404 (Not Found)
    */
-    @GetMapping("/kafalas/{id}")
-    @Timed
-    public ResponseEntity<Kafala> getKafala(@PathVariable Long id) {
-        log.debug("REST request to get Kafala : {}", id);
-        Kafala kafala = kafalaService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(kafala));
-    }
+  @GetMapping("/kafalas/{id}")
+  @Timed
+  public ResponseEntity<Kafala> getKafala(@PathVariable Long id) {
+    log.debug("REST request to get Kafala : {}", id);
+    Kafala kafala = kafalaService.findOne(id);
+    return ResponseUtil.wrapOrNotFound(Optional.ofNullable(kafala));
+  }
 
-    /**
-     * DELETE  /kafalas/:id : delete the "id" kafala.
-     *
-     * @param id the id of the kafala to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
-    @DeleteMapping("/kafalas/{id}")
-    @Timed
-    public ResponseEntity<Void> deleteKafala(@PathVariable Long id) {
-        log.debug("REST request to delete Kafala : {}", id);
-        kafalaService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
+  /**
+   * DELETE /kafalas/:id : delete the "id" kafala.
+   *
+   * @param id
+   *          the id of the kafala to delete
+   * @return the ResponseEntity with status 200 (OK)
+   */
+  @DeleteMapping("/kafalas/{id}")
+  @Timed
+  public ResponseEntity<Void> deleteKafala(@PathVariable Long id) {
+    log.debug("REST request to delete Kafala : {}", id);
+    kafalaService.delete(id);
+    return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+  }
 
   /**
    * GET count/kafalas : count the kafalas.
-   * 
+   *
    * @param pageable
    *          the pagination information
    * @return the ResponseEntity with status 200 (OK) and the list of kafalas in body
@@ -170,11 +195,11 @@ public class KafalaResource {
   @GetMapping("/count/latekafalas")
   @Timed
   public ResponseEntity<Map<String, Integer>> countLateKafalas() {
-        log.debug("REST request to count Kafalas");
+    log.debug("REST request to count Kafalas");
     Integer count = kafalaService.countLateKafalas();
     Map<String, Integer> countMap = new HashMap();
     countMap.put("count", count);
     return new ResponseEntity<>(countMap, HttpStatus.OK);
-    }
+  }
 
 }

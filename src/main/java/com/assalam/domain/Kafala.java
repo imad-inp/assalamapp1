@@ -1,6 +1,7 @@
 package com.assalam.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
@@ -26,8 +27,16 @@ public class Kafala implements Serializable {
   @Column(name = "montant")
   private Long montant;
 
-  @Column(name = "datedebut")
-  private LocalDate datedebut;
+  @Column(name = "start_date")
+  private String startDate;
+
+  @Column(name = "end_date")
+  private String endDate;
+
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
+  }
 
   @Column(name = "mois_payes", nullable = false)
   private Long moispayes = new Long(0);
@@ -41,6 +50,57 @@ public class Kafala implements Serializable {
 
   @Column(name = "engagement_content_type")
   private String engagementContentType;
+
+
+
+  public String getTmpEngagementContentType() {
+    return tmpEngagementContentType;
+  }
+
+  public void setTmpEngagementContentType(String tmpEngagementContentType) {
+    this.tmpEngagementContentType = tmpEngagementContentType;
+  }
+
+  @Column(name = "engagement_ref")
+  private Long engagementRef;
+
+  public String getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+  public Long getEngagementRef() {
+    return engagementRef;
+  }
+
+  public void setEngagementRef(Long long1) {
+    this.engagementRef = long1;
+  }
+
+  public byte[] getTmpEngagement() {
+    return tmpEngagement;
+  }
+
+  public void setTmpEngagement(byte[] tmpEngagement) {
+    this.tmpEngagement = tmpEngagement;
+  }
+
+
+
+  public String getEndDate() {
+    return endDate;
+  }
+
+  @Transient
+  @JsonProperty
+  private byte[] tmpEngagement;
+
+  @Transient
+  @JsonProperty
+  private String tmpEngagementContentType;
 
   public String getEngagementContentType() {
     return engagementContentType;
@@ -66,7 +126,7 @@ public class Kafala implements Serializable {
     this.state = state;
   }
 
-  @OneToMany(mappedBy = "kafala")
+  @OneToMany(mappedBy = "kafala", fetch = FetchType.LAZY)
   @JsonIgnore
   private Set<Paiement> paiements = new HashSet<>();
 
@@ -100,18 +160,14 @@ public class Kafala implements Serializable {
     this.montant = montant;
   }
 
-  public LocalDate getDatedebut() {
-    return datedebut;
-  }
 
-  public Kafala datedebut(LocalDate datedebut) {
-    this.datedebut = datedebut;
+
+  public Kafala datedebut(String startDate) {
+    this.startDate = startDate;
     return this;
   }
 
-  public void setDatedebut(LocalDate datedebut) {
-    this.datedebut = datedebut;
-  }
+
 
   public Long getMoispayes() {
     return this.moispayes;
@@ -215,7 +271,7 @@ public class Kafala implements Serializable {
     return "Kafala{" +
         "id=" + getId() +
         ", montant='" + getMontant() + "'" +
-        ", datedebut='" + getDatedebut() + "'" +
+        ", datedebut='" + "'" +
         "}";
   }
 }

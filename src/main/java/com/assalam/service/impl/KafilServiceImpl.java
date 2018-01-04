@@ -74,4 +74,10 @@ public class KafilServiceImpl implements KafilService{
         log.debug("Request to delete Kafil : {}", id);
         kafilRepository.delete(id);
     }
+
+  @Override
+  public Page<Kafil> findByLastName(Pageable pageable, String searchValue) {
+
+    return kafilRepository.findByNomContainingOrPrenomContaining(pageable, searchValue, searchValue);
+  }
 }

@@ -2,6 +2,9 @@ package com.assalam.domain;
 
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -25,16 +28,29 @@ public class Resultatsscolaires implements Serializable {
     private String description;
 
   @Lob
-  @Column(name = "resultat")
-  private byte[] resultat;
+  @Column(name = "resultat_ref")
+  private byte[] resultatRef;
 
-  public byte[] getResultat() {
-    return resultat;
+  @Transient
+  @JsonProperty
+  private byte[] tmpResultat;
+
+  public byte[] getTmpResultat() {
+    return tmpResultat;
   }
 
-  public void setResultat(byte[] resultat) {
-    this.resultat = resultat;
+  public void setTmpResultat(byte[] tmpResultat) {
+    this.tmpResultat = tmpResultat;
   }
+
+  @Transient
+  @JsonProperty
+  private String tmpResultatContentType;
+
+  @Column(name = "cin_mere_copie_ref")
+  private String cinMereCopieRef;
+
+
 
     @ManyToOne
     private Enfant enfant;

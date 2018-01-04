@@ -1,11 +1,13 @@
 package com.assalam.domain;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 import com.assalam.domain.enumeration.Statut;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * A Demandeadhesion.
@@ -33,6 +35,42 @@ public class Demandeadhesion implements Serializable {
 
     @Column(name = "demande_content_type")
     private String demandeContentType;
+
+  @Lob
+  @Column(name = "demande_ref")
+  private Long demandeRef;
+
+  @Transient
+  @JsonProperty
+  private byte[] tmpDemande;
+
+  @Transient
+  @JsonProperty
+  private String tmpDemandeContentType;
+
+  public Long getDemandeRef() {
+    return demandeRef;
+  }
+
+  public void setDemandeRef(Long demandeRef) {
+    this.demandeRef = demandeRef;
+  }
+
+  public byte[] getTmpDemande() {
+    return tmpDemande;
+  }
+
+  public void setTmpDemande(byte[] tmpDemande) {
+    this.tmpDemande = tmpDemande;
+  }
+
+  public String getTmpDemandeContentType() {
+    return tmpDemandeContentType;
+  }
+
+  public void setTmpDemandeContentType(String tmpDemandeContentType) {
+    this.tmpDemandeContentType = tmpDemandeContentType;
+  }
 
   @Lob
     @Column(name = "remarques")

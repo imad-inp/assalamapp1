@@ -1,0 +1,102 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="ibouklata (generated)" id="1515103151505-1">
+        <addColumn tableName="famille">
+            <column name="certif_deces_ref" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-2">
+        <addColumn tableName="famille">
+            <column name="certif_divorce_ref" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-3">
+        <addColumn tableName="famille">
+            <column name="certif_mariage_ref" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-4">
+        <addColumn tableName="famille">
+            <column name="cin_mere_copie_ref" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-5">
+        <addColumn tableName="resultatsscolaires">
+            <column name="cin_mere_copie_ref" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-6">
+        <addColumn tableName="famille">
+            <column name="cin_pere_copie_ref" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-7">
+        <addColumn tableName="demandeadhesion">
+            <column name="demande_ref" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-8">
+        <addColumn tableName="kafala">
+            <column name="engagement_ref" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-9">
+        <addColumn tableName="paiement">
+            <column name="evidence_ref" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-10">
+        <addColumn tableName="paiement">
+            <column name="num_recu" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-11">
+        <addColumn tableName="famille">
+            <column name="ramid_ref" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-12">
+        <addColumn tableName="resultatsscolaires">
+            <column name="resultat_ref" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-13">
+        <dropColumn columnName="certif_deces_mari" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-14">
+        <dropColumn columnName="certif_deces_mari_content_type" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-15">
+        <dropColumn columnName="certif_divorce" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-16">
+        <dropColumn columnName="certif_divorce_content_type" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-17">
+        <dropColumn columnName="certif_mariage" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-18">
+        <dropColumn columnName="certif_mariage_content_type" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-19">
+        <dropColumn columnName="cin_mere_copie" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-20">
+        <dropColumn columnName="cin_mere_copie_content_type" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-21">
+        <dropColumn columnName="cin_pere_copie" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-22">
+        <dropColumn columnName="cin_pere_copie_content_type" tableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-23">
+        <dropColumn columnName="photo" tableName="kafil"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-24">
+        <dropColumn columnName="photo_content_type" tableName="kafil"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515103151505-25">
+        <dropColumn columnName="resultat" tableName="resultatsscolaires"/>
+    </changeSet>
+</databaseChangeLog>

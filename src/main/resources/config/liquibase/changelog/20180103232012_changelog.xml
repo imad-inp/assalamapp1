@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="ibouklata (generated)" id="1515021631083-1">
+        <addColumn tableName="kafil">
+            <column name="date_debut" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515021631083-2">
+        <addColumn tableName="kafil">
+            <column name="date_fin" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515021631083-3">
+        <addColumn tableName="kafala">
+            <column name="end_date" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515021631083-4">
+        <addColumn tableName="kafala">
+            <column name="start_date" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515021631083-5">
+        <dropColumn columnName="datedebut" tableName="kafala"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515021631083-6">
+        <dropColumn columnName="datefin" tableName="kafala"/>
+    </changeSet>
+</databaseChangeLog>

@@ -21,4 +21,7 @@ public interface EnfantRepository extends JpaRepository<Enfant, Long> {
 
   Page<Enfant> findByKafalaState(Pageable pageable, String kafalaState);
 
+  @Override
+  Page<Enfant> findAll(Pageable pageable);
+
 }

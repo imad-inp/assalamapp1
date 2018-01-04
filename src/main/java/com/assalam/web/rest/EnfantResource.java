@@ -104,19 +104,24 @@ public class EnfantResource {
       @RequestParam(required = false) String familleId, @RequestParam(required = false) String statut) {
     log.debug("REST request to get a page of Enfants");
     Page<Enfant> page = null;
+    List<Enfant> list = null;
+    HttpHeaders headers = new HttpHeaders();
     if (familleId != null) {
       page = enfantService.findbyFamilleId(pageable, Long.valueOf(familleId));
-
+      list = page.getContent();
     }
     else if (statut != null) {
       page = enfantService.findbyStatuts(pageable, statut);
+      list = page.getContent();
     }
     else {
-      page = enfantService.findAll(pageable);
+      list = enfantService.findAll();
     }
-
-    HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/enfants");
-    return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    if (page != null)
+    {
+      headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/enfants");
+    }
+    return new ResponseEntity<>(list, headers, HttpStatus.OK);
   }
 
   /**

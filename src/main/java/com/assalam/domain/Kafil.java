@@ -40,16 +40,43 @@ public class Kafil implements Serializable {
     @Column(name = "commentaires")
     private String commentaires;
 
-    @Lob
-    @Column(name = "photo")
-    private byte[] photo;
+  @Column(name = "date_debut")
+  private String dateDebut;
 
-    @Column(name = "photo_content_type")
-    private String photoContentType;
-    
+  @Column(name = "date_fin")
+  private String dateFin;
+
     @Transient
     @JsonProperty
     private String fullName;
+
+  @Transient
+  @JsonProperty
+  private String fullId;
+
+  public String getDateDebut() {
+    return dateDebut;
+  }
+
+  public void setDateDebut(String dateDebut) {
+    this.dateDebut = dateDebut;
+  }
+
+  public String getDateFin() {
+    return dateFin;
+  }
+
+  public void setDateFin(String dateFin) {
+    this.dateFin = dateFin;
+  }
+
+  public String getFullId() {
+    String fullId = null;
+    if (dateDebut != null && dateDebut.split("-")[0] != null) {
+      fullId = dateDebut.split("-")[0] + "-" + id;
+    }
+    return fullId;
+  }
 
     @OneToMany(mappedBy = "kafil")
     @JsonIgnore
@@ -141,31 +168,7 @@ public class Kafil implements Serializable {
         this.commentaires = commentaires;
     }
 
-    public byte[] getPhoto() {
-        return photo;
-    }
 
-    public Kafil photo(byte[] photo) {
-        this.photo = photo;
-        return this;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
-
-    public String getPhotoContentType() {
-        return photoContentType;
-    }
-
-    public Kafil photoContentType(String photoContentType) {
-        this.photoContentType = photoContentType;
-        return this;
-    }
-
-    public void setPhotoContentType(String photoContentType) {
-        this.photoContentType = photoContentType;
-    }
     public String getFullName() {
         return this.nom + " " + this.prenom;
     }
@@ -224,8 +227,7 @@ public class Kafil implements Serializable {
             ", tel='" + getTel() + "'" +
             ", membre='" + isMembre() + "'" +
             ", commentaires='" + getCommentaires() + "'" +
-            ", photo='" + getPhoto() + "'" +
-            ", photoContentType='" + photoContentType + "'" +
+
             "}";
     }
 }

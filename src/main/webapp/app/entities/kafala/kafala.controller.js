@@ -5,16 +5,20 @@
         .module('assalamApp')
         .controller('KafalaController', KafalaController);
 
-    KafalaController.$inject = ['Kafala', 'ParseLinks', 'AlertService', 'paginationConstants', '$stateParams', 'DataUtils', 'KafalaLate','$scope','$sce'];
+    KafalaController.$inject = ['Kafala', 'ParseLinks', 'AlertService', 'paginationConstants', '$stateParams', 'DataUtils', 'KafalaLate','$scope','$sce', 'START_YEAR',
+     '$window', 'Files'];
 
-    function KafalaController(Kafala, ParseLinks, AlertService, paginationConstants, $stateParams, DataUtils, KafalaLate,$scope, $sce) {
+    function KafalaController(Kafala, ParseLinks, AlertService, paginationConstants, $stateParams, DataUtils, KafalaLate,$scope, $sce, START_YEAR, $window, Files) {
 
         var vm = this;
         
         var currentDate = new Date();
+        
         vm.kafalas = [];
+        vm.years = [''];
         vm.loadPage = loadPage;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
+        vm.stateParams = $stateParams;
         vm.page = 0;
         vm.links = {
             last: 0
@@ -24,19 +28,34 @@
         vm.reverse = true;
 
         vm.openFile = DataUtils.openFile;
-        
-        vm.filter_kafilId = $stateParams.kafilId;
+       
 
-        if($stateParams.late){            loadLate();
+        vm.isStateEnCours = $stateParams.searchType === 'state' && $stateParams.searchValue ==='EN_COURS';
+        vm.isStateAchevee = $stateParams.searchType === 'state' &&( $stateParams.searchValue ==='ACHEVEE' ||  $stateParams.searchValue ==='ARRETEE');
+
+        initializeYearsForSelect();
+
+        if($stateParams.late){     
+             loadLate();
         }
         else{        
             loadAll();
         }
 
-        
+
+
+        function initializeYearsForSelect(){      
+            var currentYear = new Date().getFullYear();
+            var startYear = START_YEAR || 1980;
+
+            while ( startYear <= currentYear ) {
+                    vm.years.push(startYear++);
+            } 
+            
+        }
         
         function isPaimentLate(kafala){
-            var kafalaDate = new Date(kafala.datedebut);
+            var kafalaDate = new Date(kafala.startDate);
             var monthDifference = currentDate.getMonth() - kafalaDate.getMonth() + (12 * (currentDate.getFullYear() - kafalaDate.getFullYear())) + 1;
             kafala.moisretard = Math.abs(monthDifference - kafala.moispayes);
             kafala.statut =  monthDifference > kafala.moispayes ? 'en retard': 'en avance'; 
@@ -60,8 +79,8 @@
                 page: vm.page,
                 size: vm.itemsPerPage,
                 sort: sort(),
-                searchType: $stateParams.searchType,
-                searchValue: $stateParams.searchValue
+               searchType: $stateParams.searchType,
+               searchValue: $stateParams.searchValue
             }, onSuccess, onError);
 
             function sort() {
@@ -78,7 +97,6 @@
                       vm.totalItems = headers('X-Total-Count');
                 }
                
-               
                 for (var i = 0; i < data.length; i++) {
                     data[i].isLate = isPaimentLate(data[i]);
                     vm.kafalas.push(data[i]);
@@ -88,6 +106,12 @@
             function onError(error) {
                 AlertService.error(error.data.message);
             }
+        }
+        
+        vm.print = function(){
+            $window.print();
+           
+
         }
 
         function reset () {
@@ -101,8 +125,9 @@
             loadAll();
         }
 
-        vm.openFile = function(file, fileType){
-             $scope.content = $sce.trustAsResourceUrl('data:' +fileType + ';base64,' + file);
+        vm.openFile = function(kafala){
+             var engagement = Files.get({id: kafala.engagementRef}, function(result){
+                  $scope.content = $sce.trustAsResourceUrl('data:' + result.fileContentType + ';base64,' + result.file);
          
             var link = document.createElement("a");
             link.setAttribute("href", $scope.content );
@@ -112,6 +137,8 @@
     
              document.body.appendChild(link); // Required for FF
             link.click(); // This will download the data file named "download_name.pdf"
+             });
+            
            
         }
 

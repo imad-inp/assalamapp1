@@ -23,7 +23,9 @@
             "moispayes":"عدد الاشهر",
             "printReceipt": "طبع الوصل",
             "kafil": "الكفيل",
-            "enfant": "الطفل"
+            "enfant": "الطفل",
+            "proof":"وصل الاداء",
+            "proofNum":"رقم الوصل"
         }
     }
 }

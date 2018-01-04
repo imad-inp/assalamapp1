@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="ibouklata (generated)" id="1515087731524-1">
+        <addColumn tableName="files">
+            <column name="idfamille" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515087731524-2">
+        <addColumn tableName="files">
+            <column name="idkafala" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515087731524-3">
+        <addColumn tableName="files">
+            <column name="idkafil" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515087731524-4">
+        <addColumn tableName="files">
+            <column name="idpaiement" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515087731524-5">
+        <addForeignKeyConstraint baseColumnNames="idpaiement" baseTableName="files" constraintName="FK54n6ia4g9h0y0ri29nmawqc4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paiement"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515087731524-6">
+        <addForeignKeyConstraint baseColumnNames="idkafala" baseTableName="files" constraintName="FK9mhnfpom1kmqrmj0kaqsrnf52" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="kafala"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515087731524-7">
+        <addForeignKeyConstraint baseColumnNames="idfamille" baseTableName="files" constraintName="FKij4f3297yr1k7gkd5dvio4b63" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="famille"/>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515087731524-8">
+        <addForeignKeyConstraint baseColumnNames="idkafil" baseTableName="files" constraintName="FKsekmymy81euyamk9jlstqg6ad" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="kafil"/>
+    </changeSet>
+</databaseChangeLog>

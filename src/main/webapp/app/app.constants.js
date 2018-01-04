@@ -5,5 +5,6 @@
         .module('assalamApp')
         .constant('VERSION', "0.0.1-SNAPSHOT")
         .constant('DEBUG_INFO_ENABLED', false)
+        .constant('START_YEAR', '2010')
 ;
 })();

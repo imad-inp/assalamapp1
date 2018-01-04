@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('PaiementController', PaiementController);
 
-    PaiementController.$inject = ['Paiement', 'ParseLinks', 'AlertService', 'paginationConstants', '$stateParams','DataUtils', 'PaiementPdf','$scope' ,'$sce', '$window'];
+    PaiementController.$inject = ['Paiement', 'ParseLinks', 'AlertService', 'paginationConstants', '$stateParams','DataUtils', 'PaiementPdf','$scope' ,'$sce', '$window', 'Files'];
 
-    function PaiementController(Paiement, ParseLinks, AlertService, paginationConstants, $stateParams, DataUtils, PaiementPdf,$scope , $sce, $window) {
+    function PaiementController(Paiement, ParseLinks, AlertService, paginationConstants, $stateParams, DataUtils, PaiementPdf,$scope , $sce, $window, Files) {
 
         var vm = this;
 
@@ -33,6 +33,21 @@
             $window.print();
            
 
+        }
+           vm.openFile = function(paiement){
+             var paiement = Files.get({id: paiement.evidenceRef}, function(result){
+                  $scope.content = $sce.trustAsResourceUrl('data:' + result.fileContentType + ';base64,' + result.file);
+         
+            var link = document.createElement("a");
+            link.setAttribute("href", $scope.content );
+            link.setAttribute("target", "_blank");
+             link.setAttribute("download", "picture");
+           
+             document.body.appendChild(link); // Required for FF
+            link.click(); // This will download the data file named "download_name.pdf"
+             });
+            
+           
         }
 
         function loadAll () {

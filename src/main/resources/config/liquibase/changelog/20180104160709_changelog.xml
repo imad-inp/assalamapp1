@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="ibouklata (generated)" id="1515082043613-1">
+        <createTable tableName="files">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="filesPK"/>
+            </column>
+            <column name="file" type="LONGBLOB"/>
+            <column name="file_content_type" type="VARCHAR(255)"/>
+            <column name="idenfant" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ibouklata (generated)" id="1515082043613-2">
+        <addForeignKeyConstraint baseColumnNames="idenfant" baseTableName="files" constraintName="FKmr0y6ogiod3gtuqd76vcj02oy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="enfant"/>
+    </changeSet>
+</databaseChangeLog>

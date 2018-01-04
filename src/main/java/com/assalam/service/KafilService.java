@@ -39,4 +39,6 @@ public interface KafilService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+  Page<Kafil> findByLastName(Pageable pageable, String searchValue);
 }

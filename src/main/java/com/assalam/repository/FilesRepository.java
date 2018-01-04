@@ -1,10 +1,9 @@
 package com.assalam.repository;
 
+import com.assalam.domain.Files;
 import com.assalam.domain.Kafil;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 
 
@@ -13,7 +12,6 @@ import org.springframework.data.jpa.repository.*;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface KafilRepository extends JpaRepository<Kafil,Long> {
+public interface FilesRepository extends JpaRepository<Files, Long> {
 
-  Page<Kafil> findByNomContainingOrPrenomContaining(Pageable pageable, String search, String searchValue);
 }

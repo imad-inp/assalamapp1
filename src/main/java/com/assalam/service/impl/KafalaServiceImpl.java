@@ -3,10 +3,12 @@ package com.assalam.service.impl;
 
 
 import com.assalam.service.KafalaService;
+import com.assalam.domain.Files;
 import com.assalam.domain.Kafala;
 import java.time.LocalDate;
 
 import com.assalam.domain.Paiement;
+import com.assalam.repository.FilesRepository;
 import com.assalam.repository.KafalaRepository;
 import com.assalam.repository.PaiementRepository;
 
@@ -33,6 +35,9 @@ public class KafalaServiceImpl implements KafalaService{
     private final KafalaRepository kafalaRepository;
 
     @Autowired
+  private FilesRepository filesRepository;
+
+  @Autowired
     private PaiementRepository paiementRepository;
 
     public KafalaServiceImpl(KafalaRepository kafalaRepository) {
@@ -48,7 +53,13 @@ public class KafalaServiceImpl implements KafalaService{
     @Override
     public Kafala save(Kafala kafala) {
         log.debug("Request to save Kafala : {}", kafala);
-
+    if (kafala.getTmpEngagement() != null) {
+      Files file = new Files();
+      file.setFile(kafala.getTmpEngagement());
+      file.setFileContentType(kafala.getTmpEngagementContentType());
+      Files result = filesRepository.save(file);
+      kafala.setEngagementRef(result.getId());
+    }
         return kafalaRepository.save(kafala);
 
     }
@@ -98,10 +109,18 @@ public class KafalaServiceImpl implements KafalaService{
    * @return
    */
   private boolean isLate(Kafala kafala) {
-    LocalDate startDate = kafala.getDatedebut();
+    boolean isLate = false;
+    if (kafala.getStartDate() != null) {
+      LocalDate startDate = LocalDate.parse(kafala.getStartDate());
+
     long monthDiff = LocalDate.now().getMonthValue() - startDate.getMonthValue();
+
     long yearDiff = (LocalDate.now().getYear() - startDate.getYear());
-    return monthDiff + (yearDiff * 12) + 1 > kafala.getMoispayes();
+      isLate = monthDiff + (yearDiff * 12) + 1 > kafala.getMoispayes();
+
+    }
+    return isLate;
+
   }
 
     /**
@@ -150,5 +169,23 @@ public class KafalaServiceImpl implements KafalaService{
   @Override
   public List<Kafala> findByState(String state) {
     return kafalaRepository.findByState(state);
+  }
+
+  @Override
+  public List<Kafala> findByStartYear(String searchValue) {
+
+    return kafalaRepository.findByStartDateContaining(searchValue);
+  }
+
+  @Override
+  public List<Kafala> findByStartYearAndState(String datedebut, String state) {
+
+    return kafalaRepository.findByStartDateContainingAndState(datedebut, state);
+  }
+
+  @Override
+  public List<Kafala> findByEndYearAndState(String datefin, String state) {
+
+    return kafalaRepository.findByEndDateContainingAndState(datefin, state);
   }
 }

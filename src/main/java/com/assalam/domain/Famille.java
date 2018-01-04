@@ -1,6 +1,7 @@
 package com.assalam.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
@@ -34,6 +35,150 @@ public class Famille implements Serializable {
     @Column(name = "cin_mere")
     private String cinMere;
 
+  public byte[] getTmpCertifMariage() {
+    return tmpCertifMariage;
+  }
+
+  public void setTmpCertifMariage(byte[] tmpCertifMariage) {
+    this.tmpCertifMariage = tmpCertifMariage;
+  }
+
+  public String getTmpCertifMariageContentType() {
+    return tmpCertifMariageContentType;
+  }
+
+  public void setTmpCertifMariageContentType(String tmpCertifMariageContentType) {
+    this.tmpCertifMariageContentType = tmpCertifMariageContentType;
+  }
+
+  public String getCertifMariageRef() {
+    return certifMariageRef;
+  }
+
+  public void setCertifMariageRef(String certifMariageRef) {
+    this.certifMariageRef = certifMariageRef;
+  }
+
+  public byte[] getTmpCertifDeces() {
+    return tmpCertifDeces;
+  }
+
+  public void setTmpCertifDeces(byte[] tmpCertifDeces) {
+    this.tmpCertifDeces = tmpCertifDeces;
+  }
+
+  public String getTmpCertifDecesContentType() {
+    return tmpCertifDecesContentType;
+  }
+
+  public void setTmpCertifDecesContentType(String tmpCertifDecesContentType) {
+    this.tmpCertifDecesContentType = tmpCertifDecesContentType;
+  }
+
+  public String getCertifDecesRef() {
+    return certifDecesRef;
+  }
+
+  public void setCertifDecesRef(String certifDecesRef) {
+    this.certifDecesRef = certifDecesRef;
+  }
+
+  public byte[] getTmpCertifDivorce() {
+    return tmpCertifDivorce;
+  }
+
+  public void setTmpCertifDivorce(byte[] tmpCertifDivorce) {
+    this.tmpCertifDivorce = tmpCertifDivorce;
+  }
+
+  public String getTmpCertifDivorceContentType() {
+    return tmpCertifDivorceContentType;
+  }
+
+  public void setTmpCertifDivorceContentType(String tmpCertifDivorceContentType) {
+    this.tmpCertifDivorceContentType = tmpCertifDivorceContentType;
+  }
+
+  public String getCertifDivorceRef() {
+    return certifDivorceRef;
+  }
+
+  public void setCertifDivorceRef(String certifDivorceRef) {
+    this.certifDivorceRef = certifDivorceRef;
+  }
+
+  public byte[] getTmpcinMereCopie() {
+    return tmpcinMereCopie;
+  }
+
+  public void setTmpcinMereCopie(byte[] tmpcinMereCopie) {
+    this.tmpcinMereCopie = tmpcinMereCopie;
+  }
+
+  public String getTmpcinMereCopieContentType() {
+    return tmpcinMereCopieContentType;
+  }
+
+  public void setTmpcinMereCopieContentType(String tmpcinMereCopieContentType) {
+    this.tmpcinMereCopieContentType = tmpcinMereCopieContentType;
+  }
+
+  public String getCinMereCopieRef() {
+    return cinMereCopieRef;
+  }
+
+  public void setCinMereCopieRef(String cinMereCopieRef) {
+    this.cinMereCopieRef = cinMereCopieRef;
+  }
+
+  public byte[] getTmpcinPereCopie() {
+    return tmpcinPereCopie;
+  }
+
+  public void setTmpcinPereCopie(byte[] tmpcinPereCopie) {
+    this.tmpcinPereCopie = tmpcinPereCopie;
+  }
+
+  public String getTmpcinPereCopieContentType() {
+    return tmpcinPereCopieContentType;
+  }
+
+  public void setTmpcinPereCopieContentType(String tmpcinPereCopieContentType) {
+    this.tmpcinPereCopieContentType = tmpcinPereCopieContentType;
+  }
+
+  public String getCinPereCopieRef() {
+    return cinPereCopieRef;
+  }
+
+  public void setCinPereCopieRef(String cinPereCopieRef) {
+    this.cinPereCopieRef = cinPereCopieRef;
+  }
+
+  public byte[] getTmpRamid() {
+    return tmpRamid;
+  }
+
+  public void setTmpRamid(byte[] tmpRamid) {
+    this.tmpRamid = tmpRamid;
+  }
+
+  public String getTmpRamidContentType() {
+    return tmpRamidContentType;
+  }
+
+  public void setTmpRamidContentType(String tmpRamidContentType) {
+    this.tmpRamidContentType = tmpRamidContentType;
+  }
+
+  public String getRamidRef() {
+    return ramidRef;
+  }
+
+  public void setRamidRef(String ramidRef) {
+    this.ramidRef = ramidRef;
+  }
+
     @Column(name = "cin_pere")
     private String cinPere;
 
@@ -43,120 +188,77 @@ public class Famille implements Serializable {
   @Column(name = "revenu_mensuel")
   private Long revenuMensuel;
 
-  @Lob
-  @Column(name = "certif_mariage")
-  private byte[] certifMariage;
 
-  @Lob
-  @Column(name = "certif_deces_mari")
-  private byte[] certifDecesMari;
 
-  @Lob
-  @Column(name = "certif_divorce")
-  private byte[] certifDivorce;
+  @Transient
+  @JsonProperty
+  private byte[] tmpCertifMariage;
 
-  @Lob
-  @Column(name = "cin_mere_copie")
-  private byte[] cinMereCopie;
+  @Transient
+  @JsonProperty
+  private String tmpCertifMariageContentType;
 
-  @Lob
-  @Column(name = "cin_pere_copie")
-  private byte[] cinPereCopie;
+  @Column(name = "certif_mariage_ref")
+  private String certifMariageRef;
 
-  @Column(name = "cin_pere_copie_content_type")
-  private String cinPereCopieContentType;
+  @Transient
+  @JsonProperty
+  private byte[] tmpCertifDeces;
 
-  @Column(name = "cin_mere_copie_content_type")
-  private String cinMereCopieContentType;
+  @Transient
+  @JsonProperty
+  private String tmpCertifDecesContentType;
 
-  @Column(name = "certif_divorce_content_type")
-  private String certifDivorceContentType;
+  @Column(name = "certif_deces_ref")
+  private String certifDecesRef;
 
-  @Column(name = "certif_deces_mari_content_type")
-  private String certifDecesMariContentType;
+  @Transient
+  @JsonProperty
+  private byte[] tmpCertifDivorce;
 
-  @Column(name = "certif_mariage_content_type")
-  private String certifMariageContentType;
+  @Transient
+  @JsonProperty
+  private String tmpCertifDivorceContentType;
 
-  public byte[] getCertifMariage() {
-    return certifMariage;
-  }
+  @Column(name = "certif_divorce_ref")
+  private String certifDivorceRef;
 
-  public void setCertifMariage(byte[] certifMariage) {
-    this.certifMariage = certifMariage;
-  }
+  @Transient
+  @JsonProperty
+  private byte[] tmpcinMereCopie;
 
-  public byte[] getCertifDecesMari() {
-    return certifDecesMari;
-  }
+  @Transient
+  @JsonProperty
+  private String tmpcinMereCopieContentType;
 
-  public void setCertifDecesMari(byte[] certifDecesMari) {
-    this.certifDecesMari = certifDecesMari;
-  }
+  @Column(name = "cin_mere_copie_ref")
+  private String cinMereCopieRef;
 
-  public byte[] getCertifDivorce() {
-    return certifDivorce;
-  }
+  @Transient
+  @JsonProperty
+  private byte[] tmpcinPereCopie;
 
-  public void setCertifDivorce(byte[] certifDivorce) {
-    this.certifDivorce = certifDivorce;
-  }
+  @Transient
+  @JsonProperty
+  private String tmpcinPereCopieContentType;
 
-  public byte[] getCinMereCopie() {
-    return cinMereCopie;
-  }
+  @Column(name = "cin_pere_copie_ref")
+  private String cinPereCopieRef;
 
-  public void setCinMereCopie(byte[] cinMereCopie) {
-    this.cinMereCopie = cinMereCopie;
-  }
 
-  public byte[] getCinPereCopie() {
-    return cinPereCopie;
-  }
+  @Transient
+  @JsonProperty
+  private byte[] tmpRamid;
 
-  public void setCinPereCopie(byte[] cinPereCopie) {
-    this.cinPereCopie = cinPereCopie;
-  }
+  @Transient
+  @JsonProperty
+  private String tmpRamidContentType;
 
-  public String getCinPereCopieContentType() {
-    return cinPereCopieContentType;
-  }
+  @Column(name = "ramid_ref")
+  private String ramidRef;
 
-  public void setCinPereCopieContentType(String cinPereCopieContentType) {
-    this.cinPereCopieContentType = cinPereCopieContentType;
-  }
 
-  public String getCinMereCopieContentType() {
-    return cinMereCopieContentType;
-  }
 
-  public void setCinMereCopieContentType(String cinMereCopieContentType) {
-    this.cinMereCopieContentType = cinMereCopieContentType;
-  }
-
-  public String getCertifDivorceContentType() {
-    return certifDivorceContentType;
-  }
-
-  public void setCertifDivorceContentType(String certifDivorceContentType) {
-    this.certifDivorceContentType = certifDivorceContentType;
-  }
-
-  public String getCertifDecesMariContentType() {
-    return certifDecesMariContentType;
-  }
-
-  public void setCertifDecesMariContentType(String certifDecesMariContentType) {
-    this.certifDecesMariContentType = certifDecesMariContentType;
-  }
-
-  public String getCertifMariageContentType() {
-    return certifMariageContentType;
-  }
-
-  public void setCertifMariageContentType(String certifMariageContentType) {
-    this.certifMariageContentType = certifMariageContentType;
-  }
 
   public Long getRevenuMensuel() {
     return revenuMensuel;

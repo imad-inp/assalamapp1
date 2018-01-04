@@ -33,10 +33,27 @@
             <label class="control-label" data-translate="assalamApp.paiement.type" for="field_type">Type</label>
             <select required class="form-control" name="type" ng-model="vm.paiement.type" id="field_type">
                 <option value="CASH" data-translate="assalamApp.PaiementType.CASH">CASH</option>
+                 <option value="CASH_BANK" data-translate="assalamApp.PaiementType.CASH_BANK">CASH</option>
                 <option value="VIREMENT" data-translate="assalamApp.PaiementType.VIREMENT">VIREMENT</option>
                 <option value="CHEQUE" data-translate="assalamApp.PaiementType.CHEQUE">CHEQUE</option>
                 <option value="CB" data-translate="assalamApp.PaiementType.CB">CB</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.paiement.proofNum" for="field_commentaires">recu</label>
+            <input type="text" class="form-control" name="commentaires" id="field_commentaires"
+                    ng-model="vm.paiement.numRecu"
+                    />
+        </div>
+         <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.paiement.proof"  for="field_statut">proof</label>
+            <button type="button" ngf-select class="btn btn-default btn-block"
+                    ngf-change="vm.setProof($file, vm.paiement)" accept="*" data-translate="entity.action.addfile">
+                Add engagement
+            </button>
+             <a  ng-if="vm.kafala.engagement" ng-click="vm.openFile( vm.kafala.engagement, vm.kafala.engagementContentType)" target="_blank">
+                 <i class="fa fa-file" ></i> 
+             </a>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.paiement.commentaires" for="field_commentaires">Commentaires</label>

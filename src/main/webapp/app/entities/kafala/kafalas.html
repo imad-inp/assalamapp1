@@ -1,16 +1,28 @@
 <div>
+     <div class="printButton" print-remove>
+    <button  ng-click="vm.print()" class="btn btn-primary " id= "print"   >
+                    <div class="icon-big icon-warning text-center">
+                                          <i class="fa fa-print" aria-hidden="true"></i>
+                                        </div>                
+                </button>
+    </div>
     <h2 data-translate="assalamApp.kafala.home.title">Kafalas</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
-          <!--  <div class=" no-padding-left">
-                <button class="btn btn-primary" ui-sref="kafala.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="assalamApp.kafala.home.createLabel">
-                        Create new Kafala
-                    </span>
-                </button>
-            </div>-->
+            <div   class="col-xs-3">
+             </div>
+            <div ng-show = "vm.isStateEnCours" class ="col-xs-4">
+         <h4 data-translate="assalamApp.kafala.startYear">Choix de l'année de debut</h4>
+          <input ng-model="vm.search.startDate" >
+          </input>
+            </div>
+             
+            <div  ng-show = "vm.isStateAchevee" class="col-xs-4">
+        <h4 data-translate="assalamApp.kafala.endYear">Choix de l'année de fin</h4>
+          <input ng-model="vm.search.endDate" >
+        </input>
+            </div>
         </div>
     </div>
     <br/>
@@ -18,11 +30,13 @@
         <table class="jh-table table table-striped table-bordered">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th ><span data-translate="global.field.id">ID</span></span></th>
-                    <th ><span data-translate="assalamApp.kafala.montant">Montant</span></span></th>
-                    <th ><span data-translate="assalamApp.kafala.datedebut">Datedebut</span></span></th>
+                   
                     <th jh-sort-by="enfant.id"><span data-translate="assalamApp.kafala.enfant">Enfant</span></span></th>
                     <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.kafil">Kafil</span></span></th>
+                    <th ><span data-translate="assalamApp.kafala.montant">Montant</span></span></th>
+                    <th ><span data-translate="assalamApp.kafala.datedebut">Datedebut</span></span></th>
+                    <th ><span data-translate="assalamApp.kafala.datefin">Datedebut</span></span></th>
+              
                      <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.state.name">Kafala State</span></span></th>
                     <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.moispayes">Mois Retard</span></span></th>
                     <th><span data-translate="assalamApp.kafala.engagement">Engagemnt</span></span></th>
@@ -32,22 +46,25 @@
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                <tr ng-repeat="kafala in vm.kafalas | filter: { kafil:{id: vm.filter_kafilId}} track by kafala.id" ng-class="{PAIEMENT_LATE: kafala.isLate === true}">
-                    <td><a ui-sref="kafala-detail({id:kafala.id})">{{kafala.id}}</a></td>
-                    <td>{{kafala.montant}}</td>
-                    <td>{{kafala.datedebut| date:'mediumDate'}}</td>
-                    <td>
+                <tr ng-repeat="kafala in vm.kafalas |  filter:vm.search" ng-class="{PAIEMENT_LATE: kafala.isLate === true}">
+                  
+                    
+                     <td>
                         <a ui-sref="enfant-detail({id:kafala.enfant.id})">{{kafala.enfant.nom}} {{kafala.enfant.prenom}}</a>
                     </td>
                     
                     <td>
                         <a ui-sref="kafil-detail({id:kafala.kafil.id})">{{kafala.kafil.nom}} {{kafala.kafil.prenom}}</a>
                     </td>
+                    <td>{{kafala.montant}}</td>
+                    <td>{{kafala.startDate| date:'mediumDate'}}</td>
+                    <td>{{kafala.endDate| date:'mediumDate'}}</td>
+                   
                     <td data-translate="{{'assalamApp.kafala.state.' + kafala.state}}"></td>
 
                      <td ><span data-translate="{{'assalamApp.kafala.' + kafala.statut}}"></span>&nbsp{{kafala.moisretard}}&nbsp<span data-translate="assalamApp.kafala.mois"></span></td>
                     <td >
-                        <a  ng-if="kafala.engagement" ng-click="vm.openFile( kafala.engagement, kafala.engagementContentType)"   target="_blank">
+                        <a  ng-if="kafala.engagement" ng-click="vm.openFile( kafala)"   target="_blank">
                             <i class="fa fa-file" aria-hidden="true"></i>
                         </a>
                     <td>

@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.assalam.domain.Demandeadhesion;
+import com.assalam.domain.Files;
 import com.assalam.domain.Kafala;
 import com.assalam.service.PaiementService;
 import com.assalam.service.util.PDFUtil;
 import com.assalam.domain.Paiement;
 import com.assalam.domain.enumeration.Statut;
+import com.assalam.repository.FilesRepository;
 import com.assalam.repository.KafalaRepository;
 import com.assalam.repository.PaiementRepository;
 import com.itextpdf.text.BaseColor;
@@ -54,6 +56,9 @@ public class PaiementServiceImpl implements PaiementService {
   @Autowired
   private KafalaRepository kafalaRepository;
 
+  @Autowired
+  private FilesRepository filesRepository;
+
   public PaiementServiceImpl(PaiementRepository paiementRepository) {
     this.paiementRepository = paiementRepository;
   }
@@ -69,6 +74,13 @@ public class PaiementServiceImpl implements PaiementService {
   public Paiement save(Paiement paiement, boolean isSaving) {
 
     log.debug("Request to save Paiement : {}", paiement);
+    if (paiement.getTmpEvidence() != null) {
+      Files file = new Files();
+      file.setFile(paiement.getTmpEvidence());
+      file.setFileContentType(paiement.getTmpEvidenceContentType());
+      Files result = filesRepository.save(file);
+      paiement.setEvidenceRef(result.getId());
+    }
     Long moisPayesToRemove = 0L;
     // if we're in update mode, get the paid months of the previous payment.
     if (isSaving) {

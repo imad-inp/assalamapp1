@@ -35,4 +35,10 @@ public class EnfantRepositoryCustomImpl implements EnfantRepositoryCustom {
     return null;
   }
 
+  @Override
+  public List<Enfant> findAllReduced() {
+    Query query = entityManager.createQuery("SELECT enfant.nom, enfant.prenom FROM Enfant as enfant ");
+
+    return query.getResultList();
+  }
 }

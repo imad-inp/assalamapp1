@@ -17,6 +17,13 @@
         vm.save = save;
         vm.kafalas = Kafala.query();
 
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
+
+         vm.kafilStartDate = new Date(vm.kafil.dateDebut);
+         
+         vm.kafilEndDate = vm.kafil.dateFin === null ? null : new Date(vm.kafil.dateFin);
+
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
@@ -27,6 +34,8 @@
 
         function save () {
             vm.isSaving = true;
+            vm.kafil.dateDebut = vm.kafilStartDate.toISOString().split('T')[0];
+            vm.kafil.dateFin = vm.kafilEndDate === null ? null: vm.kafilEndDate.toISOString().split('T')[0];
             if (vm.kafil.id !== null) {
                 Kafil.update(vm.kafil, onSaveSuccess, onSaveError);
             } else {
@@ -42,6 +51,9 @@
 
         function onSaveError () {
             vm.isSaving = false;
+        }
+         function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
         }
 
 

@@ -18,7 +18,10 @@
 
 
         vm.kafala = entity;
-        console.log(vm.kafala);
+        vm.kafalaStartDate = new Date(vm.kafala.startDate);
+        vm.kafalaEndDate = vm.kafala.enDate === null ? null : new Date(vm.kafala.endDate);
+
+       
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
@@ -38,6 +41,8 @@
 
         function save () {
             vm.isSaving = true;
+            vm.kafala.startDate = vm.kafalaStartDate.toISOString().split('T')[0];
+            vm.kafala.endDate = vm.kafalaEndDate === null ? null: vm.kafalaEndDate.toISOString().split('T')[0];
             if (vm.kafala.id !== null) {
                 Kafala.update(vm.kafala, onSaveSuccess, onSaveError);
             } else {
@@ -64,8 +69,8 @@
               if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        kafala.engagement = base64Data;
-                        kafala.engagementContentType = $file.type;
+                       vm.kafala.tmpEngagement = base64Data;
+                        vm.kafala.tmpEngagementContentType = $file.type;
                     });
                 });
             }

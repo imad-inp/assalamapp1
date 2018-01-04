@@ -26,6 +26,7 @@
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
                     copy.date = DateUtils.convertLocalDateToServer(copy.date);
+                    console.log(angular.toJson(copy));
                     return angular.toJson(copy);
                 }
             },

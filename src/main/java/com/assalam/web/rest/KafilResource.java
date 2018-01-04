@@ -96,6 +96,32 @@ public class KafilResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+  /**
+   * GET /kafils : get all the kafils.
+   * 
+   * @param pageable
+   *          the pagination information
+   * @return the ResponseEntity with status 200 (OK) and the list of kafils in body
+   */
+  @GetMapping("/kafils/search")
+  @Timed
+  public ResponseEntity<List<Kafil>> searchKafils(@ApiParam Pageable pageable,
+      @RequestParam(name = "searchType", required = false) String searchType,
+      @RequestParam(name = "searchValue", required = false) String searchValue) {
+    log.debug("REST request to search Kafils");
+    Page<Kafil> page = null;
+    if (searchType != null && searchType.equalsIgnoreCase("name")) {
+      page = kafilService.findByLastName(pageable, searchValue);
+
+    }
+    else {
+      page = kafilService.findAll(pageable);
+    }
+
+    HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/kafils");
+    return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+  }
+
     /**
      * GET  /kafils/:id : get the "id" kafil.
      *

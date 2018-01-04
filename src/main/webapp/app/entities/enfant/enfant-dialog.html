@@ -25,7 +25,7 @@
             <label class="control-label" data-translate="assalamApp.enfant.dateDeNaissance" for="field_datedebut">Date de naissance</label>
           
                 <div class="input-group" >
-                    <input id="field_datedenaissance" type="text" class="form-control" name="datedenaissance" uib-datepicker-popup="{{dateformat}}" ng-model="vm.enfant.dateDeNaissance" is-open="vm.datePickerOpenStatus.datedenaissance" 
+                    <input id="field_datedenaissance" type="text" class="form-control" name="datedenaissance" uib-datepicker-popup="{{dateformat}}" ng-model="vm.birthDay" is-open="vm.datePickerOpenStatus.datedenaissance" 
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datedenaissance')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -38,6 +38,7 @@
                 <option value="OUVERTE" data-translate="assalamApp.enfant.statut.OUVERTE">OUVERTE</option>
                   <option value="ATTENTE" data-translate="assalamApp.enfant.statut.ATTENTE">ATTENTE</option>
                 <option value="EN_COURS" data-translate="assalamApp.enfant.statut.EN_COURS">Beneficiaire</option>
+                <option value="URGENT" data-translate="assalamApp.enfant.statut.URGENT">URGENT</option>
                 <option value="REFUSEE" data-translate="assalamApp.enfant.statut.REFUSEE">REFUSEE</option>             
                  <option value="ACHEVEE" data-translate="assalamApp.enfant.statut.ACHEVEE">ACHEVEE</option>
                    <option value="ARRETEE" data-translate="assalamApp.enfant.statut.ARRETEE">ARRETEE</option>

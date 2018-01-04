@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import com.assalam.domain.enumeration.PaiementType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * A Paiement.
@@ -36,6 +37,52 @@ public class Paiement implements Serializable {
 
     @Column(name = "commentaires")
     private String commentaires;
+
+  @Column(name = "num_recu")
+  private String numRecu;
+
+  public String getNumRecu() {
+    return numRecu;
+  }
+
+  public void setNumRecu(String numRecu) {
+    this.numRecu = numRecu;
+  }
+
+  @Column(name = "evidence_ref")
+  private Long evidenceRef;
+
+  public Long getEvidenceRef() {
+    return evidenceRef;
+  }
+
+  public void setEvidenceRef(Long long1) {
+    this.evidenceRef = long1;
+  }
+
+  public byte[] getTmpEvidence() {
+    return tmpEvidence;
+  }
+
+  public void setTmpEvidence(byte[] tmpEvidence) {
+    this.tmpEvidence = tmpEvidence;
+  }
+
+  public String getTmpEvidenceContentType() {
+    return tmpEvidenceContentType;
+  }
+
+  public void setTmpEvidenceContentType(String tmpEvidenceContentType) {
+    this.tmpEvidenceContentType = tmpEvidenceContentType;
+  }
+
+  @Transient
+  @JsonProperty
+  private byte[] tmpEvidence;
+
+  @Transient
+  @JsonProperty
+  private String tmpEvidenceContentType;
 
     @ManyToOne
     private Kafala kafala;

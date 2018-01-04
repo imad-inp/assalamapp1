@@ -19,6 +19,29 @@
                     ng-model="vm.kafil.nom"
                     />
         </div>
+
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafil.dateDebut" for="field_datefin">Datedebut</label>
+                <div class="input-group">
+                    <input id="field_datedebut" type="text" class="form-control" name="datedebut" uib-datepicker-popup="{{dateformat}}" ng-model="vm.kafilStartDate"
+                     is-open="vm.datePickerOpenStatus.datedebut" required
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datedebut')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafil.dateFin" for="field_datefin">Datefin</label>
+                <div class="input-group">
+                    <input id="field_datefin" type="text" class="form-control" name="datefin" uib-datepicker-popup="{{dateformat}}" ng-model="vm.kafilEndDate" 
+                    is-open="vm.datePickerOpenStatus.datefin" 
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datefin')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.kafil.prenom" for="field_prenom">Prenom</label>
             <input type="text" class="form-control" name="prenom" id="field_prenom"
@@ -48,22 +71,7 @@
                     ng-model="vm.kafil.commentaires"
                     />
         </div>
-        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.kafil)" ngf-pattern="'image/*'">
-            <label class="control-label" data-translate="assalamApp.kafil.photo" for="field_photo">Photo</label>
-            <div>
-                <img data-ng-src="{{'data:' + vm.kafil.photoContentType + ';base64,' + vm.kafil.photo}}" style="max-height: 100px;" ng-if="vm.kafil.photo" alt="kafil image"/>
-                <div ng-if="vm.kafil.photo" class="help-block clearfix">
-                    <span class="pull-left">{{vm.kafil.photoContentType}}, {{vm.byteSize(vm.kafil.photo)}}</span>
-                    <button type="button" ng-click="vm.kafil.photo=null;vm.kafil.photoContentType=null;"
-                            class="btn btn-default btn-xs pull-right">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </div>
-                <button type="button" ngf-select class="btn btn-default btn-block"
-                        ngf-change="vm.setPhoto($file, vm.kafil)" accept="image/*" data-translate="entity.action.addimage">
-                    Add image
-                </button>
-            </div>
+       
             <input type="hidden" class="form-control" name="photo" id="field_photo"
                     ng-model="vm.kafil.photo"
                     />

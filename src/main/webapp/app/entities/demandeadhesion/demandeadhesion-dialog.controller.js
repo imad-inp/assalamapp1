@@ -61,8 +61,8 @@
               if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        demandeadhesion.demande = base64Data;
-                        demandeadhesion.demandeContentType = $file.type;
+                        demandeadhesion.tmpDemande = base64Data;
+                        demandeadhesion.tmpDemandeContentType = $file.type;
                     });
                 });
             }

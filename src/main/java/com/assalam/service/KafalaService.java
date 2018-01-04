@@ -56,4 +56,14 @@ public interface KafalaService {
   List<Kafala> findLateKafalas();
 
   List<Kafala> findByState(String searchValue);
+
+  List<Kafala> findByStartYear(String searchValue);
+
+
+
+
+
+  List<Kafala> findByStartYearAndState(String datedebut, String state);
+
+  List<Kafala> findByEndYearAndState(String datefin, String state);
 }

@@ -22,10 +22,20 @@
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.kafala.datedebut" for="field_datedebut">Datedebut</label>
                 <div class="input-group">
-                    <input id="field_datedebut" type="text" class="form-control" name="datedebut" uib-datepicker-popup="{{dateformat}}" ng-model="vm.kafala.datedebut" is-open="vm.datePickerOpenStatus.datedebut" required
+                    <input id="field_datedebut" type="text" class="form-control" name="datedebut" uib-datepicker-popup="{{dateformat}}" ng-model="vm.kafalaStartDate" is-open="vm.datePickerOpenStatus.datedebut" required
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datedebut')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.kafala.datefin" for="field_datefin">Datedebut</label>
+                <div class="input-group">
+                    <input id="field_datefin" type="text" class="form-control" name="datefin" uib-datepicker-popup="{{dateformat}}" ng-model="vm.kafalaEndDate" is-open="vm.datePickerOpenStatus.datefin" 
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datefin')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
         </div>

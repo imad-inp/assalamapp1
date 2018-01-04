@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('PaiementDialogController', PaiementDialogController);
 
-    PaiementDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Paiement', 'Kafala'];
+    PaiementDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Paiement', 'Kafala', 'DataUtils'];
 
-    function PaiementDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Paiement, Kafala) {
+    function PaiementDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Paiement, Kafala, DataUtils) {
         var vm = this;
 
         vm.paiement = entity;
@@ -28,6 +28,7 @@
         function save () {
             vm.isSaving = true;
             if (vm.paiement.id !== null) {
+                
                 Paiement.update(vm.paiement, onSaveSuccess, onSaveError);
             } else {
                 Paiement.save(vm.paiement, onSaveSuccess, onSaveError);
@@ -43,6 +44,24 @@
         function onSaveError () {
             vm.isSaving = false;
         }
+
+         vm.setProof = function ($file, paiement) {
+             
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+              if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                    
+                       vm.paiement.tmpEvidence = base64Data;
+                        vm.paiement.tmpEvidenceContentType = $file.type;
+
+                          
+                    });
+                });
+            }
+        };
 
         vm.datePickerOpenStatus.date = false;
 

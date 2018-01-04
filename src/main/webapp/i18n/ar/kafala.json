@@ -24,6 +24,7 @@
             },
             "montant": "المبلغ",
             "datedebut": "تاريخ البدأ",
+            "datefin": "تاريخ الانتهاء",
             "paiements": "الدفعات",
             "enfant": "الطفل",
             "famille": "العائلة",
@@ -34,7 +35,9 @@
             "en avance": "متقدم ب",
             "mois": "شهر",
             "addPayment": "اضافة دفعة",
-            "engagement": "التزام الكفيل"
+            "engagement": "التزام الكفيل",
+            "startYear":"سنة البدء",
+            "endYear":"سنة الانتهاء"
             
            
         }

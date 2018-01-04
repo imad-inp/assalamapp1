@@ -1,4 +1,4 @@
-	package com.assalam.domain;
+package com.assalam.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,31 +16,44 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "enfant")
+@NamedQuery(name = "Enfant.findAll",
+    query = "select u.nom, u.prenom from Enfant u")
 public class Enfant implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(name = "nom")
-    private String nom;
+  @Column(name = "nom")
+  private String nom;
 
-    @Column(name = "prenom")
-    private String prenom;
+  @Column(name = "prenom")
+  private String prenom;
 
-    @Column(name = "date_de_naissance")
-    private LocalDate dateDeNaissance;
+  @Column(name = "photo_ref")
+  private Long photoRef;
 
-    @Column(name = "adresse")
-    private String adresse;
+  public Long getPhotoRef() {
+    return photoRef;
+  }
 
-    @Column(name = "tel")
-    private String tel;
+  public void setPhotoRef(Long photoRef) {
+    this.photoRef = photoRef;
+  }
 
-    @Column(name = "kafala_state")
-    private String kafalaState;
+  @Column(name = "date_de_naissance")
+  private LocalDate dateDeNaissance;
+
+  @Column(name = "adresse")
+  private String adresse;
+
+  @Column(name = "tel")
+  private String tel;
+
+  @Column(name = "kafala_state")
+  private String kafalaState;
 
   @Lob
   @Column(name = "certif_naissance")
@@ -48,7 +61,6 @@ public class Enfant implements Serializable {
 
   @Column(name = "certif_naissance_content_type")
   private String certifNaissanceContentType;
-
 
   public byte[] getCertifNaissance() {
     return certifNaissance;
@@ -66,250 +78,274 @@ public class Enfant implements Serializable {
     this.certifNaissanceContentType = certifNaissanceContentType;
   }
 
-    @Lob
-    @Column(name = "photo")
-    private byte[] photo;
+  @Lob
+  @Column(name = "photo")
+  private byte[] photo;
 
-    @Column(name = "photo_content_type")
-    private String photoContentType;
+  @Column(name = "photo_content_type")
+  private String photoContentType;
 
-    @Transient
-    @JsonProperty
-    private String fullName;
+  @Transient
+  @JsonProperty
+  private String fullName;
 
-    @Column(name = "commentaires")
-    private String commentaires;
+  @Transient
+  @JsonProperty
+  private byte[] tmpPhoto;
 
-    @OneToMany(mappedBy = "enfant")
-    @JsonIgnore
-    private Set<Kafala> kafalats = new HashSet<>();
+  @Transient
+  @JsonProperty
+  private String tmpPhotoContentType;
 
-    @OneToMany(mappedBy = "enfant")
-    @JsonIgnore
-    private Set<Resultatsscolaires> resultats = new HashSet<>();
+  public String getTmpPhotoContentType() {
+    return tmpPhotoContentType;
+  }
 
-    @ManyToOne
-    private Famille famille;
+  public void setTmpPhotoContentType(String tmpPhotoContentType) {
+    this.tmpPhotoContentType = tmpPhotoContentType;
+  }
 
-    public Long getId() {
-        return id;
+  public byte[] getTmpPhoto() {
+    return tmpPhoto;
+  }
+
+  public void setTmpPhoto(byte[] tmpPhoto) {
+    this.tmpPhoto = tmpPhoto;
+  }
+
+  @Column(name = "commentaires")
+  private String commentaires;
+
+  @OneToMany(mappedBy = "enfant")
+  @JsonIgnore
+  private Set<Kafala> kafalats = new HashSet<>();
+
+  @OneToMany(mappedBy = "enfant")
+  @JsonIgnore
+  private Set<Resultatsscolaires> resultats = new HashSet<>();
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Famille famille;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getNom() {
+    return nom;
+  }
+
+  public Enfant nom(String nom) {
+    this.nom = nom;
+    return this;
+  }
+
+  public void setNom(String nom) {
+    this.nom = nom;
+  }
+
+  public String getPrenom() {
+    return prenom;
+  }
+
+  public Enfant prenom(String prenom) {
+    this.prenom = prenom;
+    return this;
+  }
+
+  public void setPrenom(String prenom) {
+    this.prenom = prenom;
+  }
+
+  public LocalDate getDateDeNaissance() {
+    return dateDeNaissance;
+  }
+
+  public Enfant DateDeNaissance(LocalDate dateDeNaissance) {
+    this.dateDeNaissance = dateDeNaissance;
+    return this;
+  }
+
+  public void setDateDeNaissance(LocalDate dateDeNaissance) {
+    this.dateDeNaissance = dateDeNaissance;
+  }
+
+  public String getAdresse() {
+    return adresse;
+  }
+
+  public Enfant adresse(String adresse) {
+    this.adresse = adresse;
+    return this;
+  }
+
+  public void setAdresse(String adresse) {
+    this.adresse = adresse;
+  }
+
+  public String getTel() {
+    return tel;
+  }
+
+  public Enfant tel(String tel) {
+    this.tel = tel;
+    return this;
+  }
+
+  public void setTel(String tel) {
+    this.tel = tel;
+  }
+
+  public byte[] getPhoto() {
+    return photo;
+  }
+
+  public Enfant photo(byte[] photo) {
+    this.photo = photo;
+    return this;
+  }
+
+  public void setPhoto(byte[] photo) {
+    this.photo = photo;
+  }
+
+  public String getPhotoContentType() {
+    return photoContentType;
+  }
+
+  public Enfant photoContentType(String photoContentType) {
+    this.photoContentType = photoContentType;
+    return this;
+  }
+
+  public void setPhotoContentType(String photoContentType) {
+    this.photoContentType = photoContentType;
+  }
+
+  public String getFullName() {
+    return this.nom + " " + this.prenom;
+  }
+
+  public String getCommentaires() {
+    return commentaires;
+  }
+
+  public Enfant commentaires(String commentaires) {
+    this.commentaires = commentaires;
+    return this;
+  }
+
+  public void setCommentaires(String commentaires) {
+    this.commentaires = commentaires;
+  }
+
+  public Set<Kafala> getKafalats() {
+    return kafalats;
+  }
+
+  public Enfant kafalats(Set<Kafala> kafalas) {
+    this.kafalats = kafalas;
+    return this;
+  }
+
+  public Enfant addKafalat(Kafala kafala) {
+    this.kafalats.add(kafala);
+    kafala.setEnfant(this);
+    return this;
+  }
+
+  public Enfant removeKafalat(Kafala kafala) {
+    this.kafalats.remove(kafala);
+    kafala.setEnfant(null);
+    return this;
+  }
+
+  public void setKafalats(Set<Kafala> kafalas) {
+    this.kafalats = kafalas;
+  }
+
+  public Set<Resultatsscolaires> getResultats() {
+    return resultats;
+  }
+
+  public Enfant resultats(Set<Resultatsscolaires> resultatsscolaires) {
+    this.resultats = resultatsscolaires;
+    return this;
+  }
+
+  public Enfant addResultats(Resultatsscolaires resultatsscolaires) {
+    this.resultats.add(resultatsscolaires);
+    resultatsscolaires.setEnfant(this);
+    return this;
+  }
+
+  public Enfant removeResultats(Resultatsscolaires resultatsscolaires) {
+    this.resultats.remove(resultatsscolaires);
+    resultatsscolaires.setEnfant(null);
+    return this;
+  }
+
+  public void setResultats(Set<Resultatsscolaires> resultatsscolaires) {
+    this.resultats = resultatsscolaires;
+  }
+
+  public Famille getFamille() {
+    return famille;
+  }
+
+  public Enfant famille(Famille famille) {
+    this.famille = famille;
+    return this;
+  }
+
+  public void setFamille(Famille famille) {
+    this.famille = famille;
+  }
+
+  public String getKafalaState() {
+    return kafalaState;
+  }
+
+  public void setKafalaState(String kafalaState) {
+    this.kafalaState = kafalaState;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    public void setId(Long id) {
-        this.id = id;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
-
-    public String getNom() {
-        return nom;
+    Enfant enfant = (Enfant)o;
+    if (enfant.getId() == null || getId() == null) {
+      return false;
     }
+    return Objects.equals(getId(), enfant.getId());
+  }
 
-    public Enfant nom(String nom) {
-        this.nom = nom;
-        return this;
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(getId());
+  }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public Enfant prenom(String prenom) {
-        this.prenom = prenom;
-        return this;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public LocalDate getDateDeNaissance() {
-        return dateDeNaissance;
-    }
-
-    public Enfant DateDeNaissance(LocalDate dateDeNaissance) {
-        this.dateDeNaissance = dateDeNaissance;
-        return this;
-    }
-
-    public void setDateDeNaissance(LocalDate dateDeNaissance) {
-        this.dateDeNaissance = dateDeNaissance;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public Enfant adresse(String adresse) {
-        this.adresse = adresse;
-        return this;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public Enfant tel(String tel) {
-        this.tel = tel;
-        return this;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public Enfant photo(byte[] photo) {
-        this.photo = photo;
-        return this;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
-
-    public String getPhotoContentType() {
-        return photoContentType;
-    }
-
-    public Enfant photoContentType(String photoContentType) {
-        this.photoContentType = photoContentType;
-        return this;
-    }
-
-    public void setPhotoContentType(String photoContentType) {
-        this.photoContentType = photoContentType;
-    }
-    public String getFullName() {
-        return this.nom + " " + this.prenom;
-    }
-
-
-    public String getCommentaires() {
-        return commentaires;
-    }
-
-    public Enfant commentaires(String commentaires) {
-        this.commentaires = commentaires;
-        return this;
-    }
-
-    public void setCommentaires(String commentaires) {
-        this.commentaires = commentaires;
-    }
-
-    public Set<Kafala> getKafalats() {
-        return kafalats;
-    }
-
-    public Enfant kafalats(Set<Kafala> kafalas) {
-        this.kafalats = kafalas;
-        return this;
-    }
-
-    public Enfant addKafalat(Kafala kafala) {
-        this.kafalats.add(kafala);
-        kafala.setEnfant(this);
-        return this;
-    }
-
-    public Enfant removeKafalat(Kafala kafala) {
-        this.kafalats.remove(kafala);
-        kafala.setEnfant(null);
-        return this;
-    }
-
-    public void setKafalats(Set<Kafala> kafalas) {
-        this.kafalats = kafalas;
-    }
-
-    public Set<Resultatsscolaires> getResultats() {
-        return resultats;
-    }
-
-    public Enfant resultats(Set<Resultatsscolaires> resultatsscolaires) {
-        this.resultats = resultatsscolaires;
-        return this;
-    }
-
-    public Enfant addResultats(Resultatsscolaires resultatsscolaires) {
-        this.resultats.add(resultatsscolaires);
-        resultatsscolaires.setEnfant(this);
-        return this;
-    }
-
-    public Enfant removeResultats(Resultatsscolaires resultatsscolaires) {
-        this.resultats.remove(resultatsscolaires);
-        resultatsscolaires.setEnfant(null);
-        return this;
-    }
-
-    public void setResultats(Set<Resultatsscolaires> resultatsscolaires) {
-        this.resultats = resultatsscolaires;
-    }
-
-    public Famille getFamille() {
-        return famille;
-    }
-
-    public Enfant famille(Famille famille) {
-        this.famille = famille;
-        return this;
-    }
-
-    public void setFamille(Famille famille) {
-        this.famille = famille;
-    }
-
-    public String getKafalaState() {
-      return kafalaState;
-    }
-
-    public void setKafalaState(String kafalaState) {
-      this.kafalaState = kafalaState;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Enfant enfant = (Enfant) o;
-        if (enfant.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), enfant.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "Enfant{" +
-            "id=" + getId() +
-            ", nom='" + getNom() + "'" +
-            ", prenom='" + getPrenom() + "'" +
-            ", age='" + getDateDeNaissance() + "'" +
-            ", adresse='" + getAdresse() + "'" +
-            ", tel='" + getTel() + "'" +
-            ", photo='" + getPhoto() + "'" +
-            ", photoContentType='" + photoContentType + "'" +
-            ", commentaires='" + getCommentaires() + "'" +
-            "}";
-    }
+  @Override
+  public String toString() {
+    return "Enfant{" +
+        "id=" + getId() +
+        ", nom='" + getNom() + "'" +
+        ", prenom='" + getPrenom() + "'" +
+        ", age='" + getDateDeNaissance() + "'" +
+        ", adresse='" + getAdresse() + "'" +
+        ", tel='" + getTel() + "'" +
+        ", photo='" + getPhoto() + "'" +
+        ", photoContentType='" + photoContentType + "'" +
+        ", commentaires='" + getCommentaires() + "'" +
+        "}";
+  }
 }

@@ -1,7 +1,43 @@
 <div>
+     <div class="printButton" print-remove>
+    <button  ng-click="vm.print()" class="btn btn-primary " id= "print"   >
+                    <div class="icon-big icon-warning text-center">
+                  <i class="fa fa-print" aria-hidden="true"></i>
+                           </div>                
+                </button>
+    </div>
     <h2 data-translate="assalamApp.kafil.home.title">Kafils</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
+          <div class="row" print-remove>
+            <div class="col-xs-2 no-padding-right">
+            </div>
+            <div class="col-xs-6 no-padding-right">
+              
+                 
+             
+                <form name="searchForm" class="form-inline">
+                    
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'global.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search()">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.searchType">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                         <span class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         <div class="row">
             <div class=" no-padding-left">
                 <button class="btn btn-primary" ui-sref="kafil.new" >
@@ -19,30 +55,36 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     
+                    <th ><span data-translate="assalamApp.kafil.fullId">Nom</span></span></th>
                     <th ><span data-translate="assalamApp.kafil.nom">Nom</span></span></th>
                     <th ><span data-translate="assalamApp.kafil.prenom">Prenom</span></span></th>
+                     <th ><span data-translate="assalamApp.kafil.dateDebut">date debut</span></span></th>
+                    <th ><span data-translate="assalamApp.kafil.dateFin">date fin</span></span></th>
+
 
                     <th ><span data-translate="assalamApp.kafil.membre">Membre</span></span></th>
 
 
-                    <th ><span data-translate="assalamApp.kafil.kafalat">Kafalat</span></span></th>
-                    <th></th>
+                    <th print-remove><span data-translate="assalamApp.kafil.kafalat">Kafalat</span></span></th>
+                    <th print-remove></th>
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="kafil in vm.kafils track by kafil.id">
                    
-                      
+                    <td>{{kafil.dateId}}/{{kafil.id}}</td>
                     <td>{{kafil.nom}}</td>
                     <td>{{kafil.prenom}}</td>
-                    
-                    <td><i ng-show = "kafil.membre"  class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    <td>{{kafil.dateDebut}}</td>
+                    <td>{{kafil.dateFin}}</td>
+                    <td ><i ng-show = "kafil.membre"  class="fa fa-thumbs-up" aria-hidden="true"></i>
                     <i ng-hide = "kafil.membre"  class="fa fa-times" aria-hidden="true"></i>
                     </td>
                     
                  
-                    <td><a  ui-sref="kafala({searchType :'kafilId', searchValue:kafil.id})" class="glyphicon glyphicon-file"></a></td>
-                    <td class="text-right">
+                    <td print-remove><a  ui-sref="kafala({searchType:'kafilId', searchValue:kafil.id })" class="glyphicon glyphicon-file"></a></td>
+
+                    <td class="text-right" print-remove>
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="kafil-detail({id:kafil.id})"

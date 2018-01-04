@@ -5,16 +5,22 @@
         .module('assalamApp')
         .controller('EnfantDetailController', EnfantDetailController);
 
-    EnfantDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Enfant', 'Kafala', 'Resultatsscolaires', 'Famille','$window'];
+    EnfantDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Enfant', 'Kafala', 'Resultatsscolaires',
+     'Famille','$window','Files'];
 
-    function EnfantDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Enfant, Kafala, Resultatsscolaires, Famille,$window) {
+    function EnfantDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Enfant, Kafala, Resultatsscolaires,
+     Famille,$window, Files) {
 
         var vm = this;
+        
 		 vm.print = function(){
             $window.print();
            
         }
         vm.enfant = entity;
+        
+        vm.photo = Files.get({id:vm.enfant.photoRef});
+
         vm.previousState = previousState.name;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;

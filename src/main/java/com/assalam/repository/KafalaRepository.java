@@ -22,4 +22,10 @@ public interface KafalaRepository extends JpaRepository<Kafala,Long> {
   Page<Kafala> findByEnfantId(Pageable pageable, Long enfantId);
 
   List<Kafala> findByState(String state);
+
+  List<Kafala> findByStartDateContaining(String searchValue);
+
+  List<Kafala> findByStartDateContainingAndState(String datedebut, String state);
+
+  List<Kafala> findByEndDateContainingAndState(String datefin, String state);
 }
