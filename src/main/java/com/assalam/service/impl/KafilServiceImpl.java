@@ -1,5 +1,7 @@
 package com.assalam.service.impl;
 
+import java.util.List;
+
 import com.assalam.service.KafilService;
 import com.assalam.domain.Kafil;
 import com.assalam.repository.KafilRepository;
@@ -49,6 +51,19 @@ public class KafilServiceImpl implements KafilService{
     public Page<Kafil> findAll(Pageable pageable) {
         log.debug("Request to get all Kafils");
         return kafilRepository.findAll(pageable);
+    }
+
+    /**
+     *  Get all the kafils without paging
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Kafil> findAll() {
+        log.debug("Request to get all Kafils");
+        return kafilRepository.findAll();
     }
 
     /**

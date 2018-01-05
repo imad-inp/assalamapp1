@@ -30,9 +30,17 @@
             Kafil.query({
                 page:  vm.page,
                 size: vm.itemsPerPage,
-                searchType: 'name',
-                searchValue: vm.searchQuery
                 
+                
+            }, onSuccess, onError);
+         
+
+           
+        }
+
+         function loadAllWithoutPaging () {
+            Kafil.query({
+                noPaging: true               
             }, onSuccess, onError);
          
 
@@ -84,14 +92,15 @@
         function reset () {
             vm.page = 0;
             vm.kafils = [];
-            loadAll();
+            loadAll(true);
         }
 
         function loadPage(page) {
             vm.page = page;
-            loadAll();
+            loadAll(true);
         }
         vm.print = function(){
+            loadAllWithoutPaging();
             $window.print();
            
 

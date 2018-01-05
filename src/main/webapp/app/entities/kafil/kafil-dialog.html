@@ -21,10 +21,10 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label" data-translate="assalamApp.kafil.dateDebut" for="field_datefin">Datedebut</label>
+            <label class="control-label" data-translate="assalamApp.kafil.dateDebut" for="field_datedebut">Datedebut</label>
                 <div class="input-group">
                     <input id="field_datedebut" type="text" class="form-control" name="datedebut" uib-datepicker-popup="{{dateformat}}" ng-model="vm.kafilStartDate"
-                     is-open="vm.datePickerOpenStatus.datedebut" required
+                     is-open="vm.datePickerOpenStatus.datedebut" 
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datedebut')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -35,7 +35,7 @@
             <label class="control-label" data-translate="assalamApp.kafil.dateFin" for="field_datefin">Datefin</label>
                 <div class="input-group">
                     <input id="field_datefin" type="text" class="form-control" name="datefin" uib-datepicker-popup="{{dateformat}}" ng-model="vm.kafilEndDate" 
-                    is-open="vm.datePickerOpenStatus.datefin" 
+                    is-open="vm.datePickerOpenStatus.datefin"  
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datefin')"><i class="glyphicon glyphicon-calendar"></i></button>

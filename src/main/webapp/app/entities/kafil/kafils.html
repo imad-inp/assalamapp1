@@ -72,7 +72,7 @@
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="kafil in vm.kafils track by kafil.id">
                    
-                    <td>{{kafil.dateId}}/{{kafil.id}}</td>
+                    <td>{{kafil.fullId}}</td>
                     <td>{{kafil.nom}}</td>
                     <td>{{kafil.prenom}}</td>
                     <td>{{kafil.dateDebut}}</td>

@@ -1,5 +1,7 @@
 package com.assalam.service;
 
+import java.util.List;
+
 import com.assalam.domain.Kafil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,4 +43,6 @@ public interface KafilService {
     void delete(Long id);
 
   Page<Kafil> findByLastName(Pageable pageable, String searchValue);
+
+  List<Kafil> findAll();
 }

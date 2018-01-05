@@ -41,6 +41,9 @@
 
         function save () {
             vm.isSaving = true;
+            vm.kafalaStartDate.setHours(0, -vm.kafalaStartDate.getTimezoneOffset(), 0, 0);
+            if(vm.kafalaEndDate !== null)
+            vm.kafalaEndDate.setHours(0, -vm.kafalaEndDate.getTimezoneOffset(), 0, 0);
             vm.kafala.startDate = vm.kafalaStartDate.toISOString().split('T')[0];
             vm.kafala.endDate = vm.kafalaEndDate === null ? null: vm.kafalaEndDate.toISOString().split('T')[0];
             if (vm.kafala.id !== null) {
