@@ -19,7 +19,7 @@
 
         vm.kafala = entity;
         vm.kafalaStartDate = new Date(vm.kafala.startDate);
-        vm.kafalaEndDate = vm.kafala.enDate === null ? null : new Date(vm.kafala.endDate);
+        vm.kafalaEndDate = vm.kafala.endDate === null ? null : new Date(vm.kafala.endDate);
 
        
         vm.clear = clear;
