@@ -40,14 +40,14 @@
             vm.kafil.dateDebut =  vm.kafilStartDate.toISOString().split('T')[0];
             }
             else{
-
+                 vm.kafil.dateDebut =  vm.kafilStartDate;
             }
             if(vm.kafilEndDate){
             vm.kafilEndDate.setHours(0, -vm.kafilEndDate.getTimezoneOffset(), 0, 0);
             vm.kafil.dateFin =  vm.kafilEndDate.toISOString().split('T')[0];
             }
             else{
-
+                vm.kafil.dateFin =  vm.kafilEndDate;
             }
             
             if (vm.kafil.id !== null) {

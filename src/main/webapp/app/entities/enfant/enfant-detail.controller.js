@@ -13,13 +13,19 @@
 
         var vm = this;
         
+       
 		 vm.print = function(){
             $window.print();
            
         }
         vm.enfant = entity;
-        
-        vm.photo = Files.get({id:vm.enfant.photoRef});
+
+        if(vm.enfant.photoRef){
+        vm.isPictureLoading = true;
+        vm.photo = Files.get({id:vm.enfant.photoRef}, function(data){
+            vm.isPictureLoading = false;
+        });
+        }
 
         vm.previousState = previousState.name;
         vm.byteSize = DataUtils.byteSize;

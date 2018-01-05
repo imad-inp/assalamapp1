@@ -47,7 +47,7 @@ public class EnfantServiceImpl implements EnfantService {
 
   /**
    * Save a enfant.
-   * 
+   *
    * @param enfant
    *          the entity to save
    * @return the persisted entity
@@ -59,6 +59,7 @@ public class EnfantServiceImpl implements EnfantService {
       Files file = new Files();
       file.setFile(enfant.getTmpPhoto());
       file.setFileContentType(enfant.getTmpPhotoContentType());
+      file.setId(enfant.getPhotoRef());
       Files result = filesRepository.save(file);
       enfant.setPhotoRef(result.getId());
     }
@@ -67,7 +68,7 @@ public class EnfantServiceImpl implements EnfantService {
 
   /**
    * Get all the enfants.
-   * 
+   *
    * @param pageable
    *          the pagination information
    * @return the list of entities
@@ -97,7 +98,7 @@ public class EnfantServiceImpl implements EnfantService {
 
   /**
    * Get one enfant by id.
-   * 
+   *
    * @param id
    *          the id of the entity
    * @return the entity
@@ -111,7 +112,7 @@ public class EnfantServiceImpl implements EnfantService {
 
   /**
    * Get Enfants by famille Ids.
-   * 
+   *
    * @param id
    *          the id of the entity
    * @return the entity
@@ -125,7 +126,7 @@ public class EnfantServiceImpl implements EnfantService {
 
   /**
    * Delete the enfant by id.
-   * 
+   *
    * @param id
    *          the id of the entity
    */
