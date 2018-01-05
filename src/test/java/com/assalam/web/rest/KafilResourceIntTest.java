@@ -107,9 +107,8 @@ public class KafilResourceIntTest {
             .adresse(DEFAULT_ADRESSE)
             .tel(DEFAULT_TEL)
             .membre(DEFAULT_MEMBRE)
-            .commentaires(DEFAULT_COMMENTAIRES)
-            .photo(DEFAULT_PHOTO)
-            .photoContentType(DEFAULT_PHOTO_CONTENT_TYPE);
+        .commentaires(DEFAULT_COMMENTAIRES);
+
         return kafil;
     }
 
@@ -139,8 +138,7 @@ public class KafilResourceIntTest {
         assertThat(testKafil.getTel()).isEqualTo(DEFAULT_TEL);
         assertThat(testKafil.isMembre()).isEqualTo(DEFAULT_MEMBRE);
         assertThat(testKafil.getCommentaires()).isEqualTo(DEFAULT_COMMENTAIRES);
-        assertThat(testKafil.getPhoto()).isEqualTo(DEFAULT_PHOTO);
-        assertThat(testKafil.getPhotoContentType()).isEqualTo(DEFAULT_PHOTO_CONTENT_TYPE);
+
     }
 
     @Test
@@ -229,8 +227,7 @@ public class KafilResourceIntTest {
             .tel(UPDATED_TEL)
             .membre(UPDATED_MEMBRE)
             .commentaires(UPDATED_COMMENTAIRES)
-            .photo(UPDATED_PHOTO)
-            .photoContentType(UPDATED_PHOTO_CONTENT_TYPE);
+;
 
         restKafilMockMvc.perform(put("/api/kafils")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -247,8 +244,7 @@ public class KafilResourceIntTest {
         assertThat(testKafil.getTel()).isEqualTo(UPDATED_TEL);
         assertThat(testKafil.isMembre()).isEqualTo(UPDATED_MEMBRE);
         assertThat(testKafil.getCommentaires()).isEqualTo(UPDATED_COMMENTAIRES);
-        assertThat(testKafil.getPhoto()).isEqualTo(UPDATED_PHOTO);
-        assertThat(testKafil.getPhotoContentType()).isEqualTo(UPDATED_PHOTO_CONTENT_TYPE);
+
     }
 
     @Test
