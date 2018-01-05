@@ -20,9 +20,9 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
 
-         vm.kafilStartDate = vm.kafil.dateDebut === null ? '' : new Date(vm.kafil.dateDebut);
+         vm.kafilStartDate = !vm.kafil.dateDebut? '' : new Date(vm.kafil.dateDebut);
          
-         vm.kafilEndDate = vm.kafil.dateFin === null ? '' : new Date(vm.kafil.dateFin);
+         vm.kafilEndDate =  !vm.kafil.dateFin? '' : new Date(vm.kafil.dateFin);
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -34,12 +34,22 @@
 
         function save () {
             vm.isSaving = true;
+         
+            if(vm.kafilStartDate){
             vm.kafilStartDate.setHours(0, -vm.kafilStartDate.getTimezoneOffset(), 0, 0);
-            if(vm.kafilEndDate !== null)
+            vm.kafil.dateDebut =  vm.kafilStartDate.toISOString().split('T')[0];
+            }
+            else{
+
+            }
+            if(vm.kafilEndDate){
             vm.kafilEndDate.setHours(0, -vm.kafilEndDate.getTimezoneOffset(), 0, 0);
-            vm.kafil.dateDebut = vm.kafilStartDate.toISOString().split('T')[0];
-           
-            vm.kafil.dateFin = vm.kafilEndDate === null ? null: vm.kafilEndDate.toISOString().split('T')[0];
+            vm.kafil.dateFin =  vm.kafilEndDate.toISOString().split('T')[0];
+            }
+            else{
+
+            }
+            
             if (vm.kafil.id !== null) {
                 Kafil.update(vm.kafil, onSaveSuccess, onSaveError);
             } else {

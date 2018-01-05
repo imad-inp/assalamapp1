@@ -9,25 +9,19 @@
 
     function KafalaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Kafala, Paiement, Enfant, Famille, Kafil, DataUtils,KafilSearch) {
         var vm = this;
-
-
-
-        
-
-
-
+        vm.searchQuery = '';
 
         vm.kafala = entity;
-        vm.kafalaStartDate = new Date(vm.kafala.startDate);
-        vm.kafalaEndDate = vm.kafala.endDate === null ? null : new Date(vm.kafala.endDate);
+        
+         vm.kafalaStartDate = !vm.kafala.startDate ? '' : new Date(vm.kafala.startDate);
+         
+         vm.kafalaEndDate = !vm.kafala.endDate  ? '' : new Date(vm.kafala.endDate);
 
        
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        
-        vm.enfants = Enfant.query();
         
     
 
@@ -41,11 +35,21 @@
 
         function save () {
             vm.isSaving = true;
-            vm.kafalaStartDate.setHours(0, -vm.kafalaStartDate.getTimezoneOffset(), 0, 0);
-            if(vm.kafalaEndDate !== null)
-            vm.kafalaEndDate.setHours(0, -vm.kafalaEndDate.getTimezoneOffset(), 0, 0);
+          
+            if(vm.kafalaStartDate){
+                 vm.kafalaStartDate.setHours(0, -vm.kafalaStartDate.getTimezoneOffset(), 0, 0);
+                  vm.kafala.startDate = vm.kafalaStartDate.toISOString().split('T')[0];
+            }
+            if(vm.kafalaEndDate){
+                 vm.kafalaEndDate.setHours(0, -vm.kafalaEndDate.getTimezoneOffset(), 0, 0);
+                  vm.kafala.endDate = vm.kafalaEndDate.toISOString().split('T')[0];
+            }
+            else{
+                vm.kafala.endDate = vm.kafalaEndDate;
+            }
+           
             vm.kafala.startDate = vm.kafalaStartDate.toISOString().split('T')[0];
-            vm.kafala.endDate = vm.kafalaEndDate === null ? null: vm.kafalaEndDate.toISOString().split('T')[0];
+      
             if (vm.kafala.id !== null) {
                 Kafala.update(vm.kafala, onSaveSuccess, onSaveError);
             } else {
@@ -57,6 +61,7 @@
             $scope.$emit('assalamApp:kafalaUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
+    
         }
 
         function onSaveError () {
