@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('KafilController', KafilController);
 
-    KafilController.$inject = ['DataUtils', 'Kafil', 'ParseLinks', 'AlertService', 'paginationConstants', 'KafilSearch', '$window'];
+    KafilController.$inject = ['DataUtils', 'Kafil', 'ParseLinks', 'AlertService', 'paginationConstants', 'KafilSearch', '$window','$timeout'];
 
-    function KafilController(DataUtils, Kafil, ParseLinks, AlertService, paginationConstants,KafilSearch, $window) {
+    function KafilController(DataUtils, Kafil, ParseLinks, AlertService, paginationConstants,KafilSearch, $window, $timeout) {
 
         var vm = this;
 
@@ -41,7 +41,17 @@
          function loadAllWithoutPaging () {
             Kafil.query({
                 noPaging: true               
-            }, onSuccess, onError);
+            }, function(data){
+                vm.kafils = [];
+                for (var i = 0; i < data.length; i++) {
+                data[i].dateId =  data[i].dateDebut === null ? '' : data[i].dateDebut.split('-')[0];
+                    vm.kafils.push(data[i]);
+                }
+                 $timeout( function(){
+                      $window.print();
+                     }, 1000 );
+               
+            });
          
 
            
@@ -101,7 +111,7 @@
         }
         vm.print = function(){
             loadAllWithoutPaging();
-            $window.print();
+            
            
 
         }
