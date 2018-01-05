@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('KafalaDialogController', KafalaDialogController);
 
-    KafalaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Kafala', 'Paiement', 'Enfant', 'Famille', 'Kafil', 'DataUtils'];
+    KafalaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Kafala', 'Paiement', 'Enfant', 'Famille', 'Kafil', 'DataUtils', 'KafilSearch'];
 
-    function KafalaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Kafala, Paiement, Enfant, Famille, Kafil, DataUtils) {
+    function KafalaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Kafala, Paiement, Enfant, Famille, Kafil, DataUtils,KafilSearch) {
         var vm = this;
 
 
@@ -29,7 +29,7 @@
         
         vm.enfants = Enfant.query();
         
-        vm.kafils = Kafil.query();
+    
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -62,6 +62,18 @@
         function onSaveError () {
             vm.isSaving = false;
         }
+        
+
+          vm.search = function(){
+             KafilSearch.query({
+                searchValue: vm.searchQuery,
+                searchType: 'name'            
+            }, function(data){
+                vm.kafils = data;
+            });
+            
+        }
+
 
         vm.datePickerOpenStatus.datedebut = false;
 

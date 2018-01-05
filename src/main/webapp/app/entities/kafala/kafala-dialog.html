@@ -66,6 +66,14 @@
        
           <div class="form-group">
             <label data-translate="assalamApp.kafala.kafil" for="field_kafil">Kafil</label>
+            
+             <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'global.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search()">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+       
             <select class="form-control" id="field_kafil" name="kafil" ng-model="vm.kafala.kafil" ng-options="kafil as kafil.fullName for kafil in vm.kafils track by kafil.id">
                 <option value=""></option>
             </select>
