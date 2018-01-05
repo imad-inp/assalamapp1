@@ -39,8 +39,8 @@
               
                      <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.state.name">Kafala State</span></span></th>
                     <th jh-sort-by="kafil.id"><span data-translate="assalamApp.kafala.moispayes">Mois Retard</span></span></th>
-                    <th><span data-translate="assalamApp.kafala.engagement">Engagemnt</span></span></th>
-                    <th><span data-translate="assalamApp.kafala.paiments">Paiements</span></span></th>
+                    <th print-remove><span data-translate="assalamApp.kafala.engagement">Engagemnt</span></span></th>
+                    <th print-remove><span data-translate="assalamApp.kafala.paiments">Paiements</span></span></th>
                     
                     <th></th>
                 </tr>
@@ -63,14 +63,14 @@
                     <td data-translate="{{'assalamApp.kafala.state.' + kafala.state}}"></td>
 
                      <td ><span data-translate="{{'assalamApp.kafala.' + kafala.statut}}"></span>&nbsp{{kafala.moisretard}}&nbsp<span data-translate="assalamApp.kafala.mois"></span></td>
-                    <td >
+                    <td print-remove >
                         <a  ng-if="kafala.engagement" ng-click="vm.openFile( kafala)"   target="_blank">
                             <i class="fa fa-file" aria-hidden="true"></i>
                         </a>
-                    <td>
+                    <td print-remove>
                         <a ui-sref="paiement({kafalaId: kafala.id })"><i class="fa fa-money" aria-hidden="true"></i></a>
                     </td>
-                    <td class="text-right">
+                    <td print-remove class="text-right">
                        
                          <div class="dropdown" uib-dropdown>
                     <button  class=" btn btn-info dropdown-toggle" uib-dropdown-toggle>
