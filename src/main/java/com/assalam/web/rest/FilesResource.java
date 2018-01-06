@@ -102,7 +102,7 @@ public class FilesResource {
     log.debug("REST request to get a page of filess");
     Page<Files> page = filesService.findAll(pageable);
     HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/filess");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    return new ResponseEntity<>(null, null, HttpStatus.OK);
     }
 
     /**
