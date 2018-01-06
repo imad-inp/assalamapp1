@@ -27,7 +27,8 @@
                     "ouverte":"لم تدرس بعد",
                     "encours":"في طور الدراسة",
                     "attente":"لائحة الانتظار",
-                    "archive":"ارشيف"
+                    "archive":"ارشيف",
+                    "beneficiaire":"في طور الاستفادة"
                 }
             },
             "account": {

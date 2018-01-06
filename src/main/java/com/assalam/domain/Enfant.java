@@ -124,7 +124,7 @@ public class Enfant implements Serializable {
   @JsonIgnore
   private Set<Resultatsscolaires> resultats = new HashSet<>();
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne()
   private Famille famille;
 
   public Long getId() {

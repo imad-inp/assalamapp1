@@ -4,5 +4,5 @@ package com.assalam.domain.enumeration;
  * The Statut enumeration.
  */
 public enum Statut {
-  OUVERTE, EN_COURS, REFUSEE, ATTENTE, ARCHIVE
+  OUVERTE, EN_COURS, REFUSEE, ATTENTE, ARCHIVE, BENEFICIAIRE
 }
