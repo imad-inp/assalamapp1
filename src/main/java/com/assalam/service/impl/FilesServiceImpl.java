@@ -1,5 +1,9 @@
 package com.assalam.service.impl;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import com.assalam.service.FilesService;
 import com.assalam.domain.Files;
 import com.assalam.repository.FilesRepository;
@@ -31,16 +35,23 @@ public class FilesServiceImpl implements FilesService {
    * @param files
    *          the entity to save
    * @return the persisted entity
+   * @throws IOException
+   * @throws FileNotFoundException
    */
   @Override
-  public Files save(Files files) {
-    log.debug("Request to save files : {}", files);
-    return filesRepository.save(files);
+  public Files save(Files file, String path) throws IOException {
+    log.debug("Request to save files : {}", file);
+
+    try (FileOutputStream fos = new FileOutputStream("test." + file.getFileContentType())) {
+      fos.write(file.getFile());
+      fos.close();
+    }
+    return filesRepository.save(file);
   }
 
   /**
    * Get all the filess.
-   * 
+   *
    * @param pageable
    *          the pagination information
    * @return the list of entities
@@ -54,7 +65,7 @@ public class FilesServiceImpl implements FilesService {
 
   /**
    * Get one files by id.
-   * 
+   *
    * @param id
    *          the id of the entity
    * @return the entity
@@ -68,7 +79,7 @@ public class FilesServiceImpl implements FilesService {
 
   /**
    * Delete the files by id.
-   * 
+   *
    * @param id
    *          the id of the entity
    */
