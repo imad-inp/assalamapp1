@@ -126,6 +126,7 @@
         }
 
         vm.openFile = function(kafala){
+            if(kafala.engagementRef){
              var engagement = Files.get({id: kafala.engagementRef}, function(result){
                   $scope.content = $sce.trustAsResourceUrl('data:' + result.fileContentType + ';base64,' + result.file);
          
@@ -137,7 +138,7 @@
     
              document.body.appendChild(link); // Required for FF
             link.click(); // This will download the data file named "download_name.pdf"
-             });
+        });}
             
            
         }

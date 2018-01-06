@@ -12,13 +12,13 @@
 
         vm.demandeadhesion = entity;
         vm.previousState = previousState.name;
-
-        vm.demande = Files.get({id:vm.demandeadhesion.demandeRef});
+        if(vm.demandeadhesion.demandeRef)
+            vm.demande = Files.get({id:vm.demandeadhesion.demandeRef});
 
         var unsubscribe = $rootScope.$on('assalamApp:demandeadhesionUpdate', function(event, result) {
             vm.demandeadhesion = result;
         });
-        
+
         $scope.$on('$destroy', unsubscribe);
 
         vm.openFile = function(file, fileType){
