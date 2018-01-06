@@ -32,11 +32,7 @@
             $state.go('register');
         }
 
-         $interval(wakeUp, 300000);// keep heroku app awake
-         function wakeUp(){
-             $http.get("http://assalamapp2.herokuapp.com");
-           
-         }
+        
        
 
         

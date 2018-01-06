@@ -12,8 +12,7 @@
 
         vm.demandeadhesion = entity;
         vm.previousState = previousState.name;
-        if(vm.demandeadhesion.demandeRef)
-            vm.demande = Files.get({id:vm.demandeadhesion.demandeRef});
+       
 
         var unsubscribe = $rootScope.$on('assalamApp:demandeadhesionUpdate', function(event, result) {
             vm.demandeadhesion = result;
@@ -21,8 +20,9 @@
 
         $scope.$on('$destroy', unsubscribe);
 
-        vm.openFile = function(file, fileType){
-             $scope.content = $sce.trustAsResourceUrl('data:' +fileType + ';base64,' + file);
+        vm.openFile = function(demandeadhesion){
+            vm.demande = Files.get({id:vm.demandeadhesion.demandeRef}, function(data){
+             $scope.content = $sce.trustAsResourceUrl('data:' +data.fileContentType + ';base64,' + data.file);
          
             var link = document.createElement("a");
             link.setAttribute("href", $scope.content );
@@ -32,6 +32,9 @@
     
              document.body.appendChild(link); // Required for FF
             link.click(); // This will download the data file named "download_name.pdf"
+
+            });
+          
            
         }
     }

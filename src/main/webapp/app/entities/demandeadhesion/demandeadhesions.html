@@ -28,7 +28,7 @@
                       <td ><a ui-sref="famille-detail({id:demandeadhesion.famille.id})">{{demandeadhesion.famille.pere}} <br> {{demandeadhesion.famille.mere}}</a></td>
                       <td ><a ui-sref="enfant({familleId:demandeadhesion.famille.id})"><span class="glyphicon glyphicon-user"></span></a></td>
                     <td >
-                        <a data-translate="assalamApp.demandeadhesion.demande" ng-if="demandeadhesion.demande" ng-click="vm.openFile(demandeadhesion)" ng-href="{{'data:' + demandeadhesion.demandeContentType + ';base64,' + demandeadhesion.demande}}" target="_blank">
+                        <a data-translate="assalamApp.demandeadhesion.demande" ng-if="demandeadhesion.demandeRef" ng-click="vm.openFile(demandeadhesion)" ng-href="{{'data:' + demandeadhesion.demandeContentType + ';base64,' + demandeadhesion.demande}}" target="_blank">
                             <i class="fa fa-file" aria-hidden="true"></i>&nbsp;
                         </a>
                     </td>
