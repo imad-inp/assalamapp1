@@ -14,8 +14,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class ApplicationProperties {
   private final RemoteApp remoteApp = new RemoteApp();
 
+  private String fileSavingPath;
 
+  public String getFileSavingPath() {
+    return fileSavingPath;
+  }
 
+  public void setFileSavingPath(String filePath) {
+    fileSavingPath = filePath;
+  }
   public RemoteApp getRemoteApp() {
       return remoteApp;
   }

@@ -112,3 +112,4 @@ jhipster:
 application:
     remote-app:
         url: http://assalamapp.herokuapp.com
+    file-saving-path: /var/assalamapp

@@ -8,10 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import com.assalam.service.FilesService;
+import com.assalam.config.ApplicationProperties;
 import com.assalam.domain.Files;
 import com.assalam.repository.FilesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,13 @@ public class FilesServiceImpl implements FilesService {
   private final Logger log = LoggerFactory.getLogger(FilesServiceImpl.class);
 
   private final FilesRepository filesRepository;
+
+  private ApplicationProperties appProperties;
+
+  @Autowired
+  public void setAppProperties(ApplicationProperties appProperties) {
+    this.appProperties = appProperties;
+  }
 
   public FilesServiceImpl(FilesRepository filesRepository) {
     this.filesRepository = filesRepository;
@@ -44,8 +53,8 @@ public class FilesServiceImpl implements FilesService {
   @Override
   public Files save(Files file) throws FileNotFoundException, IOException {
     log.debug("Request to save files : {}", file);
-
-    File theDir = new File("files");
+    log.debug("saving files path", appProperties.getFileSavingPath());
+    File theDir = new File(appProperties.getFileSavingPath());
 
     // if the directory does not exist, create it
     if (!theDir.exists()) {
