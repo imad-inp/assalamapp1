@@ -53,7 +53,7 @@ public class FilesServiceImpl implements FilesService {
   @Override
   public Files save(Files file) throws FileNotFoundException, IOException {
     log.debug("Request to save files : {}", file);
-    log.debug("saving files path", appProperties.getFileSavingPath());
+
     File theDir = new File(appProperties.getFileSavingPath());
 
     // if the directory does not exist, create it
@@ -64,7 +64,7 @@ public class FilesServiceImpl implements FilesService {
     byte[] fileContent = file.getFile();
     file.setFile(null);
     Files savedFile = filesRepository.save(file);
-    try (FileOutputStream fos = new FileOutputStream("files/" + savedFile.getId())) {
+    try (FileOutputStream fos = new FileOutputStream(appProperties.getFileSavingPath() + "/" + savedFile.getId())) {
       fos.write(fileContent);
       fos.close();
     }
