@@ -53,10 +53,7 @@
 
         function onSaveSuccess(result) {
             $scope.$emit('assalamApp:enfantUpdate', result);
-            Files.save(vm.photo, function(data){
             $uibModalInstance.close(result);
-            })
-           
             
         }
 

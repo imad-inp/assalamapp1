@@ -1,5 +1,7 @@
 package com.assalam.service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import com.assalam.domain.Enfant;
@@ -13,12 +15,15 @@ import org.springframework.http.HttpHeaders;
 public interface EnfantService {
 
     /**
-     * Save a enfant.
-     *
-     * @param enfant the entity to save
-     * @return the persisted entity
-     */
-    Enfant save(Enfant enfant);
+   * Save a enfant.
+   * 
+   * @param enfant
+   *          the entity to save
+   * @return the persisted entity
+   * @throws IOException
+   * @throws FileNotFoundException
+   */
+  Enfant save(Enfant enfant) throws FileNotFoundException, IOException;
 
     /**
      *  Get all the enfants.
@@ -43,7 +48,7 @@ public interface EnfantService {
      */
     void delete(Long id);
 
-	               /**
+	                                 /**
    * Get the enfant by famille id.
    * 
    * @param id

@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -51,10 +52,11 @@ public class EnfantResource {
    *         if the enfant has already an ID
    * @throws URISyntaxException
    *           if the Location URI syntax is incorrect
+   * @throws IOException
    */
   @PostMapping("/enfants")
   @Timed
-  public ResponseEntity<Enfant> createEnfant(@RequestBody Enfant enfant) throws URISyntaxException {
+  public ResponseEntity<Enfant> createEnfant(@RequestBody Enfant enfant) throws URISyntaxException, IOException {
     log.debug("REST request to save Enfant : {}", enfant);
     if (enfant.getId() != null) {
       return ResponseEntity.badRequest()
@@ -77,10 +79,11 @@ public class EnfantResource {
    *         or with status 500 (Internal Server Error) if the enfant couldn't be updated
    * @throws URISyntaxException
    *           if the Location URI syntax is incorrect
+   * @throws IOException
    */
   @PutMapping("/enfants")
   @Timed
-  public ResponseEntity<Enfant> updateEnfant(@RequestBody Enfant enfant) throws URISyntaxException {
+  public ResponseEntity<Enfant> updateEnfant(@RequestBody Enfant enfant) throws URISyntaxException, IOException {
     log.debug("REST request to update Enfant : {}", enfant);
     if (enfant.getId() == null) {
       return createEnfant(enfant);
@@ -139,6 +142,7 @@ public class EnfantResource {
     return ResponseUtil.wrapOrNotFound(Optional.ofNullable(enfant));
   }
 
+
   /**
    * GET /count/demandeadhesion : get count demande adhesion.
    *
@@ -150,7 +154,7 @@ public class EnfantResource {
    */
   @GetMapping("/enfants/count")
   @Timed
-  public ResponseEntity<Map<String, Long>> getDemandeadhesionFiltered(
+  public ResponseEntity<Map<String, Long>> countEnfant(
       @RequestParam(required = false) String statut) {
     log.debug("REST request to get the count of demandeadhesion filtered by statut" + statut);
     Long count;

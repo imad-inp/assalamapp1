@@ -1,6 +1,7 @@
 package com.assalam.service.impl;
 
 import com.assalam.service.DemandeadhesionService;
+import com.assalam.service.FilesService;
 import com.assalam.domain.Demandeadhesion;
 import com.assalam.domain.Files;
 import com.assalam.domain.enumeration.Statut;
@@ -12,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,28 +33,33 @@ public class DemandeadhesionServiceImpl implements DemandeadhesionService{
     private final DemandeadhesionRepository demandeadhesionRepository;
 
   @Autowired
-  private FilesRepository filesRepository;
+  private FilesService filesService;
 
     public DemandeadhesionServiceImpl(DemandeadhesionRepository demandeadhesionRepository) {
         this.demandeadhesionRepository = demandeadhesionRepository;
     }
 
     /**
-     * Save a demandeadhesion.
-     *
-     * @param demandeadhesion the entity to save
-     * @return the persisted entity
-     */
+   * Save a demandeadhesion.
+   * 
+   * @param demandeadhesion
+   *          the entity to save
+   * @return the persisted entity
+   * @throws IOException
+   * @throws FileNotFoundException
+   */
     @Override
-    public Demandeadhesion save(Demandeadhesion demandeadhesion) {
+  public Demandeadhesion save(Demandeadhesion demandeadhesion) throws FileNotFoundException, IOException {
         log.debug("Request to save Demandeadhesion : {}", demandeadhesion);
     if (demandeadhesion.getTmpDemande() != null) {
       Files file = new Files();
       file.setFile(demandeadhesion.getTmpDemande());
       file.setFileContentType(demandeadhesion.getTmpDemandeContentType());
-      Files result = filesRepository.save(file);
+      file.setId(demandeadhesion.getDemandeRef());
+      Files result = filesService.save(file);
       demandeadhesion.setDemandeRef(result.getId());
     }
+
         return demandeadhesionRepository.save(demandeadhesion);
     }
 

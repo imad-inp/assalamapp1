@@ -16,6 +16,7 @@
         getLateKafalas();
         getDemandesNonTraitees();
         getEnfantsEnAttente();
+        getEnfantsUrgent();
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -67,6 +68,13 @@
             function getEnfantsEnAttente(){
                EnfantCount.query({'statut' : 'ATTENTE'}, function(data){
                    vm.enfantsEnAttente = data.count;  
+                
+                 vm.enfantsEnAttenteClass = vm.enfantsEnAttente > 0 ? "red-background" : "green-background"; });
+            }
+
+            function getEnfantsUrgent(){
+               EnfantCount.query({'statut' : 'URGENT'}, function(data){
+                   vm.enfantsUrgent = data.count;  
                 
                  vm.enfantsEnAttenteClass = vm.enfantsEnAttente > 0 ? "red-background" : "green-background"; });
             }

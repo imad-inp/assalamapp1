@@ -2,6 +2,9 @@ package com.assalam.service;
 
 import com.assalam.domain.Demandeadhesion;
 import com.assalam.domain.enumeration.Statut;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,8 +20,10 @@ public interface DemandeadhesionService {
    * @param demandeadhesion
    *          the entity to save
    * @return the persisted entity
+   * @throws IOException
+   * @throws FileNotFoundException
    */
-  Demandeadhesion save(Demandeadhesion demandeadhesion);
+  Demandeadhesion save(Demandeadhesion demandeadhesion) throws FileNotFoundException, IOException;
 
   /**
    * Get all the demandeadhesions.

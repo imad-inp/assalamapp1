@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -50,10 +52,13 @@ public class KafalaResource {
    *         if the kafala has already an ID
    * @throws URISyntaxException
    *           if the Location URI syntax is incorrect
+   * @throws IOException
+   * @throws FileNotFoundException
    */
   @PostMapping("/kafalas")
   @Timed
-  public ResponseEntity<Kafala> createKafala(@RequestBody Kafala kafala) throws URISyntaxException {
+  public ResponseEntity<Kafala> createKafala(@RequestBody Kafala kafala) throws URISyntaxException,
+      FileNotFoundException, IOException {
     log.debug("REST request to save Kafala : {}", kafala);
     if (kafala.getId() != null) {
       return ResponseEntity.badRequest()
@@ -76,10 +81,13 @@ public class KafalaResource {
    *         or with status 500 (Internal Server Error) if the kafala couldn't be updated
    * @throws URISyntaxException
    *           if the Location URI syntax is incorrect
+   * @throws IOException
+   * @throws FileNotFoundException
    */
   @PutMapping("/kafalas")
   @Timed
-  public ResponseEntity<Kafala> updateKafala(@RequestBody Kafala kafala) throws URISyntaxException {
+  public ResponseEntity<Kafala> updateKafala(@RequestBody Kafala kafala) throws URISyntaxException,
+      FileNotFoundException, IOException {
     log.debug("REST request to update Kafala : {}", kafala);
     if (kafala.getId() == null) {
       return createKafala(kafala);

@@ -1,5 +1,8 @@
 package com.assalam.service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import com.assalam.domain.Famille;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,12 +13,15 @@ import org.springframework.data.domain.Pageable;
 public interface FamilleService {
 
     /**
-     * Save a famille.
-     *
-     * @param famille the entity to save
-     * @return the persisted entity
-     */
-    Famille save(Famille famille);
+   * Save a famille.
+   * 
+   * @param famille
+   *          the entity to save
+   * @return the persisted entity
+   * @throws IOException
+   * @throws FileNotFoundException
+   */
+  Famille save(Famille famille) throws FileNotFoundException, IOException;
 
     /**
      *  Get all the familles.

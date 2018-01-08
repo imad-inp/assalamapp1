@@ -5,16 +5,15 @@
         .module('assalamApp')
         .controller('FamilleDialogController', FamilleDialogController);
 
-    FamilleDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Famille', 'Kafala', 'Enfant', 'DataUtils','$sce'];
+    FamilleDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Famille', 'Kafala', 'Enfant', 'DataUtils','$sce', 'Files'];
 
-    function FamilleDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Famille, Kafala, Enfant,DataUtils,$sce) {
+    function FamilleDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Famille, Kafala, Enfant,DataUtils,$sce, Files) {
         var vm = this;
 
         vm.famille = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.kafalas = Kafala.query();
-        vm.enfants = Enfant.query();
+      
 
         
         $timeout(function (){
@@ -61,8 +60,22 @@
               if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        famille.certifMariage = base64Data;
-                        famille.certifMariageContentType = $file.type;
+                        famille.tmpCertifMariage = base64Data;
+                        famille.tmpCertifMariageContentType = $file.type;
+                        
+                    });
+                });
+            }
+        }
+         vm.setRamid = function($file, famille){
+              if ($file && $file.$error === 'pattern') {
+                return;
+            }
+              if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        famille.tmpRamid = base64Data;
+                        famille.tmpRamidContentType = $file.type;
                         
                     });
                 });
@@ -76,8 +89,8 @@
               if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        famille.certifDecesMari = base64Data;
-                        famille.certifDecesMariContentType = $file.type;
+                        famille.tmpCertifDeces = base64Data;
+                        famille.tmpCertifDecesContentType = $file.type;
                         
                     });
                 });
@@ -90,8 +103,8 @@
               if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        famille.certifDivorce = base64Data;
-                        famille.certifDivorceContentType = $file.type;
+                        famille.tmpCertifDivorce = base64Data;
+                        famille.tmpCertifDivorceContentType = $file.type;
                         
                     });
                 });
@@ -104,8 +117,8 @@
               if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        famille.cinPereCopie = base64Data;
-                        famille.cinPereCopieContentType = $file.type;
+                        famille.tmpCinPereCopie = base64Data;
+                        famille.tmpCinPereCopieContentType = $file.type;
                         
                     });
                 });
@@ -118,13 +131,29 @@
               if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        famille.cinMereCopie = base64Data;
-                        famille.cinMereCopieContentType = $file.type;
+                        famille.tmpCinMereCopie = base64Data;
+                        famille.tmpCinMereCopieContentType = $file.type;
                         
                     });
                 });
             }
         }
+
+          vm.setPhotoMere = function ($file, famille) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function (base64Data) {
+                    $scope.$apply(function () {
+                        famille.tmpPhotoMere = base64Data;
+                        famille.tmpPhotoMereContentType = $file.type;
+                     
+                  
+                    });
+                });
+            }
+        };
 
         function onSaveError () {
             vm.isSaving = false;

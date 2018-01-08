@@ -17,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -49,10 +51,13 @@ public class FilesResource {
    *         if the files has already an ID
    * @throws URISyntaxException
    *           if the Location URI syntax is incorrect
+   * @throws IOException
+   * @throws FileNotFoundException
    */
   @PostMapping("/files")
     @Timed
-  public ResponseEntity<Files> createfiles(@RequestBody Files files) throws URISyntaxException {
+  public ResponseEntity<Files> createfiles(@RequestBody Files files) throws URISyntaxException, FileNotFoundException,
+      IOException {
     log.debug("REST request to save files : {}", files);
     if (files.getId() != null) {
       return ResponseEntity.badRequest()
@@ -75,10 +80,13 @@ public class FilesResource {
    *         or with status 500 (Internal Server Error) if the files couldn't be updated
    * @throws URISyntaxException
    *           if the Location URI syntax is incorrect
+   * @throws IOException
+   * @throws FileNotFoundException
    */
   @PutMapping("/files")
     @Timed
-  public ResponseEntity<Files> updatefiles(@RequestBody Files files) throws URISyntaxException {
+  public ResponseEntity<Files> updatefiles(@RequestBody Files files) throws URISyntaxException, FileNotFoundException,
+      IOException {
     log.debug("REST request to update files : {}", files);
     if (files.getId() == null) {
       return createfiles(files);
@@ -111,10 +119,11 @@ public class FilesResource {
    * @param id
    *          the id of the files to retrieve
    * @return the ResponseEntity with status 200 (OK) and with body the files, or with status 404 (Not Found)
+   * @throws IOException
    */
   @GetMapping("/files/{id}")
     @Timed
-  public ResponseEntity<Files> getfiles(@PathVariable Long id) {
+  public ResponseEntity<Files> getfiles(@PathVariable Long id) throws IOException {
     log.debug("REST request to get files : {}", id);
     Files files = filesService.findOne(id);
     return ResponseUtil.wrapOrNotFound(Optional.ofNullable(files));

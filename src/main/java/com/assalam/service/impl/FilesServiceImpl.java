@@ -1,8 +1,11 @@
 package com.assalam.service.impl;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import com.assalam.service.FilesService;
 import com.assalam.domain.Files;
@@ -39,14 +42,24 @@ public class FilesServiceImpl implements FilesService {
    * @throws FileNotFoundException
    */
   @Override
-  public Files save(Files file, String path) throws IOException {
+  public Files save(Files file) throws FileNotFoundException, IOException {
     log.debug("Request to save files : {}", file);
 
-    try (FileOutputStream fos = new FileOutputStream("test." + file.getFileContentType())) {
-      fos.write(file.getFile());
+    File theDir = new File("files");
+
+    // if the directory does not exist, create it
+    if (!theDir.exists()) {
+        theDir.mkdir();
+    }
+
+    byte[] fileContent = file.getFile();
+    file.setFile(null);
+    Files savedFile = filesRepository.save(file);
+    try (FileOutputStream fos = new FileOutputStream("files/" + savedFile.getId())) {
+      fos.write(fileContent);
       fos.close();
     }
-    return filesRepository.save(file);
+    return savedFile;
   }
 
   /**
@@ -65,16 +78,22 @@ public class FilesServiceImpl implements FilesService {
 
   /**
    * Get one files by id.
-   *
+   * 
    * @param id
    *          the id of the entity
    * @return the entity
+   * @throws IOException
    */
   @Override
   @Transactional(readOnly = true)
-  public Files findOne(Long id) {
+  public Files findOne(Long id) throws IOException {
     log.debug("Request to get files : {}", id);
-    return filesRepository.findOne(id);
+    Files file = filesRepository.findOne(id);
+    Path path = Paths.get("files/" + file.getId());
+    byte[] result = java.nio.file.Files.readAllBytes(path);
+    file.setFile(result);
+    return file;
+
   }
 
   /**
@@ -87,5 +106,11 @@ public class FilesServiceImpl implements FilesService {
   public void delete(Long id) {
     log.debug("Request to delete files : {}", id);
     filesRepository.delete(id);
+  }
+
+  @Override
+  public Files save(Files files, String path) throws IOException {
+
+    return null;
   }
 }

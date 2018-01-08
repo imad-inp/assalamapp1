@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -51,11 +53,13 @@ public class DemandeadhesionResource {
    *         Request) if the demandeadhesion has already an ID
    * @throws URISyntaxException
    *           if the Location URI syntax is incorrect
+   * @throws IOException
+   * @throws FileNotFoundException
    */
   @PostMapping("/demandeadhesions")
   @Timed
   public ResponseEntity<Demandeadhesion> createDemandeadhesion(@RequestBody Demandeadhesion demandeadhesion)
-      throws URISyntaxException {
+      throws URISyntaxException, FileNotFoundException, IOException {
     log.debug("REST request to save Demandeadhesion : {}", demandeadhesion);
     if (demandeadhesion.getId() != null) {
       return ResponseEntity
@@ -80,11 +84,13 @@ public class DemandeadhesionResource {
    *         or with status 500 (Internal Server Error) if the demandeadhesion couldn't be updated
    * @throws URISyntaxException
    *           if the Location URI syntax is incorrect
+   * @throws IOException
+   * @throws FileNotFoundException
    */
   @PutMapping("/demandeadhesions")
   @Timed
   public ResponseEntity<Demandeadhesion> updateDemandeadhesion(@RequestBody Demandeadhesion demandeadhesion)
-      throws URISyntaxException {
+      throws URISyntaxException, FileNotFoundException, IOException {
     log.debug("REST request to update Demandeadhesion : {}", demandeadhesion);
     if (demandeadhesion.getId() == null) {
       return createDemandeadhesion(demandeadhesion);

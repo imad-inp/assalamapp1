@@ -2,9 +2,13 @@ package com.assalam.service.impl;
 
 
 
+import com.assalam.service.FilesService;
 import com.assalam.service.KafalaService;
 import com.assalam.domain.Files;
 import com.assalam.domain.Kafala;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 
 import com.assalam.domain.Paiement;
@@ -35,7 +39,7 @@ public class KafalaServiceImpl implements KafalaService{
     private final KafalaRepository kafalaRepository;
 
     @Autowired
-  private FilesRepository filesRepository;
+  private FilesService filesService;
 
   @Autowired
     private PaiementRepository paiementRepository;
@@ -45,19 +49,23 @@ public class KafalaServiceImpl implements KafalaService{
     }
 
     /**
-     * Save a kafala.
-     *
-     * @param kafala the entity to save
-     * @return the persisted entity
-     */
+   * Save a kafala.
+   * 
+   * @param kafala
+   *          the entity to save
+   * @return the persisted entity
+   * @throws IOException
+   * @throws FileNotFoundException
+   */
     @Override
-    public Kafala save(Kafala kafala) {
+  public Kafala save(Kafala kafala) throws FileNotFoundException, IOException {
         log.debug("Request to save Kafala : {}", kafala);
     if (kafala.getTmpEngagement() != null) {
       Files file = new Files();
       file.setFile(kafala.getTmpEngagement());
       file.setFileContentType(kafala.getTmpEngagementContentType());
-      Files result = filesRepository.save(file);
+      file.setId(kafala.getId());
+      Files result = filesService.save(file);
       kafala.setEngagementRef(result.getId());
     }
         return kafalaRepository.save(kafala);

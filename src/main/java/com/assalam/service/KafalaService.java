@@ -1,5 +1,7 @@
 package com.assalam.service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import com.assalam.domain.Kafala;
@@ -12,12 +14,15 @@ import org.springframework.data.domain.Pageable;
 public interface KafalaService {
 
     /**
-     * Save a kafala.
-     *
-     * @param kafala the entity to save
-     * @return the persisted entity
-     */
-    Kafala save(Kafala kafala);
+   * Save a kafala.
+   * 
+   * @param kafala
+   *          the entity to save
+   * @return the persisted entity
+   * @throws IOException
+   * @throws FileNotFoundException
+   */
+  Kafala save(Kafala kafala) throws FileNotFoundException, IOException;
 
     /**
      *  Get all the kafalas.

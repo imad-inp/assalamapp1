@@ -1,8 +1,11 @@
 package com.assalam.service.impl;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import com.assalam.service.EnfantService;
+import com.assalam.service.FilesService;
 import com.assalam.domain.Enfant;
 import com.assalam.domain.Files;
 import com.assalam.domain.Kafala;
@@ -39,7 +42,7 @@ public class EnfantServiceImpl implements EnfantService {
   private EnfantRepositoryCustom enfantRepositoryCustom;
 
   @Autowired
-  private FilesRepository filesRepository;
+  private FilesService filesService;
 
   public EnfantServiceImpl(EnfantRepository enfantRepository) {
     this.enfantRepository = enfantRepository;
@@ -47,20 +50,23 @@ public class EnfantServiceImpl implements EnfantService {
 
   /**
    * Save a enfant.
-   *
+   * 
    * @param enfant
    *          the entity to save
    * @return the persisted entity
+   * @throws IOException
+   * @throws FileNotFoundException
    */
   @Override
-  public Enfant save(Enfant enfant) {
+  public Enfant save(Enfant enfant) throws FileNotFoundException, IOException {
     log.debug("Request to save Enfant : {}", enfant);
+
     if (enfant.getTmpPhoto() != null) {
       Files file = new Files();
       file.setFile(enfant.getTmpPhoto());
       file.setFileContentType(enfant.getTmpPhotoContentType());
       file.setId(enfant.getPhotoRef());
-      Files result = filesRepository.save(file);
+      Files result = filesService.save(file);
       enfant.setPhotoRef(result.getId());
     }
     return enfantRepository.save(enfant);

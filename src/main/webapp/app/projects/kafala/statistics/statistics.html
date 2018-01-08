@@ -95,8 +95,8 @@
                      <div class="col-lg-4 col-sm-4">
                      </div>
                     <div class="col-lg-4 col-sm-4">
-                        
-                        <div class="card"  >
+                        <a ui-sref = "enfant({statut:'URGENT', familleId:''})">
+                        <div  class="card"  >
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -116,12 +116,13 @@
                                     <hr />
                                      <div class="numbers">
                                            
-                                            {{vm.enfantsEnAttente}}
+                                            {{vm.enfantsUrgent}}
                                         </div>
                                 </div>
                                
                             </div>
                         </div>
+                        </a>
                         
                     </div>
                 </div>

@@ -107,20 +107,20 @@ public class Famille implements Serializable {
     this.certifDivorceRef = certifDivorceRef;
   }
 
-  public byte[] getTmpcinMereCopie() {
-    return tmpcinMereCopie;
+  public byte[] getTmpCinMereCopie() {
+    return tmpCinMereCopie;
   }
 
-  public void setTmpcinMereCopie(byte[] tmpcinMereCopie) {
-    this.tmpcinMereCopie = tmpcinMereCopie;
+  public void setTmpCinMereCopie(byte[] tmpcinMereCopie) {
+    this.tmpCinMereCopie = tmpcinMereCopie;
   }
 
-  public String getTmpcinMereCopieContentType() {
-    return tmpcinMereCopieContentType;
+  public String getTmpCinMereCopieContentType() {
+    return tmpCinMereCopieContentType;
   }
 
-  public void setTmpcinMereCopieContentType(String tmpcinMereCopieContentType) {
-    this.tmpcinMereCopieContentType = tmpcinMereCopieContentType;
+  public void setTmpCinMereCopieContentType(String tmpcinMereCopieContentType) {
+    this.tmpCinMereCopieContentType = tmpcinMereCopieContentType;
   }
 
   public String getCinMereCopieRef() {
@@ -131,20 +131,20 @@ public class Famille implements Serializable {
     this.cinMereCopieRef = cinMereCopieRef;
   }
 
-  public byte[] getTmpcinPereCopie() {
-    return tmpcinPereCopie;
+  public byte[] getTmpCinPereCopie() {
+    return tmpCinPereCopie;
   }
 
-  public void setTmpcinPereCopie(byte[] tmpcinPereCopie) {
-    this.tmpcinPereCopie = tmpcinPereCopie;
+  public void setTmpCinPereCopie(byte[] tmpcinPereCopie) {
+    this.tmpCinPereCopie = tmpcinPereCopie;
   }
 
-  public String getTmpcinPereCopieContentType() {
-    return tmpcinPereCopieContentType;
+  public String getTmpCinPereCopieContentType() {
+    return tmpCinPereCopieContentType;
   }
 
-  public void setTmpcinPereCopieContentType(String tmpcinPereCopieContentType) {
-    this.tmpcinPereCopieContentType = tmpcinPereCopieContentType;
+  public void setTmpCinPereCopieContentType(String tmpcinPereCopieContentType) {
+    this.tmpCinPereCopieContentType = tmpcinPereCopieContentType;
   }
 
   public String getCinPereCopieRef() {
@@ -225,22 +225,57 @@ public class Famille implements Serializable {
 
   @Transient
   @JsonProperty
-  private byte[] tmpcinMereCopie;
+  private byte[] tmpCinMereCopie;
 
   @Transient
   @JsonProperty
-  private String tmpcinMereCopieContentType;
+  private String tmpCinMereCopieContentType;
+
+  @Column(name = "photo_mere_ref")
+  private Long photoMereRef;
+
+  public Long getPhotoMereRef() {
+    return photoMereRef;
+  }
+
+  public void setPhotoMereRef(Long photoMereRef) {
+    this.photoMereRef = photoMereRef;
+  }
+
+  public byte[] getTmpPhotoMere() {
+    return tmpPhotoMere;
+  }
+
+  public void setTmpPhotoMere(byte[] tmpPhotoMere) {
+    this.tmpPhotoMere = tmpPhotoMere;
+  }
+
+  public String getTmpPhotoMereContentType() {
+    return tmpPhotoMereContentType;
+  }
+
+  public void setTmpPhotoMereContentType(String tmpPhotoMereContentType) {
+    this.tmpPhotoMereContentType = tmpPhotoMereContentType;
+  }
+
+  @Transient
+  @JsonProperty
+  private byte[] tmpPhotoMere;
+
+  @Transient
+  @JsonProperty
+  private String tmpPhotoMereContentType;
 
   @Column(name = "cin_mere_copie_ref")
   private String cinMereCopieRef;
 
   @Transient
   @JsonProperty
-  private byte[] tmpcinPereCopie;
+  private byte[] tmpCinPereCopie;
 
   @Transient
   @JsonProperty
-  private String tmpcinPereCopieContentType;
+  private String tmpCinPereCopieContentType;
 
   @Column(name = "cin_pere_copie_ref")
   private String cinPereCopieRef;

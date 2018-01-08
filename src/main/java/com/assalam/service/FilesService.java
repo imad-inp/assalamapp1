@@ -1,5 +1,6 @@
 package com.assalam.service;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.assalam.domain.Files;
@@ -17,8 +18,10 @@ public interface FilesService {
    * @param Files
    *          the entity to save
    * @return the persisted entity
+   * @throws IOException
+   * @throws FileNotFoundException
    */
-  Files save(Files files);
+  Files save(Files files) throws FileNotFoundException, IOException;
 
   Files save(Files files, String path) throws IOException;
 
@@ -37,8 +40,9 @@ public interface FilesService {
    * @param id
    *          the id of the entity
    * @return the entity
+   * @throws IOException
    */
-  Files findOne(Long id);
+  Files findOne(Long id) throws IOException;
 
     /**
    * Delete the "id" Files.
