@@ -19,11 +19,5 @@
         <addColumn tableName="kafala">
             <column name="start_date" type="varchar(255)"/>
         </addColumn>
-    </changeSet>
-    <changeSet author="ibouklata (generated)" id="1515021631083-5">
-        <dropColumn columnName="datedebut" tableName="kafala"/>
-    </changeSet>
-    <changeSet author="ibouklata (generated)" id="1515021631083-6">
-        <dropColumn columnName="datefin" tableName="kafala"/>
-    </changeSet>
+    </changeSet>   
 </databaseChangeLog>
