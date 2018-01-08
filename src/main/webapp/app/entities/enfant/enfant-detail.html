@@ -7,8 +7,8 @@
                                         </div>                
                 </button>
     </div>
-     <img ng-hide = "vm.photo" src="/content/images/no-image.jpg" alt="Loading" title="Loading" style="max-height: 100px;"/>
-     <img ng-show = "vm.isPictureLoading" src="/content/images/loading.gif" alt="Loading" title="Loading" style="max-height: 100px;"/>
+     <img ng-hide = "vm.photo" src="content/images/no-image.jpg" alt="Loading" title="Loading" style="max-height: 100px;"/>
+     <img ng-show = "vm.isPictureLoading" src="content/images/loading.gif" alt="Loading" title="Loading" style="max-height: 100px;"/>
     <img  ng-if ="vm.enfant.photoRef"  ng-hide = "vm.isPictureLoading" data-ng-src="{{'data:' + vm.photo.fileContentType + ';base64,' + vm.photo.file}}"
      style="max-height: 100px;" ng-if="vm.photo" alt="enfant image"/>
     <hr>
