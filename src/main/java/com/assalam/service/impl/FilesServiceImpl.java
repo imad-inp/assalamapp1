@@ -98,7 +98,7 @@ public class FilesServiceImpl implements FilesService {
   public Files findOne(Long id) throws IOException {
     log.debug("Request to get files : {}", id);
     Files file = filesRepository.findOne(id);
-    Path path = Paths.get("files/" + file.getId());
+    Path path = Paths.get(appProperties.getFileSavingPath() + "/" + file.getId());
     byte[] result = java.nio.file.Files.readAllBytes(path);
     file.setFile(result);
     return file;
