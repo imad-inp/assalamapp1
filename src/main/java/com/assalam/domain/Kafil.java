@@ -73,7 +73,7 @@ public class Kafil implements Serializable {
   public String getFullId() {
     String fullId = null;
     if (dateDebut != null && dateDebut.split("-")[0] != null) {
-      Long id = this.id < 10 ? this.id : Math.abs(this.id / 10);
+
       fullId = dateDebut.split("-")[0] + "/" + id;
     }
     return fullId;
