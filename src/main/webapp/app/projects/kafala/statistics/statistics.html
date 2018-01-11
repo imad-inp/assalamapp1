@@ -8,25 +8,22 @@
                         <a ui-sref="kafala({late: 'true'})">
                         <div class="card" >
                             <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-3">
+                                <div class="row">  
+                                    <div ng-class = "">                                 
                                         <div class="icon-big icon-warning text-center">
-                                           <i class="fa fa-handshake-o"></i>
+                                           <i class="fa fa-handshake-o fa-6"></i>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-9">
-                                        <div class="numbers">
-                                            <p data-translate="global.kafalaLate">Kafala Late</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="footer">
-                                    <hr />
-                                     <div class="numbers">
-                                           
+                                        <div class="numbers">                                          
                                             {{vm.kafalaLate}}
                                         </div>
+                                    </div>
+                                        <div class = "title">
+                                            <p data-translate="global.kafalaLate">Kafala Late</p>
+                                        </div>
+                                        
+                                   
                                 </div>
+                                 
                             </div>
                         </div>
                         </a>
@@ -38,56 +35,47 @@
                         <div class="card" >
                             <div class="content">
                                 <div class="row">
-                                    <div class="col-xs-3">
-                                      
+                                                                        
                                          <div class="icon-big icon-success text-center">
                                             <i class="fa fa-file-text-o"></i>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-9">
-                                         <div class="numbers">
-                                            <p data-translate="global.demandeNonTraitees">Demande non traitees</p>
-                                         </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="footer">
-                                    <hr />
+                                
                                      <div class="numbers">
                                            
                                             {{vm.demandesOuvertes}}
                                         </div>
+                                         <div class = "title">
+                                            <p data-translate="global.demandeNonTraitees">Demande non traitees</p>
+                                         </div>
+                                     
+                                    </div>
                                 </div>
+                                
                                 
                             </div>
                         </a>
                         </div>
                     </div>
+                    <div class = "row">
                     <div class="col-lg-4 col-sm-4">
                         <a ui-sref="enfant({statut:'ATTENTE'})">
                         <div class="card"  >
                             <div class="content">
                                 <div class="row">
-                                    <div class="col-xs-3">
+                               
                                         <div class="icon-big icon-success ">
                                             <i class="fa fa-child"></i>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-9">
-                                        <div class="numbers">
-                                             <p data-translate="global.enfantsEnAttente">Liste d'enfants en attente </p>
-                                           
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="footer">
-                                    <hr />
-                                     <div class="numbers">
+                                         <div class="numbers">
                                            
                                             {{vm.enfantsEnAttente}}
                                         </div>
-                                </div>
-                               
+                                 
+                                        <div class = "title">
+                                             <p data-translate="global.enfantsEnAttente">Liste d'enfants en attente </p>                                          
+                                        </div>
+                                
+                                </div>                                                             
                             </div>
                         </div>
                         </a>
@@ -99,26 +87,23 @@
                         <div  class="card"  >
                             <div class="content">
                                 <div class="row">
-                                    <div class="col-xs-3">
+                                   
                                         <div class="icon-big icon-success ">
                                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-9">
-                                        <div class="numbers">
+                              
+                                    <div class="numbers">
+                                           
+                                            {{vm.enfantsUrgent}}
+                                        </div>
+                                        <div class = "title">
                                             
                                             <p data-translate="global.urgentKafala">Kafala Late</p>
                                       
                                         </div>
-                                    </div>
+                                 
                                 </div>
-                                 <div class="footer">
-                                    <hr />
-                                     <div class="numbers">
-                                           
-                                            {{vm.enfantsUrgent}}
-                                        </div>
-                                </div>
+                                
                                
                             </div>
                         </div>
@@ -126,11 +111,8 @@
                         
                     </div>
                 </div>
-                <div class="row">
-
-                    
-              
             </div>
+             
         </div>
 
 

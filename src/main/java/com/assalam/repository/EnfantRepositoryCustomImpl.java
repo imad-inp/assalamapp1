@@ -22,7 +22,6 @@ public class EnfantRepositoryCustomImpl implements EnfantRepositoryCustom {
   EntityManager entityManager;
 
   @Override
-
   public List<Enfant> pullByStatuts(List<String> statuts) {
     Query query = entityManager.createQuery("SELECT enfant FROM Enfant as enfant " +
         "WHERE enfant.kafalaState IN :statuts", Enfant.class);
@@ -41,4 +40,18 @@ public class EnfantRepositoryCustomImpl implements EnfantRepositoryCustom {
 
     return query.getResultList();
   }
+
+  @Override
+  public List<Enfant> searchByNameAndStatus(String name, String status) {
+    Query query = entityManager
+        .createQuery(
+            "SELECT enfant FROM Enfant as enfant "
+                +
+                "WHERE enfant.kafalaState = :status AND enfant.nom like CONCAT('%',:name,'%')  OR enfant.prenom like CONCAT('%',:name,'%')",
+            Enfant.class);
+    query.setParameter("status", status);
+    query.setParameter("name", name);
+    return query.getResultList();
+  }
+
 }

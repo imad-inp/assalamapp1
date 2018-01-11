@@ -154,4 +154,10 @@ public class EnfantServiceImpl implements EnfantService {
     return enfantRepository.countByKafalaState(statut);
   }
 
+  @Override
+  public List<Enfant> searchByNameAndStatus(String name, String status) {
+    return enfantRepositoryCustom.searchByNameAndStatus(name, status);
+
+  }
+
 }
