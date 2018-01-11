@@ -45,7 +45,7 @@ public class EnfantResource {
 
   /**
    * POST /enfants : Create a new enfant.
-   * 
+   *
    * @param enfant
    *          the enfant to create
    * @return the ResponseEntity with status 201 (Created) and with body the new enfant, or with status 400 (Bad Request)
@@ -71,7 +71,7 @@ public class EnfantResource {
 
   /**
    * PUT /enfants : Updates an existing enfant.
-   * 
+   *
    * @param enfant
    *          the enfant to update
    * @return the ResponseEntity with status 200 (OK) and with body the updated enfant,
@@ -96,7 +96,7 @@ public class EnfantResource {
 
   /**
    * GET /enfants : get all the enfants.
-   * 
+   *
    * @param pageable
    *          the pagination information
    * @return the ResponseEntity with status 200 (OK) and the list of enfants in body
@@ -129,7 +129,7 @@ public class EnfantResource {
 
   /**
    * GET /enfants/:id : get the "id" enfant.
-   * 
+   *
    * @param id
    *          the id of the enfant to retrieve
    * @return the ResponseEntity with status 200 (OK) and with body the enfant, or with status 404 (Not Found)
@@ -141,7 +141,6 @@ public class EnfantResource {
     Enfant enfant = enfantService.findOne(id);
     return ResponseUtil.wrapOrNotFound(Optional.ofNullable(enfant));
   }
-
 
   /**
    * GET /count/demandeadhesion : get count demande adhesion.
@@ -172,8 +171,36 @@ public class EnfantResource {
   }
 
   /**
+   * GET /count/demandeadhesion : get count demande adhesion.
+   *
+   * @param pageable
+   *          the pagination information
+   * @param statut
+   *          staut to be filtered
+   * @return the ResponseEntity with status 200 (OK) and the list of enfants in body
+   */
+  @GetMapping("/enfants/search")
+  @Timed
+  public ResponseEntity<List<Enfant>> searchEnfant(
+      @RequestParam(required = false) String statut,
+      @RequestParam(name = "name", required = false) String name
+      ) {
+
+    if (statut == null) {
+      statut = "";
+    }
+    if (name == null) {
+      name = "";
+    }
+
+    List<Enfant> enfants = enfantService.searchByNameAndStatus(name, statut);
+
+    return new ResponseEntity<>(enfants, HttpStatus.OK);
+  }
+
+  /**
    * DELETE /enfants/:id : delete the "id" enfant.
-   * 
+   *
    * @param id
    *          the id of the enfant to delete
    * @return the ResponseEntity with status 200 (OK)
