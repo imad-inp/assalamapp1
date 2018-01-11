@@ -3,6 +3,8 @@ package com.assalam.repository;
 import java.util.List;
 
 import com.assalam.domain.Enfant;
+import com.assalam.domain.Famille;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,4 +26,7 @@ public interface EnfantRepository extends JpaRepository<Enfant, Long> {
   @Override
   Page<Enfant> findAll(Pageable pageable);
 
+
+
+  List<Enfant> findByKafalaStateAndNomOrPrenom(String name, String name2, String statut);
 }
