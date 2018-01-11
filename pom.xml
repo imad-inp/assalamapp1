@@ -10,8 +10,8 @@
     </parent>
 
     <groupId>com.assalam</groupId>
-    <artifactId>assalam-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>assalamapp</artifactId>
+    <version>1</version>
     <packaging>war</packaging>
     <name>Assalam App</name>
 

@@ -8,10 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import com.assalam.service.FilesService;
+import com.assalam.config.ApplicationProperties;
 import com.assalam.domain.Files;
 import com.assalam.repository.FilesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,13 @@ public class FilesServiceImpl implements FilesService {
   private final Logger log = LoggerFactory.getLogger(FilesServiceImpl.class);
 
   private final FilesRepository filesRepository;
+
+  private ApplicationProperties appProperties;
+
+  @Autowired
+  public void setAppProperties(ApplicationProperties appProperties) {
+    this.appProperties = appProperties;
+  }
 
   public FilesServiceImpl(FilesRepository filesRepository) {
     this.filesRepository = filesRepository;
@@ -45,7 +54,7 @@ public class FilesServiceImpl implements FilesService {
   public Files save(Files file) throws FileNotFoundException, IOException {
     log.debug("Request to save files : {}", file);
 
-    File theDir = new File("files");
+    File theDir = new File(appProperties.getFileSavingPath());
 
     // if the directory does not exist, create it
     if (!theDir.exists()) {
@@ -55,7 +64,7 @@ public class FilesServiceImpl implements FilesService {
     byte[] fileContent = file.getFile();
     file.setFile(null);
     Files savedFile = filesRepository.save(file);
-    try (FileOutputStream fos = new FileOutputStream("files/" + savedFile.getId())) {
+    try (FileOutputStream fos = new FileOutputStream(appProperties.getFileSavingPath() + "/" + savedFile.getId())) {
       fos.write(fileContent);
       fos.close();
     }
@@ -89,7 +98,7 @@ public class FilesServiceImpl implements FilesService {
   public Files findOne(Long id) throws IOException {
     log.debug("Request to get files : {}", id);
     Files file = filesRepository.findOne(id);
-    Path path = Paths.get("files/" + file.getId());
+    Path path = Paths.get(appProperties.getFileSavingPath() + "/" + file.getId());
     byte[] result = java.nio.file.Files.readAllBytes(path);
     file.setFile(result);
     return file;
