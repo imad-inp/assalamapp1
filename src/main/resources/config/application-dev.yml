@@ -16,7 +16,7 @@
 spring:
     profiles:
         active: dev
-        include: no-liquibase
+        include: no-liquibase, no-swagger
         
     devtools:
         restart:
@@ -33,7 +33,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://:3306/assalam?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://localhost:3306/assalam?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password: assalamapp
         hikari:
@@ -98,7 +98,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: my-secret-token-to-change-in-production
+                secret: d1611ac13ef437edde298331d0739e95383a23ba
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
