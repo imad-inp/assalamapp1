@@ -155,10 +155,10 @@ public class KafalaResource {
 
   @GetMapping("/kafalas/late")
   @Timed
-  public ResponseEntity<List<Kafala>> getLateKafalas() {
+  public ResponseEntity<List<Kafala>> getLateKafalas(@RequestParam(name = "kafalaState", required = false) String kafalaState) {
     log.debug("REST request to get a page of Kafalas");
 
-    List<Kafala> kafalas = kafalaService.findLateKafalas();
+    List<Kafala> kafalas = kafalaService.findLateKafalas(kafalaState);
 
     return new ResponseEntity<>(kafalas, HttpStatus.OK);
   }
@@ -202,9 +202,10 @@ public class KafalaResource {
    */
   @GetMapping("/count/latekafalas")
   @Timed
-  public ResponseEntity<Map<String, Integer>> countLateKafalas() {
+  public ResponseEntity<Map<String, Integer>> countLateKafalas(
+      @RequestParam(name = "kafalaState", required = false) String kafalaState) {
     log.debug("REST request to count Kafalas");
-    Integer count = kafalaService.countLateKafalas();
+    Integer count = kafalaService.countLateKafalas(kafalaState);
     Map<String, Integer> countMap = new HashMap();
     countMap.put("count", count);
     return new ResponseEntity<>(countMap, HttpStatus.OK);

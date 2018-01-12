@@ -23,15 +23,6 @@ public class HerokuWaker {
 
   private final Logger log = LoggerFactory.getLogger(HerokuWaker.class);
 
-  @Scheduled(fixedDelay = 300000)
-  public void wakeUp() {
 
-    RestTemplate restTemplate = new RestTemplate();
-    ResponseEntity<String> response = restTemplate.exchange
-        (appProperties.getRemoteApp().getUrl(), HttpMethod.GET, null, String.class);
-
-
-
-    }
 
   }

@@ -182,7 +182,7 @@ public class EnfantResource {
   @GetMapping("/enfants/search")
   @Timed
   public ResponseEntity<List<Enfant>> searchEnfant(
-      @RequestParam(required = false) String statut,
+      @RequestParam(name = "statut", required = false) String statut,
       @RequestParam(name = "name", required = false) String name
       ) {
 

@@ -99,9 +99,15 @@ public class KafalaServiceImpl implements KafalaService{
     }
 
   @Override
-  public Integer countLateKafalas() {
+  public Integer countLateKafalas(String kafalaState) {
     int count = 0;
-    List<Kafala> kafalas = kafalaRepository.findAll();
+    List<Kafala> kafalas = null;
+    if (kafalaState != null) {
+      kafalas = kafalaRepository.findByState(kafalaState);
+    }
+    else {
+      kafalas = kafalaRepository.findAll();
+    }
     for (Kafala kafala : kafalas) {
       if (isLate(kafala)) {
         count++;
@@ -161,8 +167,15 @@ public class KafalaServiceImpl implements KafalaService{
   }
 
   @Override
-  public List<Kafala> findLateKafalas() {
-    List<Kafala> kafalas = kafalaRepository.findAll();
+  public List<Kafala> findLateKafalas(String kafalaState) {
+    List<Kafala> kafalas = null;
+    if (kafalaState != null) {
+      kafalas = kafalaRepository.findByState(kafalaState);
+    }
+    else {
+      kafalas = kafalaRepository.findAll();
+    }
+
     Iterator<Kafala> it = kafalas.iterator();
     while (it.hasNext()) {
       if (!isLate(it.next())) {

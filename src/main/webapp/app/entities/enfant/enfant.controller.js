@@ -5,9 +5,9 @@
             .module('assalamApp')
             .controller('EnfantController', EnfantController);
 
-    EnfantController.$inject = ['DataUtils', 'Enfant', 'ParseLinks', 'AlertService', 'paginationConstants','$stateParams','$scope','$sce'];
+    EnfantController.$inject = ['DataUtils', 'Enfant', 'ParseLinks', 'AlertService', 'paginationConstants','$stateParams','$scope','$sce', 'EnfantSearch'];
 
-    function EnfantController(DataUtils, Enfant, ParseLinks, AlertService, paginationConstants, $stateParams,$scope,$sce) {
+    function EnfantController(DataUtils, Enfant, ParseLinks, AlertService, paginationConstants, $stateParams,$scope,$sce, EnfantSearch) {
 
         var vm = this;
 
@@ -24,6 +24,8 @@
         vm.predicate = 'id';
         vm.reset = reset;
         vm.reverse = true;
+		 vm.searchEnfantState = $stateParams.statut;
+		
         vm.openFile =  vm.openFile = function(file, fileType){
            
             $scope.content = $sce.trustAsResourceUrl('data:' +fileType + ';base64,' + file);
@@ -63,23 +65,46 @@
                 return result;
             }
 
-            function onSuccess(data, headers) {
-                vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
+             
+        }
+		function onSuccess(data, headers) {
+                //vm.links = ParseLinks.parse(headers('link'));
+               // vm.totalItems = headers('X-Total-Count');
                 for (var i = 0; i < data.length; i++) {
                     vm.enfants.push(data[i]);
                 }
             }
 
             function onError(error) {
-                AlertService.error(error.data.message);
+				 AlertService.error(error.data.message);
             }
+              
+		 function loadSearch () {
+            EnfantSearch.query({
+                page:  vm.page,
+                size: vm.itemsPerPage,
+                name: vm.searchEnfantName,
+                statut: vm.searchEnfantState
+                
+            }, onSuccess, onError);
+                   
         }
-
+		
         function reset() {
             vm.page = 0;
             vm.enfants = [];
             loadAll();
+        }
+		    vm.search = function(){
+             vm.page = 0;
+            vm.enfants = [];
+            loadSearch();
+        }
+
+        vm.clear = function(){
+            vm.searchEnfantName =null;
+            vm.searchEnfantState = null;
+            reset();
         }
 
         function loadPage(page) {

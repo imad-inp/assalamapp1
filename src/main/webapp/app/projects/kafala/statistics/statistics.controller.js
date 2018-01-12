@@ -44,7 +44,7 @@
         getAccount();
         
         function getLateKafalas(){
-            KafalaCount.query({}, onSuccess, onError);
+            KafalaCount.query({kafalaState : 'EN_COURS'}, onSuccess, onError);
 
         }
 

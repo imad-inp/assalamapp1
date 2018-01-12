@@ -64,7 +64,7 @@
         };
 
         function loadLate(){
-             KafalaLate.query({}, function(data){
+             KafalaLate.query({kafalaState : $stateParams.kafalaState}, function(data){
                    for (var i = 0; i < data.length; i++) {
                     data[i].isLate = true;
                      data[i].isLate = isPaimentLate(data[i]);
