@@ -47,7 +47,7 @@ public class EnfantRepositoryCustomImpl implements EnfantRepositoryCustom {
         .createQuery(
             "SELECT enfant FROM Enfant as enfant "
                 +
-                "WHERE enfant.kafalaState = :status AND enfant.nom like CONCAT('%',:name,'%')  OR enfant.prenom like CONCAT('%',:name,'%')",
+                "WHERE enfant.kafalaState = :status AND (enfant.nom like CONCAT('%',:name,'%')  OR enfant.prenom like CONCAT('%',:name,'%'))",
             Enfant.class);
     query.setParameter("status", status);
     query.setParameter("name", name);

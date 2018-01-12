@@ -50,15 +50,17 @@ public interface KafalaService {
   /**
    * Count the number of late kafalas
    * 
+   * @param kafalaState
+   * 
    * @return
    */
-  Integer countLateKafalas();
+  Integer countLateKafalas(String kafalaState);
 
   Page<Kafala> findByKafilId(Pageable pageable, String kafilId);
 
   Page<Kafala> findByEnfantId(Pageable pageable, String enfantId);
 
-  List<Kafala> findLateKafalas();
+  List<Kafala> findLateKafalas(String kafalaState);
 
   List<Kafala> findByState(String searchValue);
 
