@@ -16,7 +16,8 @@
 spring:
     profiles:
         active: dev
-        include: no-liquibase, no-swagger
+
+        include: liquibase, swagger   
         
     devtools:
         restart:

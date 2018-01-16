@@ -1,0 +1,23 @@
+{
+    "assalamApp": {
+        "reminder" : {
+            "home": {
+                "title": "Reminders",
+                "createLabel": "Créer un nouveau Reminder",
+                "createOrEditLabel": "Créer ou éditer un Reminder"
+            },
+            "created": "Un nouveau Reminder a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Reminder avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Reminder avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Reminder {{ id }} ?"
+            },
+            "detail": {
+                "title": "Reminder"
+            },
+            "date": "Date",
+            "type": "Type",
+            "kafils": "Kafils"
+        }
+    }
+}
