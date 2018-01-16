@@ -46,7 +46,7 @@
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                <tr ng-repeat="kafala in vm.kafalas |  filter:vm.search" ng-class="{PAIEMENT_LATE: kafala.isLate === true}">
+                <tr ng-repeat="kafala in vm.kafalas | orderBy:'moisretard':true| filter:vm.search" ng-class="{PAIEMENT_LATE: kafala.isLate === true}">
                   
                     
                      <td>
@@ -62,7 +62,7 @@
                    
                     <td data-translate="{{'assalamApp.kafala.state.' + kafala.state}}"></td>
 
-                     <td ><span data-translate="{{'assalamApp.kafala.' + kafala.statut}}"></span>&nbsp{{kafala.moisretard}}&nbsp<span data-translate="assalamApp.kafala.mois"></span></td>
+                     <td ><span data-translate="{{'assalamApp.kafala.' + kafala.statut}}"></span>&nbsp{{kafala.moisretardDisplay}}&nbsp<span data-translate="assalamApp.kafala.mois"></span></td>
                     <td print-remove >
                         <a  ng-if="kafala.engagementRef" ng-click="vm.openFile( kafala)"   target="_blank">
                             <i class="fa fa-file" aria-hidden="true"></i>

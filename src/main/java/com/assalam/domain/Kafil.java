@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -82,6 +83,29 @@ public class Kafil implements Serializable {
     @OneToMany(mappedBy = "kafil")
     @JsonIgnore
     private Set<Kafala> kafalats = new HashSet<>();
+
+  @OneToMany(mappedBy = "kafils", fetch = FetchType.EAGER)
+  private Set<Reminder> reminders = new HashSet<>();
+
+  public Set<Reminder> getReminders() {
+    return reminders;
+  }
+
+  public void setReminders(Set<Reminder> reminders) {
+    this.reminders = reminders;
+  }
+
+  public Kafil addReminder(Reminder reminder) {
+    this.reminders.add(reminder);
+    reminder.setKafils(this);
+    return this;
+  }
+
+  public Kafil removeReminder(Reminder reminder) {
+    this.kafalats.remove(reminder);
+    reminder.setKafils(null);
+    return this;
+  }
 
     public Long getId() {
         return id;

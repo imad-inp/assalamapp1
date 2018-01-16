@@ -57,7 +57,8 @@
         function isPaimentLate(kafala){
             var kafalaDate = new Date(kafala.startDate);
             var monthDifference = currentDate.getMonth() - kafalaDate.getMonth() + (12 * (currentDate.getFullYear() - kafalaDate.getFullYear())) + 1;
-            kafala.moisretard = Math.abs(monthDifference - kafala.moispayes);
+            kafala.moisretard = monthDifference - kafala.moispayes;
+			kafala.moisretardDisplay = Math.abs(kafala.moisretard);
             kafala.statut =  monthDifference > kafala.moispayes ? 'en retard': 'en avance'; 
 
            return  monthDifference > kafala.moispayes;          

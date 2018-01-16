@@ -12,6 +12,7 @@
     <include file="classpath:config/liquibase/changelog/20170620163743_added_entity_Kafala.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170620163744_added_entity_Demandeadhesion.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170620163745_added_entity_Paiement.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20180116135037_added_entity_Reminder.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170620163739_added_entity_constraints_Enfant.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170620163742_added_entity_constraints_Resultatsscolaires.xml" relativeToChangelogFile="false"/>
@@ -39,5 +40,6 @@
 <include file="classpath:config/liquibase/changelog/20180104215857_changelog.xml" relativeToChangelogFile="false"/>
 <include file="classpath:config/liquibase/changelog/20180107233904_changelog.xml" relativeToChangelogFile="false"/>
 
+<include file="classpath:config/liquibase/changelog/20180116135037_added_entity_constraints_Reminder.xml" relativeToChangelogFile="false"/>
 	<!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -14,6 +14,7 @@
                 "kafala": "Kafala",
                 "demandeadhesion": "Demandeadhesion",
                 "paiement": "Paiement",
+                "reminder": "Reminder",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
