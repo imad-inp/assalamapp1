@@ -4,6 +4,7 @@ package com.assalam.domain;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -28,7 +29,6 @@ public class Reminder implements Serializable {
     private String type;
 
     @ManyToOne
-  @JsonIgnore
     private Kafil kafils;
 
     public Long getId() {
@@ -65,6 +65,7 @@ public class Reminder implements Serializable {
         this.type = type;
     }
 
+  @JsonIgnore
     public Kafil getKafils() {
         return kafils;
     }
@@ -74,6 +75,7 @@ public class Reminder implements Serializable {
         return this;
     }
 
+  @JsonProperty
     public void setKafils(Kafil kafil) {
         this.kafils = kafil;
     }
