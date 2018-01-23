@@ -45,4 +45,6 @@ public interface KafilService {
   Page<Kafil> findByLastName(Pageable pageable, String searchValue);
 
   List<Kafil> findAll();
+
+  Long countByState(String state);
 }

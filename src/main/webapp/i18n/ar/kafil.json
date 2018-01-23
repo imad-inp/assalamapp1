@@ -1,6 +1,7 @@
 {
     "assalamApp": {
         "kafil" : {
+		 "addKafala" : "انشاء كفالة",
             "home": {
                 "title": "لائحة الكفلاء",
                 "createLabel": "اضافة كفيل",
@@ -25,7 +26,12 @@
             "kafalat": "الكفالات ",
             "fullId": "القن",
             "dateDebut":"تاريخ البدء",
-            "dateFin": "تاريخ الانقطاع"
+            "dateFin": "تاريخ الانقطاع",
+			"state" : {
+			"name": "الوضعية",
+			"EN_COURS"  : "ناشط", 
+			"URGENT": "بحاجة لكفالة مستعجلة",
+			"ARRETE" : "منقطع"}
         }
     }
 }

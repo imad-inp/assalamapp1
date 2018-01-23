@@ -16,4 +16,6 @@ import org.springframework.data.jpa.repository.*;
 public interface KafilRepository extends JpaRepository<Kafil,Long> {
 
   Page<Kafil> findByNomContainingOrPrenomContaining(Pageable pageable, String search, String searchValue);
+
+  Long countByState(String state);
 }

@@ -41,6 +41,17 @@ public class Kafil implements Serializable {
     @Column(name = "commentaires")
     private String commentaires;
 
+  @Column(name = "state")
+  private String state;
+
+  public String getState() {
+    return state;
+  }
+
+  public void setState(String state) {
+    this.state = state;
+  }
+
   @Column(name = "date_debut")
   private String dateDebut;
 

@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -170,5 +172,33 @@ public class KafilResource {
     log.debug("REST request to delete Kafil : {}", id);
     kafilService.delete(id);
     return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+  }
+
+  /**
+   * GET /count/kafil : get count kafil.
+   * 
+   * @param pageable
+   *          the pagination information
+   * @param statut
+   *          state to be filtered
+   * @return the ResponseEntity with status 200 (OK) and the list of enfants in body
+   */
+  @GetMapping("/kafils/count")
+  @Timed
+  public ResponseEntity<Map<String, Long>> countKaflst(
+      @RequestParam(required = false) String state) {
+    log.debug("REST request to get the count of kafilfiltered by state" + state);
+    Long count;
+    if (state == null) {
+      count = new Long(kafilService.findAll().size());
+    }
+    else {
+      count = kafilService.countByState(state);
+    }
+
+    Map<String, Long> countMap = new HashMap();
+    countMap.put("count", count);
+
+    return new ResponseEntity<>(countMap, HttpStatus.OK);
   }
 }

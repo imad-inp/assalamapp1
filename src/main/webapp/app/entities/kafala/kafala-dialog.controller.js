@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('KafalaDialogController', KafalaDialogController);
 
-    KafalaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Kafala', 'Paiement', 'Enfant', 'Famille', 'Kafil', 'DataUtils', 'KafilSearch'];
+    KafalaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Kafala', 'Paiement', 'Enfant', 'Famille', 'Kafil', 'DataUtils', 'KafilSearch', 'EnfantSearch'];
 
-    function KafalaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Kafala, Paiement, Enfant, Famille, Kafil, DataUtils,KafilSearch) {
+    function KafalaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Kafala, Paiement, Enfant, Famille, Kafil, DataUtils,KafilSearch, EnfantSearch) {
         var vm = this;
         vm.searchQuery = '';
 
@@ -22,6 +22,8 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
+		vm.isKafilMode = $stateParams.kafilId == null;
+		vm.isEnfantMode = $stateParams.enfantId == null;
         
     
 
@@ -69,15 +71,26 @@
         }
         
 
-          vm.search = function(){
+          vm.search = function(type){
+			  if(type == 'Kafil'){
              KafilSearch.query({
                 searchValue: vm.searchQuery,
                 searchType: 'name'            
             }, function(data){
                 vm.kafils = data;
-            });
+			  });
+			  }
             
+			else if(type == 'Enfant'){
+				 EnfantSearch.query({
+                 name: vm.searchQuery         
+            }, function(data){
+                vm.enfants = data;
+            });
+			}
         }
+		
+		
 
 
         vm.datePickerOpenStatus.datedebut = false;

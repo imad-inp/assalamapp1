@@ -18,4 +18,6 @@ public interface EnfantRepositoryCustom {
   List<Enfant> findAllReduced();
 
   public List<Enfant> searchByNameAndStatus(String name, String status);
+
+
 }

@@ -95,4 +95,9 @@ public class KafilServiceImpl implements KafilService{
 
     return kafilRepository.findByNomContainingOrPrenomContaining(pageable, searchValue, searchValue);
   }
+
+  @Override
+  public Long countByState(String state) {
+    return kafilRepository.countByState(state);
+  }
 }

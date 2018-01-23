@@ -186,6 +186,7 @@ public class EnfantResource {
       @RequestParam(name = "name", required = false) String name
       ) {
 
+
     if (statut == null) {
       statut = "";
     }

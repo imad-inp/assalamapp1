@@ -11,7 +11,7 @@
         $stateProvider
         .state('kafil', {
             parent: 'kafala-project',
-            url: '/kafil',
+            url: '/kafil?state',
             data: {
                 authorities: ['ROLE_KAFALA'],
                 pageTitle: 'assalamApp.kafil.home.title'
@@ -113,6 +113,41 @@
                                 photo: null,
                                 photoContentType: null,
                                 id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $state.go('kafil', null, { reload: 'kafil' });
+                }, function() {
+                    $state.go('kafil');
+                });
+            }]
+        })
+		 .state('kafil.newKafala', {
+            parent: 'kafil',
+            url: '/newKafala?kafilId',
+            data: {
+                authorities: ['ROLE_KAFALA']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal','Kafil', function($stateParams, $state, $uibModal, Kafil) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/kafala/kafala-dialog.html',
+                    controller: 'KafalaDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('kafala');
+                    return $translate.refresh();
+                }],
+                        entity: function () {
+                            return {
+                                montant: null,
+                                datedebut: null,
+                                id: null,
+                                kafil : {id : $stateParams.kafilId}
+                      
                             };
                         }
                     }

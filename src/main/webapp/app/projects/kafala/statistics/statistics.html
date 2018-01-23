@@ -4,13 +4,13 @@
         <div class="content" id="exportthis" print-section>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-4 col-sm-4">
+                    <div class="col-lg-3 col-sm-3">
                         <a ui-sref="kafala({late: 'true', kafalaState: 'EN_COURS'})">
                         <div class="card" >
                             <div class="content">
                                 <div class="row">  
                                     <div ng-class = "">                                 
-                                        <div class="icon-big icon-warning text-center">
+                                        <div class="icon-big icon-warning text-center" ng-class = "{ 'red': vm.kafalaLate > 0}">
                                            <i class="fa fa-handshake-o fa-6"></i>
                                         </div>
                                         <div class="numbers">                                          
@@ -28,15 +28,15 @@
                         </div>
                         </a>
                     </div>
-                     <div class="col-lg-4 col-sm-4">
+                     <div class="col-lg-1 col-sm-1">
                      </div>
-                    <div class="col-lg-4 col-sm-4">
+                    <div class="col-lg-3 col-sm-3">
                         <a ui-sref="demandeadhesion({statut: 'OUVERTE'})">
                         <div class="card" >
                             <div class="content">
                                 <div class="row">
                                                                         
-                                         <div class="icon-big icon-success text-center">
+                                         <div class="icon-big icon-success text-center" ng-class = "{ 'red': vm.demandesOuvertes > 0}">
                                             <i class="fa fa-file-text-o"></i>
                                         </div>
                                 
@@ -55,15 +55,45 @@
                             </div>
                         </a>
                         </div>
+						 <div class="col-lg-1 col-sm-1">
+                     </div>
+					  <div class="col-lg-3 col-sm-3">
+                        <a ui-sref = "kafil({state:'URGENT'})">
+                        <div  class="card"  >
+                            <div class="content">
+                                <div class="row">
+                                   
+                                        <div class="icon-big icon-success " ng-class = "{ 'red': vm.kafilsUrgent > 0}">
+                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                        </div>
+                              
+                                    <div class="numbers">
+                                           
+                                            {{vm.kafilsUrgent}}
+                                        </div>
+                                        <div class = "title">
+                                            
+                                            <p data-translate="global.urgentKafils">Kafil Urgent</p>
+                                      
+                                        </div>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                        
+                    </div>
                     </div>
                     <div class = "row">
-                    <div class="col-lg-4 col-sm-4">
+					 <div class="col-lg-4 col-sm-4">
+                     </div>
+                    <div class="col-lg-3 col-sm-3">
                         <a ui-sref="enfant({statut:'ATTENTE'})">
                         <div class="card"  >
                             <div class="content">
                                 <div class="row">
                                
-                                        <div class="icon-big icon-success ">
+                                        <div class="icon-big icon-success " ng-class = "{ 'red': vm.enfantsEnAttente > 0}">
                                             <i class="fa fa-child"></i>
                                         </div>
                                          <div class="numbers">
@@ -80,19 +110,19 @@
                         </div>
                         </a>
                     </div>
-                     <div class="col-lg-4 col-sm-4">
+                     <div class="col-lg-1 col-sm-1">
                      </div>
-                    <div class="col-lg-4 col-sm-4">
+                    <div class="col-lg-3 col-sm-3">
                         <a ui-sref = "enfant({statut:'URGENT', familleId:''})">
                         <div  class="card"  >
                             <div class="content">
                                 <div class="row">
                                    
-                                        <div class="icon-big icon-success ">
+                                        <div class="icon-big icon-success " ng-class = "{ 'red': vm.enfantsUrgent > 0}">
                                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                         </div>
                               
-                                    <div class="numbers">
+                                    <div class="numbers" >
                                            
                                             {{vm.enfantsUrgent}}
                                         </div>
@@ -103,13 +133,13 @@
                                         </div>
                                  
                                 </div>
-                                
-                               
-                            </div>
+                        </div>
                         </div>
                         </a>
                         
                     </div>
+					
+					
                 </div>
             </div>
              

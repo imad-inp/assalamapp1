@@ -59,9 +59,15 @@
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="assalamApp.kafil.membre" for="field_membre">Membre</label>
-                <input type="checkbox" name="membre" id="field_membre"
-                          ng-model="vm.kafil.membre"/>
+            <label class="control-label" data-translate="assalamApp.kafil.state.name" for="field_statut">Statut KAfil</label>
+            <select class="form-control" name="statut" ng-model="vm.kafil.state" id="field_statut">
+                  <option value="EN_COURS" data-translate="assalamApp.kafil.state.EN_COURS">EN cours</option>
+				  <option value="URGENT" data-translate="assalamApp.kafil.state.URGENT">urgent </option>
+					<option value="ARRETE" data-translate="assalamApp.kafil.state.ARRETE">arrete</option>
+				
+               
+                
+            </select>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="assalamApp.kafil.commentaires" for="field_commentaires">Commentaires</label>

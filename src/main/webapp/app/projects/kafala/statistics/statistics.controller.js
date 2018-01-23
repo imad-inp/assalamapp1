@@ -5,18 +5,20 @@
         .module('assalamApp')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$scope', 'Principal', 'LoginService', '$state', '$rootScope', 'KafalaCount', 'DemandeadhesionCount', 'EnfantCount'];
+    DashboardController.$inject = ['$scope', 'Principal', 'LoginService', '$state', '$rootScope', 'KafalaCount', 'DemandeadhesionCount', 'EnfantCount', 'KafilCount'];
 
-    function DashboardController ($scope, Principal, LoginService, $state, $rootScope, KafalaCount, DemandeadhesionCount, EnfantCount) {
+    function DashboardController ($scope, Principal, LoginService, $state, $rootScope, KafalaCount, DemandeadhesionCount, EnfantCount, KafilCount) {
         var vm = this;
     
         vm.kafalaLate = 0; 
         vm.demandesOuvertes = 0;
         vm.enfantsEnAttente = 0;
+		vm.kafilsUrgent = 0;
         getLateKafalas();
         getDemandesNonTraitees();
         getEnfantsEnAttente();
         getEnfantsUrgent();
+		getKafilsUrgent();
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
@@ -77,6 +79,12 @@
                    vm.enfantsUrgent = data.count;  
                 
                  vm.enfantsEnAttenteClass = vm.enfantsEnAttente > 0 ? "red-background" : "green-background"; });
+            }
+			
+			function getKafilsUrgent(){
+               KafilCount.query({'state' : 'URGENT'}, function(data){
+                   vm.kafilsUrgent = data.count;                  
+                });
             }
 
         function getAccount() {

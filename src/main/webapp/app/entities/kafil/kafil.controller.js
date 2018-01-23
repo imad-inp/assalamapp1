@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('KafilController', KafilController);
 
-    KafilController.$inject = ['DataUtils', 'Kafil', 'ParseLinks', 'AlertService', 'paginationConstants', 'KafilSearch', '$window','$timeout'];
+    KafilController.$inject = ['DataUtils', 'Kafil', 'ParseLinks', 'AlertService', 'paginationConstants', 'KafilSearch', '$window','$timeout','$stateParams'];
 
-    function KafilController(DataUtils, Kafil, ParseLinks, AlertService, paginationConstants,KafilSearch, $window, $timeout) {
+    function KafilController(DataUtils, Kafil, ParseLinks, AlertService, paginationConstants,KafilSearch, $window, $timeout, $stateParams) {
 
         var vm = this;
 
@@ -30,7 +30,7 @@
             Kafil.query({
                 page:  vm.page,
                 size: vm.itemsPerPage,
-                
+                state: $stateParams.state
                 
             }, onSuccess, onError);
          
