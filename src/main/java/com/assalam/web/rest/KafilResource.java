@@ -100,14 +100,21 @@ public class KafilResource {
   @GetMapping("/kafils")
   @Timed
   public ResponseEntity<List<Kafil>> getAllKafils(@ApiParam Pageable pageable,
-      @RequestParam(name = "noPaging", required = false) boolean noPaging) {
+      @RequestParam(name = "noPaging", required = false) boolean noPaging,
+      @RequestParam(name = "state", required = false) String state) {
     log.debug("REST request to get a page of Kafils");
     List<Kafil> result = null;
     Page<Kafil> page = null;
     HttpHeaders headers = new HttpHeaders();
     if (!noPaging) {
-      page = kafilService.findAll(pageable);
-      result = page.getContent();
+      if (state != null) {
+        page = kafilService.findAllByState(pageable, state);
+        result = page.getContent();
+      }
+      else {
+        page = kafilService.findAll(pageable);
+        result = page.getContent();
+      }
     }
     else {
       result = kafilService.findAll();

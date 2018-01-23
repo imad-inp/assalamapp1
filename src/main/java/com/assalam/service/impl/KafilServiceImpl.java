@@ -100,4 +100,9 @@ public class KafilServiceImpl implements KafilService{
   public Long countByState(String state) {
     return kafilRepository.countByState(state);
   }
+
+  @Override
+  public Page<Kafil> findAllByState(Pageable pageable, String state) {
+    return kafilRepository.findByState(pageable, state);
+  }
 }

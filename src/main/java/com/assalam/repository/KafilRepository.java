@@ -18,4 +18,6 @@ public interface KafilRepository extends JpaRepository<Kafil,Long> {
   Page<Kafil> findByNomContainingOrPrenomContaining(Pageable pageable, String search, String searchValue);
 
   Long countByState(String state);
+
+  Page<Kafil> findByState(Pageable pageable, String state);
 }
