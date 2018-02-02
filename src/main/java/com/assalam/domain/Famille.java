@@ -35,6 +35,17 @@ public class Famille implements Serializable {
     @Column(name = "cin_mere")
     private String cinMere;
 
+  @Column(name = "state")
+  private String state;
+
+  public String getState() {
+    return state;
+  }
+
+  public void setState(String state) {
+    this.state = state;
+  }
+
   public byte[] getTmpCertifMariage() {
     return tmpCertifMariage;
   }

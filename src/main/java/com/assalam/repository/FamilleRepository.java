@@ -18,4 +18,6 @@ public interface FamilleRepository extends JpaRepository<Famille,Long> {
   Page<Famille> findByPereContainingOrMereContaining(Pageable pageable, String pere, String mere);
 
   Page<Famille> findByCinPereContainingOrCinMereContaining(Pageable pageable, String cinPere, String cinMere);
+
+  Page<Famille> findByState(Pageable pageable, String state);
 }

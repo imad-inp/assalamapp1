@@ -117,6 +117,9 @@ public class FamilleResource {
     else if (searchType != null && searchType.equalsIgnoreCase("cin")) {
       page = familleService.findByCin(pageable, searchValue);
     }
+    else if (searchType != null && searchType.equalsIgnoreCase("state")) {
+      page = familleService.findByState(pageable, searchValue);
+    }
     else {
       page = familleService.findAll(pageable);
     }

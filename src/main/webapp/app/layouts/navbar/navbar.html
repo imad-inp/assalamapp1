@@ -28,7 +28,7 @@
                   <li ng-show="vm.$state.includes('kafala-project')" ui-sref-active="active">
                     <a ui-sref="statistics" ng-click="vm.collapseNavbar()" >
                         <i class="fa fa-eye" aria-hidden="true"></i>
-                        <span class="hidden-sm" data-translate="global.menu.statistics">Statustics</span>
+                        <span class="hidden-sm" data-translate="global.menu.statistics">Statistics</span>
                     </a>
                   </li>
                
@@ -48,25 +48,42 @@
                          <li  >
                             <a data-translate="global.menu.entities.demandeadhesions.encours" href="" ui-sref="demandeadhesion({statut:'EN_COURS', familleId:''})">Nouvel Enfant</a>
                         </li>
+                        
                          <li  >
-                            <a data-translate="global.menu.entities.demandeadhesions.attente" href="" ui-sref="demandeadhesion({statut:'ATTENTE', familleId:''})">Nouvel Enfant</a>
-                        </li>
-                         <li  >
-                            <a data-translate="global.menu.entities.demandeadhesions.beneficiaire" href="" ui-sref="demandeadhesion({statut:'BENEFICIAIRE', familleId:''})">View</a>
-                        </li>
-                         <li  >
-                            <a data-translate="global.menu.entities.demandeadhesions.archive" href="" ui-sref="demandeadhesion({statut:'ARCHIVE', familleId:''})">View</a>
+                            <a data-translate="global.menu.entities.demandeadhesions.etudiee" href="" ui-sref="demandeadhesion({statut:'ETUDIEE', familleId:''})">View</a>
                         </li>
                         
                     </ul>
                    
                     
                 </li>
-                 <li ng-show="vm.$state.includes('kafala-project')" ui-sref-active="active">
-                    <a ui-sref="famille" ng-click="vm.collapseNavbar()">
-                        <i class="fa fa-users" ></i>&nbsp;
-                        <span data-translate="global.menu.entities.famille">famille</span>
+                <li ng-show="vm.$state.includes('kafala-project')" ui-sref-active="active"  class="dropdown" uib-dropdown  >
+                     
+                    <a   ng-click="vm.collapseNavbar()" class="dropdown-toggle" uib-dropdown-toggle>
+                         <i class="fa fa-file" aria-hidden="true"></i>&nbsp;
+                        <span data-translate="global.menu.entities.famille">Famille</span>
+                        <b class="caret"></b>
                     </a>
+
+                     <ul class="dropdown-menu" >
+                        <li  >
+                            <a data-translate="assalamApp.famille.state.OUVERTE" href="" ui-sref="famille({state:'OUVERTE'})">Nouvelle demande</a>
+                        </li>
+                         <li  >
+                            <a data-translate="assalamApp.famille.state.ATTENTE" href="" ui-sref="famille({state:'ATTENTE'})">Nouvel Enfant</a>
+                        </li>
+                         <li  >
+                            <a data-translate="assalamApp.famille.state.EN_COURS" href="" ui-sref="famille({state:'EN_COURS'})">Nouvel Enfant</a>
+                        </li>
+                         <li  >
+                            <a data-translate="assalamApp.famille.state.REFUSEE" href="" ui-sref="famille({state:'REFUSEE'})">View</a>
+                        </li>
+                         <li  >
+                            <a data-translate="assalamApp.famille.state.ARRETEE" href="" ui-sref="famille({state:'ARRETEE'})">View</a>
+                        </li>
+                        
+                    </ul>
+                   
                 </li>
 
 

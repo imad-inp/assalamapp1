@@ -29,7 +29,8 @@
                     "encours":"في طور الدراسة",
                     "attente":"لائحة الانتظار",
                     "archive":"ارشيف",
-                    "beneficiaire":"في طور الاستفادة"
+                    "beneficiaire":"في طور الاستفادة",
+                    "etudiee" : "تمت الدراسة"
                 }
             },
             "account": {

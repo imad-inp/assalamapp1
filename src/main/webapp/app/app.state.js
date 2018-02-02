@@ -44,6 +44,7 @@
                     $translatePartialLoader.addPart('global');
                     $translatePartialLoader.addPart('enfant');
                     $translatePartialLoader.addPart('kafala');
+                     $translatePartialLoader.addPart('famille');
                 }]
             }
         });

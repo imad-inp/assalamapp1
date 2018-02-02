@@ -184,4 +184,9 @@ public class FamilleServiceImpl implements FamilleService{
     return familleRepository.findByCinPereContainingOrCinMereContaining(pageable, searchValue, searchValue);
 
   }
+
+  @Override
+  public Page<Famille> findByState(Pageable pageable, String state) {
+    return familleRepository.findByState(pageable, state);
+  }
 }

@@ -11,7 +11,7 @@
         $stateProvider
         .state('famille', {
             parent: 'kafala-project',
-            url: '/famille',
+            url: '/famille?state',
             data: {
                 authorities: ['ROLE_INAYA'],
                 pageTitle: 'assalamApp.famille.home.title'

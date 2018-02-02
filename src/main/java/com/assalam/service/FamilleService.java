@@ -40,10 +40,20 @@ public interface FamilleService {
     Famille findOne(Long id);
 
     /**
-     *  Delete the "id" famille.
-     *
-     *  @param id the id of the entity
-     */
+   * Get the famille by state
+   * 
+   * @param state
+   *          state of the family
+   * @return the entity
+   */
+  Page<Famille> findByState(Pageable pageable, String state);
+
+  /**
+   * Delete the "id" famille.
+   * 
+   * @param id
+   *          the id of the entity
+   */
     void delete(Long id);
 
   Page<Famille> findByLastName(Pageable pageable, String searchValue);

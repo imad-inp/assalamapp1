@@ -5,9 +5,9 @@
         .module('assalamApp')
         .controller('FamilleController', FamilleController);
 
-    FamilleController.$inject = ['Famille', 'ParseLinks', 'AlertService', 'paginationConstants','Demandeadhesion'];
+    FamilleController.$inject = ['Famille', 'ParseLinks', 'AlertService', 'paginationConstants','Demandeadhesion', '$stateParams'];
 
-    function FamilleController(Famille, ParseLinks, AlertService, paginationConstants, Demandeadhesion) {
+    function FamilleController(Famille, ParseLinks, AlertService, paginationConstants, Demandeadhesion, $stateParams) {
 
         var vm = this;
 
@@ -22,6 +22,7 @@
         vm.reset = reset;
         vm.reverse = true;
         
+        
 
         loadAll();
 
@@ -30,8 +31,8 @@
                 page: vm.page,
                 size: vm.itemsPerPage,
                 sort: sort(),
-                searchType: vm.searchType,
-                searchValue: vm.searchQuery
+                searchType: vm.searchType ? vm.searchType :  'state',
+                searchValue: vm.searchQuery ? vm.searchQuery : $stateParams.state
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];

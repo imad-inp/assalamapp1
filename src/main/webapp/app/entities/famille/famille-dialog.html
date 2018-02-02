@@ -35,6 +35,18 @@
                     ng-model="vm.famille.cinMere"
                     />
         </div>
+           <div class="form-group">
+            <label class="control-label" data-translate="assalamApp.famille.state.name" for="field_statut">Statut Kafala</label>
+            <select class="form-control" name="statut" ng-model="vm.famille.state" id="field_statut">
+                <option value="OUVERTE" data-translate="assalamApp.famille.state.OUVERTE">OUVERTE</option>
+                  <option value="ATTENTE" data-translate="assalamApp.famille.state.ATTENTE">ATTENTE</option>
+                <option value="EN_COURS" data-translate="assalamApp.famille.state.EN_COURS">Beneficiaire</option>
+                
+                <option value="REFUSEE" data-translate="assalamApp.famille.state.REFUSEE">REFUSEE</option>             
+          
+                   <option value="ARRETEE" data-translate="assalamApp.famille.state.ARRETEE">ARRETEE</option>
+            </select>
+        </div>
         <button type="button" ngf-select class="btn btn-default btn-block"
                         ngf-change="vm.setPhotoMere($file, vm.famille)" accept="*" data-translate="entity.action.addimage">
                     Add image
