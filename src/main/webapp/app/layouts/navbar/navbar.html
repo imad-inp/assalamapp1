@@ -66,10 +66,7 @@
                     </a>
 
                      <ul class="dropdown-menu" >
-                           <li  >
-                            <a data-translate="assalamApp.famille.state.ALL" href="" ui-sref="famille({state:''})">View</a>
-                        </li>
-
+                         
                         <li  >
                             <a data-translate="assalamApp.famille.state.OUVERTE" href="" ui-sref="famille({state:'OUVERTE'})">Nouvelle demande</a>
                         </li>
@@ -84,6 +81,10 @@
                         </li>
                          <li  >
                             <a data-translate="assalamApp.famille.state.ARRETEE" href="" ui-sref="famille({state:'ARRETEE'})">View</a>
+                        </li>
+
+                          <li  >
+                            <a data-translate="assalamApp.famille.state.SUCCESS" href="" ui-sref="famille({state:'SUCESS'})">View</a>
                         </li>
 
                         
@@ -130,11 +131,31 @@
                 </li>
                 </li>
               
-                 <li  ng-show="vm.$state.includes('kafala-project')" ui-sref-active="active">
-                    <a ui-sref="kafil" ng-click="vm.collapseNavbar()">
+                 <li  ng-show="vm.$state.includes('kafala-project')" ui-sref-active="active"  class="dropdown" uib-dropdown >
+                    <a  ng-click="vm.collapseNavbar()" class="dropdown-toggle" uib-dropdown-toggle>
                          <i class="fa fa-user" aria-hidden="true"></i>&nbsp;
                         <span data-translate="global.menu.entities.kafil">Kafil</span>
+                         <b class="caret"></b>
                     </a>
+                         <ul class="dropdown-menu" >
+                             <li  >
+                            <a data-translate="assalamApp.kafil.state.ALL" href="" ui-sref="kafil({state:''})">Nouvelle demande</a>
+                        </li>
+                        <li  >
+                            <a data-translate="assalamApp.kafil.state.ACTIVE" href="" ui-sref="kafil({state:'ACTIVE'})">Nouvelle demande</a>
+                        </li>
+                         <li  >
+                            <a data-translate="assalamApp.kafil.state.LEFT" href="" ui-sref="kafil({state:'LEFT'})">Nouvel Enfant</a>
+                        </li>
+                         <li  >
+                            <a data-translate="assalamApp.kafil.state.URGENT" href="" ui-sref="kafil({state:'URGENT'})">Nouvel Enfant</a>
+                        </li>
+                       
+                        
+                    </ul>
+                   
+                    
+
                 </li>
                <!--   <li ng-show="vm.$state.includes('kafala-project')" ui-sref-active="active">
                     <a ui-sref="paiement" ng-click="vm.collapseNavbar()">
