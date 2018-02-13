@@ -15,7 +15,7 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.kafalas = Kafala.query();
+       
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -44,6 +44,10 @@
         function onSaveError () {
             vm.isSaving = false;
         }
+
+        vm.updatePaidMonths = function(){
+            vm.paiement.moispayes = Math.floor( vm.paiement.montant/ $stateParams.kafalaAmmount);
+        };
 
          vm.setProof = function ($file, paiement) {
              

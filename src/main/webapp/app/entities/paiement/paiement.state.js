@@ -12,7 +12,7 @@
         
          .state('paiement', {
             parent: 'kafala-project',
-            url: '/paiement?kafalaId',
+            url: '/paiement?kafalaId&kafalaAmmount',
             data: {
                 authorities: ['ROLE_KAFALA'],
                 pageTitle: 'assalamApp.paiement.home.title'

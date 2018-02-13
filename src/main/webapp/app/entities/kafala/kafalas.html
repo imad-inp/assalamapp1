@@ -68,7 +68,7 @@
                             <i class="fa fa-file" aria-hidden="true"></i>
                         </a>
                     <td print-remove>
-                        <a ui-sref="paiement({kafalaId: kafala.id })"><i class="fa fa-money" aria-hidden="true"></i></a>
+                        <a ui-sref="paiement({kafalaId: kafala.id , kafalaAmmount: kafala.montant})"><i class="fa fa-money" aria-hidden="true"></i></a>
                     </td>
                     <td print-remove class="text-right">
                        
@@ -84,7 +84,7 @@
                  <ul class="dropdown-menu" >
                         
                          <li  >
-                            <a data-translate="assalamApp.kafala.addPayment" href="" ui-sref="kafala.newPayment({kafalaId:kafala.id})">Nouvel Enfant</a>
+                            <a data-translate="assalamApp.kafala.addPayment" href="" ui-sref="kafala.newPayment({kafalaId:kafala.id, kafalaAmmount:kafala.montant})">Nouvel Enfant</a>
                         </li>
                          <li  >
                             <a data-translate="entity.action.view" href="" ui-sref="kafala.detail({id:kafala.id})">View</a>

@@ -121,7 +121,7 @@
         })
         .state('kafala.newPayment', {
             parent: 'kafala',
-            url: '/newPayment?kafalaId',
+            url: '/newPayment?kafalaId&kafalaAmmount',
             data: {
                 authorities: ['ROLE_KAFALA']
             },
