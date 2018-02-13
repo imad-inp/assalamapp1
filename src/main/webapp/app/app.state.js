@@ -1,20 +1,20 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('assalamApp')
         .config(stateConfig)
-        .controller('MainCtrl', ['$scope','$translate', function($scope,$translate) {
+        .controller('MainCtrl', ['$scope', '$translate', function ($scope, $translate) {
             var vm = this;
-    
-    vm.currentLang =  $translate.proposedLanguage();
-       
-    $scope.$on('langChanged', function (event, args) {
-     
-      vm.currentLang = $translate.proposedLanguage();
-     });
 
-    }]);;
+            vm.currentLang = $translate.proposedLanguage();
+
+            $scope.$on('langChanged', function (event, args) {
+
+                vm.currentLang = $translate.proposedLanguage();
+            });
+
+        }]);;
 
     stateConfig.$inject = ['$stateProvider'];
 
@@ -27,12 +27,12 @@
                     controller: 'NavbarController',
                     controllerAs: 'vm'
                 },
-                 'banner@': {
+                'banner@': {
                     templateUrl: 'app/layouts/header/header.html',
                     controller: 'NavbarController',
                     controllerAs: 'vm'
                 }
-                
+
             },
             resolve: {
                 authorize: ['Auth',
@@ -44,7 +44,10 @@
                     $translatePartialLoader.addPart('global');
                     $translatePartialLoader.addPart('enfant');
                     $translatePartialLoader.addPart('kafala');
-                     $translatePartialLoader.addPart('famille');
+                    $translatePartialLoader.addPart('famille');
+
+                    return $translate.refresh();
+
                 }]
             }
         });
