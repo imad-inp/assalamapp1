@@ -45,6 +45,7 @@
                     $translatePartialLoader.addPart('enfant');
                     $translatePartialLoader.addPart('kafala');
                     $translatePartialLoader.addPart('famille');
+                    $translatePartialLoader.addPart('kafil');
 
                     return $translate.refresh();
 
