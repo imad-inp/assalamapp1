@@ -124,7 +124,7 @@ public class KafalaServiceImpl implements KafalaService{
    */
   private boolean isLate(Kafala kafala) {
     boolean isLate = false;
-    if (kafala.getStartDate() != null && (kafala.getEndDate() == null kafala.getEndDate() == "")) {
+    if (kafala.getStartDate() != null && (kafala.getEndDate() == null || kafala.getEndDate() == "")) {
       LocalDate startDate = LocalDate.parse(kafala.getStartDate());
 
     long monthDiff = LocalDate.now().getMonthValue() - startDate.getMonthValue();
